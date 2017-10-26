@@ -1,0 +1,235 @@
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\bin\Debug\BeloSMS.exe
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\bin\Debug\BeloSMS.pdb
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\bin\Debug\BeloSMS.xml
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\BeloSMS.exe
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\BeloSMS.xml
+C:\Users\admin\AppData\Local\Temporary Projects\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\Project\BeloSMS\BeloSMS\BeloSMS\bin\Debug\BeloSMS.exe
+D:\Project\BeloSMS\BeloSMS\BeloSMS\bin\Debug\BeloSMS.pdb
+D:\Project\BeloSMS\BeloSMS\BeloSMS\bin\Debug\BeloSMS.xml
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.frmFullBlastSMS.resources
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.frmNewSMS.resources
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.frmProgressBar.resources
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.frmReplySMS.resources
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.exe
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.xml
+D:\Project\BeloSMS\BeloSMS\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.exe
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.xml
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\BeloProject\z-Backup\BeloSMS\bin\Debug\BeloSMS.exe
+D:\BeloProject\z-Backup\BeloSMS\bin\Debug\BeloSMS.pdb
+D:\BeloProject\z-Backup\BeloSMS\bin\Debug\BeloSMS.xml
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\BeloProject\z-Backup\BeloSMS\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\BeloProject\New folder\BeloSMS\bin\Debug\BeloSMS.exe
+D:\BeloProject\New folder\BeloSMS\bin\Debug\BeloSMS.pdb
+D:\BeloProject\New folder\BeloSMS\bin\Debug\BeloSMS.xml
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmContacts.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.exe
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.xml
+D:\BeloProject\New folder\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\BeloProject\BeloSMS\bin\Debug\BeloSMS.exe
+D:\BeloProject\BeloSMS\bin\Debug\BeloSMS.pdb
+D:\BeloProject\BeloSMS\bin\Debug\BeloSMS.xml
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSUpdate.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmContacts.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsImport.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsProfile.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAdd.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmUserBranchFooter.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.frmUserUpdateProfile.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.exe
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.xml
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\BeloProject\BeloSMS\obj\x86\Debug\BeloSMS.vbprojResolveAssemblyReference.cache
+D:\Project\VB\BeloSMS\bin\Debug\BeloSMS.exe
+D:\Project\VB\BeloSMS\bin\Debug\BeloSMS.pdb
+D:\Project\VB\BeloSMS\bin\Debug\BeloSMS.xml
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSUpdate.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmContacts.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsImport.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsProfile.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAdd.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmUserBranchFooter.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.frmUserUpdateProfile.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.exe
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.xml
+D:\Project\VB\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.exe
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.xml
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+D:\Project\ian\new\BeloSMS\bin\Debug\BeloSMS.exe
+D:\Project\ian\new\BeloSMS\bin\Debug\BeloSMS.pdb
+D:\Project\ian\new\BeloSMS\bin\Debug\BeloSMS.xml
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSUpdate.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContacts.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsImport.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsProfile.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAdd.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserBranchFooter.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserUpdateProfile.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache
+D:\Project\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbprojResolveAssemblyReference.cache
+D:\Project\ian\new\BeloSMS\bin\Debug\MetroFramework.dll
+D:\Project\ian\new\BeloSMS\bin\Debug\MetroFramework.Fonts.dll
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.exe
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.xml
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+C:\Ian Backup Source Codes\ian\new\BeloSMS\bin\Debug\BeloSMS.exe
+C:\Ian Backup Source Codes\ian\new\BeloSMS\bin\Debug\BeloSMS.pdb
+C:\Ian Backup Source Codes\ian\new\BeloSMS\bin\Debug\BeloSMS.xml
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbprojResolveAssemblyReference.cache
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSUpdate.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContacts.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsImport.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsProfile.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAdd.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserBranchFooter.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserUpdateProfile.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+C:\Ian Backup Source Codes\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache
+C:\Ian Backup Source Codes\ian\new\BeloSMS\bin\Debug\microsoft.windowsapicodepack.dll
+C:\Ian Backup Source Codes\ian\new\BeloSMS\bin\Debug\microsoft.windowsapicodepack.shell.dll
+C:\Projects\ian\new\BeloSMS\bin\Debug\BeloSMS.exe
+C:\Projects\ian\new\BeloSMS\bin\Debug\BeloSMS.pdb
+C:\Projects\ian\new\BeloSMS\bin\Debug\BeloSMS.xml
+C:\Projects\ian\new\BeloSMS\bin\Debug\microsoft.windowsapicodepack.dll
+C:\Projects\ian\new\BeloSMS\bin\Debug\microsoft.windowsapicodepack.shell.dll
+C:\Projects\ian\new\BeloSMS\bin\Debug\tafactory.iconpack.dll
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbprojResolveAssemblyReference.cache
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmEmployee.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSUpdate.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContacts.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsImport.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmContactsProfile.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmLogin.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmMain.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMS.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserAdd.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserBranchFooter.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.frmUserUpdateProfile.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.Resources.resources
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.exe
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.xml
+C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.pdb
