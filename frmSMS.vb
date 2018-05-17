@@ -500,7 +500,8 @@ Public Class frmSMS
                 lbListSelection.Text = "Inbox"
 
                 If MsgBox("Are you sure you want to delete all Inbox messages.", MsgBoxStyle.YesNo, "Delete All Inbox Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE Direction=1 AND TypeID=2"
+                    'SQLquery = "DELETE FROM Messages WHERE Direction=1 AND TypeID=2"
+                    SQLquery = "DELETE FROM Messages WHERE Direction=1 AND TypeID=1"
                     SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()
@@ -511,7 +512,8 @@ Public Class frmSMS
                 lbListSelection.Text = "Outbox"
 
                 If MsgBox("Are you sure you want to delete all Outbox messages.", MsgBoxStyle.YesNo, "Delete All Outbox Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=3"
+                    'SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=3"
+                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusID=3"
                     SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()
@@ -531,7 +533,8 @@ Public Class frmSMS
                 lbListSelection.Text = "Pending"
 
                 If MsgBox("Are you sure you want to delete all Pending messages.", MsgBoxStyle.YesNo, "Delete All Pending Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=1"
+                    'SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=1"
+                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusID=1"
                     SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()

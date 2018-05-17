@@ -232,6 +232,7 @@ Module connection_setting
         Dim query As String
         Dim MBchk As String = EmpMobile
         MBchk = Mid(MBchk, 1, 4)
+        
 
         SMSmsg = Replace(msg, "'", "\'")
 
@@ -241,6 +242,9 @@ Module connection_setting
                 If Len(EmpMobile) = 13 Then
                     'query = "INSERT INTO Messages SET DirectionID=2, TypeID=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
                     '& " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & branch & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
+
+                    'OLD DATABASE (4.1) `messages`.`type` == ID:2 | DESCRIPTION:SMS
+                    'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
 
                     query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, FromAddress = '+639479956255', ToAddress='" & EmpMobile & "', " _
                     & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & branch & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
