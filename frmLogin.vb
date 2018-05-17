@@ -15,8 +15,8 @@ Public Class frmLogin
         lbInformation.Text = ""
         btLogin.Enabled = False
 
-        connStrSMS = "Database=Messages;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-        connStrBMG = "Database=belo_database;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
+        connStrSMS = "Database=Messages_tester;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+        connStrBMG = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
         Application.DoEvents()
 
         If Len(Lusername) < 1 Then
@@ -227,9 +227,13 @@ Public Class frmLogin
             regKey.CreateSubKey("BeloSMS")
             regKey = Registry.LocalMachine.OpenSubKey("SYSTEM\BeloSMS", True)
 
-            UserName = "admin"
-            Password = "webdeveoper"
-            Host = "192.168.100.250"
+            'UserName = "admin"
+            'Password = "webdeveoper"
+            'Host = "192.168.100.250"
+
+            UserName = "root"
+            Password = "belo"
+            Host = "192.168.100.172"
 
             regKey.SetValue("smsusername", UserName)
             regKey.SetValue("smspassword", Password)

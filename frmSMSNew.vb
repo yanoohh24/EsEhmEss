@@ -16,6 +16,7 @@ Public Class frmSMSNew
         lsTemplate.Columns.Add("Created by", 100)
     End Sub
     Private Sub frmComposeSMS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        me.Size = New Size(677,605)
         HeaderTemplate()
         Retrive_SMS_TEMPLATE()
 
@@ -87,9 +88,9 @@ Public Class frmSMSNew
                 Dim _pxID As String = PatientID_Mobile(Mid(_mobile, 4, 10))
 
                 'sms_body,Branch_code, px_id, sms_sender, Username, UserHostName, UserHostIP
-                messages_sms_out(SMSMsg, _pxID, _mobile)
-                CommandXpertSMS(SMSMsg, 0, _pxID, _mobile)
-                msgSent = msgSent & _mobile & vbNewLine
+                messages_sms_out(SMSMsg, _pxID, _mobile)    'Belo_Database
+                CommandXpertSMS(SMSMsg, 0, _pxID, _mobile)  'Messages Database
+                msgSent = msgSent & _mobile & vbNewLine     
                 sentOnQue += 1
             End If
         Next
@@ -541,6 +542,7 @@ Public Class frmSMSNew
         Display_patient("")
         txtMobile.Clear()
         Panel1.Visible = True
+        Panel1.Location = New Point(1,82)
     End Sub
 
 End Class

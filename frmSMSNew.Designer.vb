@@ -104,7 +104,7 @@ Partial Class frmSMSNew
         Me.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtMessage.Size = New System.Drawing.Size(462, 173)
         Me.txtMessage.TabIndex = 1
-        Me.txtMessage.Text = "txtMessage"
+        Me.txtMessage.Text = " "
         '
         'Label1
         '
@@ -131,7 +131,7 @@ Partial Class frmSMSNew
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SendToolStrip, Me.SaveToolStrip, Me.ExitToolStrip})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(672, 55)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1338, 55)
         Me.ToolStrip1.TabIndex = 7
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -168,9 +168,9 @@ Partial Class frmSMSNew
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TxtLenghtToolStrip, Me.USAndBranchnameToolStripStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 543)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 544)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(672, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1338, 22)
         Me.StatusStrip1.TabIndex = 16
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -200,7 +200,7 @@ Partial Class frmSMSNew
         '
         Me.txtInvalidMobile.BackColor = System.Drawing.SystemColors.Window
         Me.txtInvalidMobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtInvalidMobile.Location = New System.Drawing.Point(486, 108)
+        Me.txtInvalidMobile.Location = New System.Drawing.Point(501, 108)
         Me.txtInvalidMobile.Multiline = true
         Me.txtInvalidMobile.Name = "txtInvalidMobile"
         Me.txtInvalidMobile.ReadOnly = true
@@ -264,7 +264,7 @@ Partial Class frmSMSNew
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(672, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1338, 24)
         Me.MenuStrip1.TabIndex = 20
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -302,7 +302,7 @@ Partial Class frmSMSNew
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Panel1.Location = New System.Drawing.Point(11, 77)
+        Me.Panel1.Location = New System.Drawing.Point(667, 82)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(658, 458)
         Me.Panel1.TabIndex = 22
@@ -399,7 +399,7 @@ Partial Class frmSMSNew
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.check})
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 3)
+        Me.DataGridView1.Location = New System.Drawing.Point(3, 0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.Size = New System.Drawing.Size(377, 334)
         Me.DataGridView1.TabIndex = 4
@@ -499,7 +499,7 @@ Partial Class frmSMSNew
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(672, 565)
+        Me.ClientSize = New System.Drawing.Size(1338, 566)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.chHR)

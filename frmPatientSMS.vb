@@ -128,9 +128,9 @@ Public Class frmPatientSMS
         FFMain.BranchDept.Text = ClientDepartmentKey
         FFMain.ToolStripStatusLabel2.Text = ClientAsDept
 
-        RetriveSMS()
-        ClientBrachAsDeptAssiged()
-        SetToBlank()
+        RetriveSMS()                    'Messages_sms
+        ClientBrachAsDeptAssiged()      '
+        SetToBlank()                    '
 
         sl = New MyListener(lsPxSMS)
 

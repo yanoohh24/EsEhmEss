@@ -66,7 +66,7 @@ Public Class frmSMS
     Public Sub RetriveSMS()
         Try
             Dim query As String
-            query = "SELECT * FROM Messages WHERE Direction=1 AND Type=2 ORDER BY ID DESC"
+            query = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=2 ORDER BY ID DESC"
 
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
@@ -95,13 +95,15 @@ Public Class frmSMS
 
     End Sub
     Private Sub btSMSCounter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSMSCounter.Click
+        'OLD DATABASE (4.1) `messages`.`type` == ID:2 | DESCRIPTION:SMS
+        'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
         Try
             Dim sqlCount As String
 
             sqlCount = "SELECT COUNT(*) AS INBOX, " _
-            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=2 AND TYPE=2 AND StatusDetails BETWEEN 210 AND 212) AS OUTBOX, " _
-            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=2 AND TYPE=2 AND StatusDetails BETWEEN 220 AND 221) AS SENT, " _
-            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=2 AND TYPE=2 AND StatusDetails BETWEEN 200 AND 202) AS PENDING FROM Messages WHERE Direction=1 AND TYPE=2"
+            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 210 AND 212) AS OUTBOX, " _
+            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 220 AND 221) AS SENT, " _
+            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 200 AND 202) AS PENDING FROM Messages WHERE DirectionID=1 AND TypeID=1"
 
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sqlCount, connection)
@@ -126,19 +128,19 @@ Public Class frmSMS
         cntDwn = 10
 
         'Inbox Result
-        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=1 AND TYPE=2"
+        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=1 AND TypeID=2"
         'lstSMS.Items(0).SubItems(2).Text = ResultSQL(sql)
 
         'Outbox Result
-        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 210 AND 212"
+        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusDetails BETWEEN 210 AND 212"
         'lstSMS.Items(1).SubItems(2).Text = ResultSQL(sql)
 
         'Sent Result
-        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 220 AND 221"
+        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusDetails BETWEEN 220 AND 221"
         'lstSMS.Items(2).SubItems(2).Text = ResultSQL(sql)
 
         'Pending Result
-        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 200 AND 202"
+        'sql = "SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusDetails BETWEEN 200 AND 202"
         'lstSMS.Items(3).SubItems(2).Text = ResultSQL(sql)
 
     End Sub
@@ -159,6 +161,8 @@ Public Class frmSMS
     Private Sub lstSMS_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstSMS.Click
         Dim SQLquery As String
         On Error Resume Next
+        'OLD DATABASE (4.1) `messages`.`type` == ID:2 | DESCRIPTION:SMS
+        'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
 
         'Timer
         Timer1.Enabled = False
@@ -170,7 +174,8 @@ Public Class frmSMS
                 lstMessages.Items.Clear()
                 Application.DoEvents()
                 btSMSCounter_Click(Me, EventArgs.Empty)
-                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND Type=2 ORDER BY ID DESC LIMIT 0,300"
+                'SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=2 ORDER BY ID DESC LIMIT 0,300"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=1 AND TypeID=1 ORDER BY ID DESC LIMIT 0,300"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
             Case "Outbox"
@@ -178,7 +183,8 @@ Public Class frmSMS
                 lstMessages.Items.Clear()
                 Application.DoEvents()
                 btSMSCounter_Click(Me, EventArgs.Empty)
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 210 AND 212 ORDER BY ID DESC"
+                'SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 210 AND 212 ORDER BY ID DESC"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusDetailsID BETWEEN 210 AND 212 ORDER BY ID DESC"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
             Case "Sent"
@@ -186,7 +192,8 @@ Public Class frmSMS
                 lstMessages.Items.Clear()
                 Application.DoEvents()
                 btSMSCounter_Click(Me, EventArgs.Empty)
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 220 AND 221 ORDER BY ID DESC LIMIT 0,300"
+                'SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 220 AND 221 ORDER BY ID DESC LIMIT 0,300"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusDetailsID BETWEEN 220 AND 221 ORDER BY ID DESC LIMIT 0,300"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
             Case "Pending"
@@ -194,7 +201,8 @@ Public Class frmSMS
                 lstMessages.Items.Clear()
                 Application.DoEvents()
                 btSMSCounter_Click(Me, EventArgs.Empty)
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 200 AND 202 ORDER BY ID DESC"
+                'SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 200 AND 202 ORDER BY ID DESC"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusDetailsID BETWEEN 200 AND 202 ORDER BY ID DESC"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
         End Select
@@ -217,7 +225,8 @@ Public Class frmSMS
                     While reader.Read
                         Dim ls As New ListViewItem(reader.Item("id").ToString())
                         Dim _pxID As String = reader.Item("PatientID")
-                        ls.SubItems.Add(reader.Item("Sender").ToString.Trim()) 'Recipient 'Sender
+                        'ls.SubItems.Add(reader.Item("Sender").ToString.Trim()) 'Recipient 'Sender
+                        ls.SubItems.Add(reader.Item("FromAddress").ToString.Trim()) 'Recipient 'Sender
                         ls.SubItems.Add(reader.Item("Body").ToString())
                         ls.SubItems.Add(Format(reader.Item("doc"), "hh:mm tt MM-dd-yyyy"))
                         ls.SubItems.Add(px_name(_pxID))
@@ -227,7 +236,8 @@ Public Class frmSMS
                 Else
                     While reader.Read
                         Dim ls As New ListViewItem(reader.Item("id").ToString())
-                        ls.SubItems.Add(reader.Item("Recipient").ToString.Trim()) 'Recipient 'Sender
+                        'ls.SubItems.Add(reader.Item("Recipient").ToString.Trim()) 'Recipient 'Sender
+                        ls.SubItems.Add(reader.Item("FromAddress").ToString.Trim()) 'Recipient 'Sender
                         ls.SubItems.Add(reader.Item("Body").ToString())
                         ls.SubItems.Add(Format(reader.Item("doc"), "hh:mm tt MM-dd-yyyy"))
                         ls.SubItems.Add(reader.Item("Username"))
@@ -358,22 +368,26 @@ Public Class frmSMS
         Select Case lbListSelection.Text.Trim
             Case "Inbox"
                 lbListSelection.Text = "Inbox"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND Type=2 ORDER BY ID DESC LIMIT 0,500"
+                'SQLquery = "SELECT * FROM Messages WHERE DirectionID=1 AND TypeID=2 ORDER BY ID DESC LIMIT 0,500"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=1 AND TypeID=1 ORDER BY ID DESC LIMIT 0,500"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = lstMessages.Items.Count
             Case "Outbox"
                 lbListSelection.Text = "Outbox"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 210 AND 212 ORDER BY ID DESC"
+                'SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusDetailsID BETWEEN 210 AND 212 ORDER BY ID DESC"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusDetailsID BETWEEN 210 AND 212 ORDER BY ID DESC"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = lstMessages.Items.Count
             Case "Sent"
                 lbListSelection.Text = "Sent"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 220 AND 221 ORDER BY ID DESC LIMIT 0,500"
+                'SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusDetailsID BETWEEN 220 AND 221 ORDER BY ID DESC LIMIT 0,500"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusDetailsID BETWEEN 220 AND 221 ORDER BY ID DESC LIMIT 0,500"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = lstMessages.Items.Count
             Case "Pending"
                 lbListSelection.Text = "Pending"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND StatusDetails BETWEEN 200 AND 202 ORDER BY ID DESC"
+                'SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusDetailsID BETWEEN 200 AND 202 ORDER BY ID DESC"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusDetailsID BETWEEN 200 AND 202 ORDER BY ID DESC"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = lstMessages.Items.Count
         End Select
@@ -466,12 +480,14 @@ Public Class frmSMS
 
     Private Sub ResendAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ResendAllToolStripMenuItem.Click
         Dim sql As String
-
+        'RESEND TO ALL (SET STATUS TO = PENDING FROM FAILURE)
+        'OLD DATABASE (4.1) `messages`.`type` == ID:2 | DESCRIPTION:SMS
+        'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
         Timer1.Enabled = False
 
-        sql = "UPDATE messages SET StatusDetails=200, STATUS=1, ChannelID=0, MessageReference='', SentTimeSecs=0, ReceivedTimeSecs=0, ScheduledTimeSecs=0, " _
+        sql = "UPDATE messages SET StatusDetailsID=200, STATUSID=1, ChannelID=0, MessageReference='', SentTimeSecs=0, ReceivedTimeSecs=0, ScheduledTimeSecs=0, " _
         & "LastUpdateSecs=0, BodyFormat=0, CustomField1=0, CustomField2='', sysCreator=0, sysArchive=0, sysLock=0, sysHash='', sysForwarded=0, " _
-        & "sysGwReference='', Header='' WHERE Direction=2 AND TYPE=2 AND STATUS=3"
+        & "sysGwReference='', Header='' WHERE DirectionID=2 AND TYPEID=1 AND STATUSID=3"
         SMS_UPDATE(sql)
         btSMSCounter_Click(Me, EventArgs.Empty)
     End Sub
@@ -484,7 +500,7 @@ Public Class frmSMS
                 lbListSelection.Text = "Inbox"
 
                 If MsgBox("Are you sure you want to delete all Inbox messages.", MsgBoxStyle.YesNo, "Delete All Inbox Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE Direction=1 AND Type=2"
+                    SQLquery = "DELETE FROM Messages WHERE Direction=1 AND TypeID=2"
                     SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()
@@ -495,7 +511,7 @@ Public Class frmSMS
                 lbListSelection.Text = "Outbox"
 
                 If MsgBox("Are you sure you want to delete all Outbox messages.", MsgBoxStyle.YesNo, "Delete All Outbox Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE Direction=2 AND Type=2 AND Status=3"
+                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=3"
                     SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()
@@ -505,7 +521,7 @@ Public Class frmSMS
                 lbListSelection.Text = "Sent"
 
                 If MsgBox("Are you sure you want to delete all Sent messages.", MsgBoxStyle.YesNo, "Delete All Sent Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE Direction=2 AND Type=2 AND Status=2"
+                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=2"
                     'SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()
@@ -515,7 +531,7 @@ Public Class frmSMS
                 lbListSelection.Text = "Pending"
 
                 If MsgBox("Are you sure you want to delete all Pending messages.", MsgBoxStyle.YesNo, "Delete All Pending Messages") = MsgBoxResult.Yes Then
-                    SQLquery = "DELETE FROM Messages WHERE Direction=2 AND Type=2 AND Status=1"
+                    SQLquery = "DELETE FROM Messages WHERE DirectionID=2 AND TypeID=2 AND StatusID=1"
                     SMS_UPDATE(SQLquery)
 
                     lstMessages.Items.Clear()
@@ -538,12 +554,12 @@ Public Class frmSMS
         Select Case lstSMS.SelectedItems(0).SubItems(1).Text.Trim()
             Case "Inbox"
                 lbListSelection.Text = "Inbox"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND Type=2 AND (Body LIKE '%" & _search & "%' OR Sender LIKE '%" & _search & "%') ORDER BY ID DESC LIMIT 0,400"
+                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=2 AND (Body LIKE '%" & _search & "%' OR Sender LIKE '%" & _search & "%') ORDER BY ID DESC LIMIT 0,400"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
             Case "Sent"
                 lbListSelection.Text = "Sent"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=2 AND Type=2 AND (Body LIKE '%" & _search & "%' OR Recipient LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=2 AND (Body LIKE '%" & _search & "%' OR Recipient LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
         End Select

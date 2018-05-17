@@ -284,8 +284,8 @@ Public Class frmUserAccess
         LstColumns()
         UserGroupList()
         combo_Branch_List()
-        connStrSMS = "Database=Messages;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-        connStrBMG = "Database=belo_database;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+        connStrSMS = "Database=Messages_tester;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+        connStrBMG = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
         txtUsername.Text = ""
         txtLUsername.Text = ""
         txtName.Text = ""
@@ -315,14 +315,16 @@ Public Class frmUserAccess
 
             Else
                 regKey.SetValue("smspassword", "")
-                Password = "webdeveoper"
+                'Password = "webdeveoper"
+                Password = "belo"
             End If
 
             If Len(regKey.GetValue("smsHostIP", "").ToString().Trim()) > 1 Then
                 Host = regKey.GetValue("smsHostIP", "").ToString().Trim()
             Else
                 regKey.SetValue("smsHostIP", "localhost")
-                Host = "192.168.100.250"
+                'Host = "192.168.100.250"
+                Host = "192.168.100.172"
             End If
 
             regKey.Close()
@@ -333,9 +335,13 @@ Public Class frmUserAccess
             regKey.CreateSubKey("BeloSMS")
             regKey = Registry.LocalMachine.OpenSubKey("SYSTEM\BeloSMS", True)
 
-            UserName = "admin"
-            Password = "webdeveoper"
-            Host = "192.168.100.250"
+            'UserName = "admin"
+            'Password = "webdeveoper"
+            'Host = "192.168.100.250"
+
+            UserName = "root"
+            Password = "belo"
+            Host = "192.168.100.172"
 
             regKey.SetValue("smsusername", UserName)
             regKey.SetValue("smspassword", Password)

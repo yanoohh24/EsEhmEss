@@ -68,8 +68,8 @@ Module connection_setting
     Public Branch_End_Footer As String
     Public Department_End_Footer As String
 
-    Public connStrSMS As String = "Database=Messages;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-    Public connStrBMG As String = "Database=belo_database;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
+    Public connStrSMS As String = "Database=Messages_tester;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+    Public connStrBMG As String = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
        
  Public Structure UsertInformation
         Dim username As String
@@ -195,7 +195,17 @@ Module connection_setting
             If MBchk = "+639" Then
 
                 If Len(EmpMobile) = 13 Then
-                    query = "INSERT INTO Messages SET Direction=2, Type=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
+                    'query = "INSERT INTO Messages SET DirectionID=2, TypeID=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
+                    '& " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
+                    
+                    
+                    'SEND DETAILS
+                    'TYPE = SMS(1)
+                    'STATUS = PENDING(1)
+                    'DIRECTION = OUT(2)
+                    'FromAddress = Sender : ToAddress = Recipient
+
+                    query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, FromAddress = '+639479956255', ToAddress='" & EmpMobile & "', " _
                     & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
 
                     Dim rowsEffected As Integer = 0
@@ -229,7 +239,10 @@ Module connection_setting
             If MBchk = "+639" Then
 
                 If Len(EmpMobile) = 13 Then
-                    query = "INSERT INTO Messages SET Direction=2, Type=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
+                    'query = "INSERT INTO Messages SET DirectionID=2, TypeID=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
+                    '& " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & branch & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
+
+                    query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, FromAddress = '+639479956255', ToAddress='" & EmpMobile & "', " _
                     & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & branch & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
 
                     Dim rowsEffected As Integer = 0
