@@ -205,7 +205,7 @@ Module connection_setting
                     'DIRECTION = OUT(2)
                     'FromAddress = Sender : ToAddress = Recipient
 
-                    query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, FromAddress = '+639479956255', ToAddress='" & EmpMobile & "', " _
+                    query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, ToAddress='" & EmpMobile & "', " _
                     & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
 
                     Dim rowsEffected As Integer = 0
@@ -246,7 +246,7 @@ Module connection_setting
                     'OLD DATABASE (4.1) `messages`.`type` == ID:2 | DESCRIPTION:SMS
                     'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
 
-                    query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, FromAddress = '+639479956255', ToAddress='" & EmpMobile & "', " _
+                    query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, ToAddress='" & EmpMobile & "', " _
                     & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & branch & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
 
                     Dim rowsEffected As Integer = 0

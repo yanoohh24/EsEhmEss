@@ -443,8 +443,8 @@ Public Class frmSMSFullBlast
                 "Our branch is located at " & AddressToolStripStatus.Text & vbNewLine & vbNewLine & FooterSMS
 
                 'sms_body, Branch_code, px_id, sms_sender, Username,UserHostName,UserHostIP
-                messages_sms_out(txtClientName.Text, pxID, txtMobile.Text.Trim)
-                CommandXpertSMS(txtClientName.Text, 0, pxID, txtMobile.Text.Trim)
+                messages_sms_out(txtClientName.Text, pxID, txtMobile.Text.Trim)         'Belo_Database (Messages_SMS)
+                CommandXpertSMS(txtClientName.Text, 0, pxID, txtMobile.Text.Trim)       'Messages ( Database : Messages )
 
             End If
 
@@ -598,8 +598,8 @@ Public Class frmSMSFullBlast
                 CustomSMS = txtMessage_c.Text & vbNewLine & vbNewLine & FooterSMS
                 'sms_body, Branch_code, px_id, sms_sender, UserName, UserHostName, UserHostIP
 
-                messages_sms_out(CustomSMS, pxID, txtMobile_c.Text.Trim)
-                CommandXpertSMS(CustomSMS, 0, pxID, txtMobile_c.Text.Trim)
+                messages_sms_out(CustomSMS, pxID, txtMobile_c.Text.Trim)        'Belo_Database (Messages_SMS)
+                CommandXpertSMS(CustomSMS, 0, pxID, txtMobile_c.Text.Trim)      'Messages ( Database : Messages )
             End If
 
         Next

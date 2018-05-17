@@ -88,8 +88,8 @@ Public Class frmSMSNew
                 Dim _pxID As String = PatientID_Mobile(Mid(_mobile, 4, 10))
 
                 'sms_body,Branch_code, px_id, sms_sender, Username, UserHostName, UserHostIP
-                messages_sms_out(SMSMsg, _pxID, _mobile)    'Belo_Database
-                CommandXpertSMS(SMSMsg, 0, _pxID, _mobile)  'Messages Database
+                messages_sms_out(SMSMsg, _pxID, _mobile)    'Belo_Database (Messages_SMS)
+                CommandXpertSMS(SMSMsg, 0, _pxID, _mobile)  'Messages ( Database : Messages )
                 msgSent = msgSent & _mobile & vbNewLine     
                 sentOnQue += 1
             End If

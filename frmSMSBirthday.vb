@@ -97,8 +97,8 @@ Public Class frmSMSBirthday
                 & "For other inquiries, you may call 819-BELO (2356) or visit us at www.belomed.com " & vbNewLine & vbNewLine _
                 & "To unsubscribe reply OFF"
 
-                messages_sms_out(txtBirthday.Text, pxID, pxBranchCode, txtMobile.Text.Trim)
-                CommandXpertSMS_Birthday(txtBirthday.Text, 0, pxID, pxBranchCode, txtMobile.Text.Trim)
+                messages_sms_out(txtBirthday.Text, pxID, pxBranchCode, txtMobile.Text.Trim)                     'Belo_Database (Messages_SMS)
+                CommandXpertSMS_Birthday(txtBirthday.Text, 0, pxID, pxBranchCode, txtMobile.Text.Trim)          '
             End If
 
         Next

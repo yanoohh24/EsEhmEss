@@ -82,8 +82,8 @@ Public Class frmSMSReply
             Exit Sub
         End If
 
-        messages_sms_out(SMSMsg, pxIDToolStrip.Text.Trim, SMSMobile)
-        CommandXpertSMS(SMSMsg, 0, pxIDToolStrip.Text.Trim, SMSMobile)
+        messages_sms_out(SMSMsg, pxIDToolStrip.Text.Trim, SMSMobile)        'Belo_Database (Messages_SMS)
+        CommandXpertSMS(SMSMsg, 0, pxIDToolStrip.Text.Trim, SMSMobile)      'Messages ( Database : Messages )
 
         Me.Dispose()
         ReloadSMS()

@@ -66,8 +66,8 @@ Public Class frmSMS
     Public Sub RetriveSMS()
         Try
             Dim query As String
-            query = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=2 ORDER BY ID DESC"
-
+            'query = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=2 ORDER BY ID DESC"
+            query = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=1 ORDER BY ID DESC"
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
@@ -557,12 +557,12 @@ Public Class frmSMS
         Select Case lstSMS.SelectedItems(0).SubItems(1).Text.Trim()
             Case "Inbox"
                 lbListSelection.Text = "Inbox"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=2 AND (Body LIKE '%" & _search & "%' OR Sender LIKE '%" & _search & "%') ORDER BY ID DESC LIMIT 0,400"
+                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=1 AND (Body LIKE '%" & _search & "%' OR Sender LIKE '%" & _search & "%') ORDER BY ID DESC LIMIT 0,400"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
             Case "Sent"
                 lbListSelection.Text = "Sent"
-                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=2 AND (Body LIKE '%" & _search & "%' OR Recipient LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND (Body LIKE '%" & _search & "%' OR Recipient LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
         End Select
