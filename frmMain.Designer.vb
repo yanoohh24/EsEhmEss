@@ -61,10 +61,10 @@ Partial Class frmMain
         Me.BlinkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.ToolStrip1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout
+        Me.StatusStrip1.SuspendLayout
+        Me.MenuStrip1.SuspendLayout
+        Me.SuspendLayout
         '
         'ToolStrip1
         '
@@ -83,7 +83,7 @@ Partial Class frmMain
         'SMS_Admin_ToolStrip
         '
         Me.SMS_Admin_ToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SMS_Admin_ToolStrip.Image = CType(resources.GetObject("SMS_Admin_ToolStrip.Image"), System.Drawing.Image)
+        Me.SMS_Admin_ToolStrip.Image = CType(resources.GetObject("SMS_Admin_ToolStrip.Image"),System.Drawing.Image)
         Me.SMS_Admin_ToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SMS_Admin_ToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SMS_Admin_ToolStrip.Name = "SMS_Admin_ToolStrip"
@@ -93,7 +93,7 @@ Partial Class frmMain
         'Inbox_ToolStrip
         '
         Me.Inbox_ToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Inbox_ToolStrip.Image = CType(resources.GetObject("Inbox_ToolStrip.Image"), System.Drawing.Image)
+        Me.Inbox_ToolStrip.Image = CType(resources.GetObject("Inbox_ToolStrip.Image"),System.Drawing.Image)
         Me.Inbox_ToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Inbox_ToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Inbox_ToolStrip.Name = "Inbox_ToolStrip"
@@ -103,7 +103,7 @@ Partial Class frmMain
         'SMS_FullBlastToolStrip
         '
         Me.SMS_FullBlastToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SMS_FullBlastToolStrip.Image = CType(resources.GetObject("SMS_FullBlastToolStrip.Image"), System.Drawing.Image)
+        Me.SMS_FullBlastToolStrip.Image = CType(resources.GetObject("SMS_FullBlastToolStrip.Image"),System.Drawing.Image)
         Me.SMS_FullBlastToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SMS_FullBlastToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SMS_FullBlastToolStrip.Name = "SMS_FullBlastToolStrip"
@@ -113,7 +113,7 @@ Partial Class frmMain
         'Patients_ToolStrip
         '
         Me.Patients_ToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Patients_ToolStrip.Image = CType(resources.GetObject("Patients_ToolStrip.Image"), System.Drawing.Image)
+        Me.Patients_ToolStrip.Image = CType(resources.GetObject("Patients_ToolStrip.Image"),System.Drawing.Image)
         Me.Patients_ToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Patients_ToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Patients_ToolStrip.Name = "Patients_ToolStrip"
@@ -123,7 +123,7 @@ Partial Class frmMain
         'SMS_NewToolStrip
         '
         Me.SMS_NewToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SMS_NewToolStrip.Image = CType(resources.GetObject("SMS_NewToolStrip.Image"), System.Drawing.Image)
+        Me.SMS_NewToolStrip.Image = CType(resources.GetObject("SMS_NewToolStrip.Image"),System.Drawing.Image)
         Me.SMS_NewToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SMS_NewToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SMS_NewToolStrip.Name = "SMS_NewToolStrip"
@@ -133,7 +133,7 @@ Partial Class frmMain
         'ContactsToolStrip
         '
         Me.ContactsToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ContactsToolStrip.Image = CType(resources.GetObject("ContactsToolStrip.Image"), System.Drawing.Image)
+        Me.ContactsToolStrip.Image = CType(resources.GetObject("ContactsToolStrip.Image"),System.Drawing.Image)
         Me.ContactsToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ContactsToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ContactsToolStrip.Name = "ContactsToolStrip"
@@ -143,7 +143,7 @@ Partial Class frmMain
         'BirthdayToolStrip
         '
         Me.BirthdayToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BirthdayToolStrip.Image = CType(resources.GetObject("BirthdayToolStrip.Image"), System.Drawing.Image)
+        Me.BirthdayToolStrip.Image = CType(resources.GetObject("BirthdayToolStrip.Image"),System.Drawing.Image)
         Me.BirthdayToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.BirthdayToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BirthdayToolStrip.Name = "BirthdayToolStrip"
@@ -153,13 +153,13 @@ Partial Class frmMain
         'tsEmployee
         '
         Me.tsEmployee.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsEmployee.Image = CType(resources.GetObject("tsEmployee.Image"), System.Drawing.Image)
+        Me.tsEmployee.Image = CType(resources.GetObject("tsEmployee.Image"),System.Drawing.Image)
         Me.tsEmployee.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.tsEmployee.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsEmployee.Name = "tsEmployee"
         Me.tsEmployee.Size = New System.Drawing.Size(52, 52)
         Me.tsEmployee.Text = "Birthday Full Blast SMS"
-        Me.tsEmployee.Visible = False
+        Me.tsEmployee.Visible = false
         '
         'StatusStrip1
         '
@@ -168,7 +168,7 @@ Partial Class frmMain
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(1052, 22)
         Me.StatusStrip1.TabIndex = 3
-        Me.StatusStrip1.TabStop = True
+        Me.StatusStrip1.TabStop = true
         Me.StatusStrip1.Text = "StatusStrip1"
         '
         'HostServerToolStrip
@@ -206,7 +206,7 @@ Partial Class frmMain
         Me.AccAdminToolStripStatus.Name = "AccAdminToolStripStatus"
         Me.AccAdminToolStripStatus.Size = New System.Drawing.Size(142, 17)
         Me.AccAdminToolStripStatus.Text = "AccAdminToolStripStatus"
-        Me.AccAdminToolStripStatus.Visible = False
+        Me.AccAdminToolStripStatus.Visible = false
         '
         'ToolStripStatusLabel1
         '
@@ -321,23 +321,23 @@ Partial Class frmMain
         Me.IconToolStripMenuItem.Name = "IconToolStripMenuItem"
         Me.IconToolStripMenuItem.Size = New System.Drawing.Size(42, 20)
         Me.IconToolStripMenuItem.Text = "icon"
-        Me.IconToolStripMenuItem.Visible = False
+        Me.IconToolStripMenuItem.Visible = false
         '
         'BlinkToolStripMenuItem
         '
         Me.BlinkToolStripMenuItem.Name = "BlinkToolStripMenuItem"
         Me.BlinkToolStripMenuItem.Size = New System.Drawing.Size(45, 20)
         Me.BlinkToolStripMenuItem.Text = "blink"
-        Me.BlinkToolStripMenuItem.Visible = False
+        Me.BlinkToolStripMenuItem.Visible = false
         '
         'Timer1
         '
-        Me.Timer1.Enabled = True
+        Me.Timer1.Enabled = true
         Me.Timer1.Interval = 1000
         '
         'ImageList1
         '
-        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"),System.Windows.Forms.ImageListStreamer)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         Me.ImageList1.Images.SetKeyName(0, "23-0.png")
         Me.ImageList1.Images.SetKeyName(1, "23-1.png")
@@ -354,7 +354,7 @@ Partial Class frmMain
         '
         'frmMain
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
@@ -363,22 +363,22 @@ Partial Class frmMain
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.IsMdiContainer = True
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.IsMdiContainer = true
         Me.Name = "frmMain"
         Me.Padding = New System.Windows.Forms.Padding(0, 60, 1, 0)
         Me.Text = "Belo Medical Group"
         Me.TransparencyKey = System.Drawing.Color.Empty
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(false)
+        Me.ToolStrip1.PerformLayout
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        Me.MenuStrip1.ResumeLayout(false)
+        Me.MenuStrip1.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents Patients_ToolStrip As System.Windows.Forms.ToolStripButton
     Friend WithEvents SMS_Admin_ToolStrip As System.Windows.Forms.ToolStripButton

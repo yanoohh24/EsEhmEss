@@ -168,7 +168,7 @@ Public Class frmEmployee
             If txtFname.Text.Trim() <> ls(0) _
                Or txtLname.Text.Trim() <> ls(1) _
                Or txtMname.Text.Trim() <> ls(2) _
-              Or txtEmpid.Text.Trim() <> ls(4) _
+               Or txtEmpid.Text.Trim() <> ls(4) _
                Or dtBirthdate.Text.Trim() <> ls(5) _
                Or cbBranch.Text.Trim() <> ls(6) _
                Or ismanager <> ls(7) _

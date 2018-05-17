@@ -76,24 +76,24 @@ Partial Class frmSMSFullBlast
         Me.AutoTemplateToolStrip = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStrip1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        Me.gbTemplate.SuspendLayout()
-        Me.ContextMessageInbox.SuspendLayout()
-        Me.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout
+        Me.StatusStrip1.SuspendLayout
+        Me.TabControl1.SuspendLayout
+        Me.TabPage1.SuspendLayout
+        Me.TabPage2.SuspendLayout
+        Me.gbTemplate.SuspendLayout
+        Me.ContextMessageInbox.SuspendLayout
+        Me.SuspendLayout
         '
         'lstPatientsContact
         '
-        Me.lstPatientsContact.FullRowSelect = True
-        Me.lstPatientsContact.GridLines = True
+        Me.lstPatientsContact.FullRowSelect = true
+        Me.lstPatientsContact.GridLines = true
         Me.lstPatientsContact.Location = New System.Drawing.Point(10, 69)
         Me.lstPatientsContact.Name = "lstPatientsContact"
         Me.lstPatientsContact.Size = New System.Drawing.Size(1045, 178)
         Me.lstPatientsContact.TabIndex = 5
-        Me.lstPatientsContact.UseCompatibleStateImageBehavior = False
+        Me.lstPatientsContact.UseCompatibleStateImageBehavior = false
         Me.lstPatientsContact.View = System.Windows.Forms.View.Details
         '
         'ToolStrip1
@@ -109,7 +109,7 @@ Partial Class frmSMSFullBlast
         '
         Me.FileToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
         Me.FileToolStrip.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator1, Me.CloseToolStripMenuItem})
-        Me.FileToolStrip.Image = CType(resources.GetObject("FileToolStrip.Image"), System.Drawing.Image)
+        Me.FileToolStrip.Image = CType(resources.GetObject("FileToolStrip.Image"),System.Drawing.Image)
         Me.FileToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.FileToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.FileToolStrip.Name = "FileToolStrip"
@@ -124,14 +124,14 @@ Partial Class frmSMSFullBlast
         'CloseToolStripMenuItem
         '
         Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
+        Me.CloseToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X),System.Windows.Forms.Keys)
         Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.CloseToolStripMenuItem.Text = "Close"
         '
         'ExcelToolStrip
         '
         Me.ExcelToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ExcelToolStrip.Image = CType(resources.GetObject("ExcelToolStrip.Image"), System.Drawing.Image)
+        Me.ExcelToolStrip.Image = CType(resources.GetObject("ExcelToolStrip.Image"),System.Drawing.Image)
         Me.ExcelToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ExcelToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ExcelToolStrip.Name = "ExcelToolStrip"
@@ -146,7 +146,7 @@ Partial Class frmSMSFullBlast
         'ToolStripViewAll
         '
         Me.ToolStripViewAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripViewAll.Image = CType(resources.GetObject("ToolStripViewAll.Image"), System.Drawing.Image)
+        Me.ToolStripViewAll.Image = CType(resources.GetObject("ToolStripViewAll.Image"),System.Drawing.Image)
         Me.ToolStripViewAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripViewAll.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripViewAll.Name = "ToolStripViewAll"
@@ -180,7 +180,7 @@ Partial Class frmSMSFullBlast
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(698, 45)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(30, 13)
@@ -189,7 +189,7 @@ Partial Class frmSMSFullBlast
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(844, 45)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(20, 13)
@@ -199,7 +199,7 @@ Partial Class frmSMSFullBlast
         'cbBranch
         '
         Me.cbBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbBranch.FormattingEnabled = True
+        Me.cbBranch.FormattingEnabled = true
         Me.cbBranch.Location = New System.Drawing.Point(53, 42)
         Me.cbBranch.Name = "cbBranch"
         Me.cbBranch.Size = New System.Drawing.Size(113, 21)
@@ -207,7 +207,7 @@ Partial Class frmSMSFullBlast
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(6, 45)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(41, 13)
@@ -216,17 +216,17 @@ Partial Class frmSMSFullBlast
         '
         'lbBranchDB
         '
-        Me.lbBranchDB.AutoSize = True
+        Me.lbBranchDB.AutoSize = true
         Me.lbBranchDB.Location = New System.Drawing.Point(292, 26)
         Me.lbBranchDB.Name = "lbBranchDB"
         Me.lbBranchDB.Size = New System.Drawing.Size(64, 13)
         Me.lbBranchDB.TabIndex = 9
         Me.lbBranchDB.Text = "lbBranchDB"
-        Me.lbBranchDB.Visible = False
+        Me.lbBranchDB.Visible = false
         '
         'lbStatus
         '
-        Me.lbStatus.AutoSize = True
+        Me.lbStatus.AutoSize = true
         Me.lbStatus.Location = New System.Drawing.Point(172, 45)
         Me.lbStatus.Name = "lbStatus"
         Me.lbStatus.Size = New System.Drawing.Size(37, 13)
@@ -236,7 +236,7 @@ Partial Class frmSMSFullBlast
         'cbSatus
         '
         Me.cbSatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbSatus.FormattingEnabled = True
+        Me.cbSatus.FormattingEnabled = true
         Me.cbSatus.Location = New System.Drawing.Point(215, 42)
         Me.cbSatus.Name = "cbSatus"
         Me.cbSatus.Size = New System.Drawing.Size(121, 21)
@@ -247,9 +247,9 @@ Partial Class frmSMSFullBlast
         Me.txtClientName.BackColor = System.Drawing.SystemColors.Window
         Me.txtClientName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtClientName.Location = New System.Drawing.Point(13, 37)
-        Me.txtClientName.Multiline = True
+        Me.txtClientName.Multiline = true
         Me.txtClientName.Name = "txtClientName"
-        Me.txtClientName.ReadOnly = True
+        Me.txtClientName.ReadOnly = true
         Me.txtClientName.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtClientName.Size = New System.Drawing.Size(478, 144)
         Me.txtClientName.TabIndex = 7
@@ -261,14 +261,14 @@ Partial Class frmSMSFullBlast
         Me.txtMobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMobile.Location = New System.Drawing.Point(54, 11)
         Me.txtMobile.Name = "txtMobile"
-        Me.txtMobile.ReadOnly = True
+        Me.txtMobile.ReadOnly = true
         Me.txtMobile.Size = New System.Drawing.Size(437, 20)
         Me.txtMobile.TabIndex = 6
         Me.txtMobile.Text = "txtMobile"
         '
         'lbMobile
         '
-        Me.lbMobile.AutoSize = True
+        Me.lbMobile.AutoSize = true
         Me.lbMobile.Location = New System.Drawing.Point(10, 13)
         Me.lbMobile.Name = "lbMobile"
         Me.lbMobile.Size = New System.Drawing.Size(38, 13)
@@ -277,14 +277,14 @@ Partial Class frmSMSFullBlast
         '
         'btSendToAll
         '
-        Me.btSendToAll.Enabled = False
+        Me.btSendToAll.Enabled = false
         Me.btSendToAll.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btSendToAll.Location = New System.Drawing.Point(416, 189)
         Me.btSendToAll.Name = "btSendToAll"
         Me.btSendToAll.Size = New System.Drawing.Size(75, 23)
         Me.btSendToAll.TabIndex = 9
         Me.btSendToAll.Text = "Send to All"
-        Me.btSendToAll.UseVisualStyleBackColor = True
+        Me.btSendToAll.UseVisualStyleBackColor = true
         '
         'StatusStrip1
         '
@@ -297,7 +297,7 @@ Partial Class frmSMSFullBlast
         '
         'RowCountTool
         '
-        Me.RowCountTool.AutoSize = False
+        Me.RowCountTool.AutoSize = false
         Me.RowCountTool.Name = "RowCountTool"
         Me.RowCountTool.Size = New System.Drawing.Size(70, 17)
         Me.RowCountTool.Text = "RowCountTool"
@@ -311,7 +311,7 @@ Partial Class frmSMSFullBlast
         'PercentToolStrip
         '
         Me.PercentToolStrip.Name = "PercentToolStrip"
-        Me.PercentToolStrip.Size = New System.Drawing.Size(95, 17)
+        Me.PercentToolStrip.Size = New System.Drawing.Size(94, 17)
         Me.PercentToolStrip.Text = "PercentToolStrip"
         '
         'BranchCodeTool
@@ -323,12 +323,12 @@ Partial Class frmSMSFullBlast
         'AddressToolStripStatus
         '
         Me.AddressToolStripStatus.Name = "AddressToolStripStatus"
-        Me.AddressToolStripStatus.Size = New System.Drawing.Size(129, 17)
+        Me.AddressToolStripStatus.Size = New System.Drawing.Size(128, 17)
         Me.AddressToolStripStatus.Text = "AddressToolStripStatus"
         '
         'lbTxtLength
         '
-        Me.lbTxtLength.AutoSize = True
+        Me.lbTxtLength.AutoSize = true
         Me.lbTxtLength.Location = New System.Drawing.Point(11, 194)
         Me.lbTxtLength.Name = "lbTxtLength"
         Me.lbTxtLength.Size = New System.Drawing.Size(63, 13)
@@ -337,13 +337,13 @@ Partial Class frmSMSFullBlast
         '
         'lbBranchCode
         '
-        Me.lbBranchCode.AutoSize = True
+        Me.lbBranchCode.AutoSize = true
         Me.lbBranchCode.Location = New System.Drawing.Point(212, 26)
         Me.lbBranchCode.Name = "lbBranchCode"
         Me.lbBranchCode.Size = New System.Drawing.Size(74, 13)
         Me.lbBranchCode.TabIndex = 20
         Me.lbBranchCode.Text = "lbBranchCode"
-        Me.lbBranchCode.Visible = False
+        Me.lbBranchCode.Visible = false
         '
         'btView
         '
@@ -352,7 +352,7 @@ Partial Class frmSMSFullBlast
         Me.btView.Size = New System.Drawing.Size(75, 23)
         Me.btView.TabIndex = 4
         Me.btView.Text = "View"
-        Me.btView.UseVisualStyleBackColor = True
+        Me.btView.UseVisualStyleBackColor = true
         '
         'TabControl1
         '
@@ -383,23 +383,23 @@ Partial Class frmSMSFullBlast
         '
         'lbPxName
         '
-        Me.lbPxName.AutoSize = True
+        Me.lbPxName.AutoSize = true
         Me.lbPxName.Location = New System.Drawing.Point(156, 194)
         Me.lbPxName.Name = "lbPxName"
         Me.lbPxName.Size = New System.Drawing.Size(55, 13)
         Me.lbPxName.TabIndex = 16
         Me.lbPxName.Text = "lbPxName"
-        Me.lbPxName.Visible = False
+        Me.lbPxName.Visible = false
         '
         'lbPxID
         '
-        Me.lbPxID.AutoSize = True
+        Me.lbPxID.AutoSize = true
         Me.lbPxID.Location = New System.Drawing.Point(80, 194)
         Me.lbPxID.Name = "lbPxID"
         Me.lbPxID.Size = New System.Drawing.Size(38, 13)
         Me.lbPxID.TabIndex = 15
         Me.lbPxID.Text = "lbPxID"
-        Me.lbPxID.Visible = False
+        Me.lbPxID.Visible = false
         '
         'TabPage2
         '
@@ -424,11 +424,11 @@ Partial Class frmSMSFullBlast
         Me.btSendToAll_c.Size = New System.Drawing.Size(75, 23)
         Me.btSendToAll_c.TabIndex = 17
         Me.btSendToAll_c.Text = "Send to All"
-        Me.btSendToAll_c.UseVisualStyleBackColor = True
+        Me.btSendToAll_c.UseVisualStyleBackColor = true
         '
         'lbTxtLength_c
         '
-        Me.lbTxtLength_c.AutoSize = True
+        Me.lbTxtLength_c.AutoSize = true
         Me.lbTxtLength_c.Location = New System.Drawing.Point(11, 194)
         Me.lbTxtLength_c.Name = "lbTxtLength_c"
         Me.lbTxtLength_c.Size = New System.Drawing.Size(75, 13)
@@ -441,14 +441,14 @@ Partial Class frmSMSFullBlast
         Me.txtMobile_c.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMobile_c.Location = New System.Drawing.Point(54, 11)
         Me.txtMobile_c.Name = "txtMobile_c"
-        Me.txtMobile_c.ReadOnly = True
+        Me.txtMobile_c.ReadOnly = true
         Me.txtMobile_c.Size = New System.Drawing.Size(374, 20)
         Me.txtMobile_c.TabIndex = 15
         Me.txtMobile_c.Text = "txtMobile_c"
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
+        Me.Label5.AutoSize = true
         Me.Label5.Location = New System.Drawing.Point(10, 13)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(38, 13)
@@ -460,7 +460,7 @@ Partial Class frmSMSFullBlast
         Me.txtMessage_c.BackColor = System.Drawing.SystemColors.Window
         Me.txtMessage_c.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMessage_c.Location = New System.Drawing.Point(13, 37)
-        Me.txtMessage_c.Multiline = True
+        Me.txtMessage_c.Multiline = true
         Me.txtMessage_c.Name = "txtMessage_c"
         Me.txtMessage_c.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtMessage_c.Size = New System.Drawing.Size(415, 144)
@@ -469,15 +469,15 @@ Partial Class frmSMSFullBlast
         '
         'lsTemplate
         '
-        Me.lsTemplate.FullRowSelect = True
+        Me.lsTemplate.FullRowSelect = true
         Me.lsTemplate.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
         Me.lsTemplate.Location = New System.Drawing.Point(6, 22)
-        Me.lsTemplate.MultiSelect = False
+        Me.lsTemplate.MultiSelect = false
         Me.lsTemplate.Name = "lsTemplate"
         Me.lsTemplate.Size = New System.Drawing.Size(370, 216)
         Me.lsTemplate.TabIndex = 22
-        Me.lsTemplate.TabStop = False
-        Me.lsTemplate.UseCompatibleStateImageBehavior = False
+        Me.lsTemplate.TabStop = false
+        Me.lsTemplate.UseCompatibleStateImageBehavior = false
         Me.lsTemplate.View = System.Windows.Forms.View.Details
         '
         'gbTemplate
@@ -487,33 +487,33 @@ Partial Class frmSMSFullBlast
         Me.gbTemplate.Name = "gbTemplate"
         Me.gbTemplate.Size = New System.Drawing.Size(385, 244)
         Me.gbTemplate.TabIndex = 23
-        Me.gbTemplate.TabStop = False
+        Me.gbTemplate.TabStop = false
         Me.gbTemplate.Text = "Template"
         '
         'chDotors
         '
-        Me.chDotors.AutoSize = True
+        Me.chDotors.AutoSize = true
         Me.chDotors.Location = New System.Drawing.Point(354, 44)
         Me.chDotors.Name = "chDotors"
         Me.chDotors.Size = New System.Drawing.Size(63, 17)
         Me.chDotors.TabIndex = 24
         Me.chDotors.Text = "Doctors"
-        Me.chDotors.UseVisualStyleBackColor = True
+        Me.chDotors.UseVisualStyleBackColor = true
         '
         'chAesthetician
         '
-        Me.chAesthetician.AutoSize = True
+        Me.chAesthetician.AutoSize = true
         Me.chAesthetician.Location = New System.Drawing.Point(423, 44)
         Me.chAesthetician.Name = "chAesthetician"
         Me.chAesthetician.Size = New System.Drawing.Size(84, 17)
         Me.chAesthetician.TabIndex = 25
         Me.chAesthetician.Text = "Aesthetician"
-        Me.chAesthetician.UseVisualStyleBackColor = True
+        Me.chAesthetician.UseVisualStyleBackColor = true
         '
         'cbDocAes
         '
         Me.cbDocAes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbDocAes.FormattingEnabled = True
+        Me.cbDocAes.FormattingEnabled = true
         Me.cbDocAes.Location = New System.Drawing.Point(513, 42)
         Me.cbDocAes.Name = "cbDocAes"
         Me.cbDocAes.Size = New System.Drawing.Size(179, 21)
@@ -521,47 +521,47 @@ Partial Class frmSMSFullBlast
         '
         'lbDocAes
         '
-        Me.lbDocAes.AutoSize = True
+        Me.lbDocAes.AutoSize = true
         Me.lbDocAes.Location = New System.Drawing.Point(510, 26)
         Me.lbDocAes.Name = "lbDocAes"
         Me.lbDocAes.Size = New System.Drawing.Size(53, 13)
         Me.lbDocAes.TabIndex = 27
         Me.lbDocAes.Text = "lbDocAes"
-        Me.lbDocAes.Visible = False
+        Me.lbDocAes.Visible = false
         '
         'ContextMessageInbox
         '
         Me.ContextMessageInbox.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CustomTemplateToolStrip, Me.AutoTemplateToolStrip, Me.ToolStripSeparator3, Me.BlankToolStripMenuItem})
         Me.ContextMessageInbox.Name = "ContextMenuStrip1"
-        Me.ContextMessageInbox.Size = New System.Drawing.Size(170, 76)
+        Me.ContextMessageInbox.Size = New System.Drawing.Size(169, 76)
         '
         'CustomTemplateToolStrip
         '
-        Me.CustomTemplateToolStrip.Image = CType(resources.GetObject("CustomTemplateToolStrip.Image"), System.Drawing.Image)
+        Me.CustomTemplateToolStrip.Image = CType(resources.GetObject("CustomTemplateToolStrip.Image"),System.Drawing.Image)
         Me.CustomTemplateToolStrip.Name = "CustomTemplateToolStrip"
-        Me.CustomTemplateToolStrip.Size = New System.Drawing.Size(169, 22)
+        Me.CustomTemplateToolStrip.Size = New System.Drawing.Size(168, 22)
         Me.CustomTemplateToolStrip.Text = "Custom Template"
         '
         'AutoTemplateToolStrip
         '
-        Me.AutoTemplateToolStrip.Image = CType(resources.GetObject("AutoTemplateToolStrip.Image"), System.Drawing.Image)
+        Me.AutoTemplateToolStrip.Image = CType(resources.GetObject("AutoTemplateToolStrip.Image"),System.Drawing.Image)
         Me.AutoTemplateToolStrip.Name = "AutoTemplateToolStrip"
-        Me.AutoTemplateToolStrip.Size = New System.Drawing.Size(169, 22)
+        Me.AutoTemplateToolStrip.Size = New System.Drawing.Size(168, 22)
         Me.AutoTemplateToolStrip.Text = "Auto Template"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(166, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(165, 6)
         '
         'BlankToolStripMenuItem
         '
         Me.BlankToolStripMenuItem.Name = "BlankToolStripMenuItem"
-        Me.BlankToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.BlankToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         '
         'frmSMSFullBlast
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1069, 547)
         Me.Controls.Add(Me.lbDocAes)
@@ -586,26 +586,26 @@ Partial Class frmSMSFullBlast
         Me.Controls.Add(Me.pBar)
         Me.Controls.Add(Me.ToolStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.MaximizeBox = false
         Me.Name = "frmSMSFullBlast"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Appointment: Confirmation Full Blast SMS"
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
-        Me.TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.TabPage1.PerformLayout()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        Me.gbTemplate.ResumeLayout(False)
-        Me.ContextMessageInbox.ResumeLayout(False)
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(false)
+        Me.ToolStrip1.PerformLayout
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        Me.TabControl1.ResumeLayout(false)
+        Me.TabPage1.ResumeLayout(false)
+        Me.TabPage1.PerformLayout
+        Me.TabPage2.ResumeLayout(false)
+        Me.TabPage2.PerformLayout
+        Me.gbTemplate.ResumeLayout(false)
+        Me.ContextMessageInbox.ResumeLayout(false)
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents lstPatientsContact As System.Windows.Forms.ListView
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents ToolStripViewAll As System.Windows.Forms.ToolStripButton

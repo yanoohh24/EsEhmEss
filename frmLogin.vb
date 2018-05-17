@@ -3,6 +3,7 @@ Imports System.Net
 Imports Microsoft.Win32
 Imports System.IO
 Imports System.Threading
+Imports System.Windows.Forms
 
 Public Class frmLogin
 
@@ -62,10 +63,12 @@ Public Class frmLogin
                 Me.Hide()
             Case 2
                 lbInformation.Text = "-Invalid password"
+                txtPassword.Focus()
             Case 88
                 lbDBconnection.Text = "Unable to connection to host sever"
             Case Else
                 lbInformation.Text = "-Invalid username and password"
+                txtUsername.Focus()
         End Select
 
         txtPassword.Focus()
@@ -74,7 +77,7 @@ Public Class frmLogin
     End Sub
 
     Private Sub frmLogin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        lbDBconnection.Text = ""
+    lbDBconnection.Text = ""
         lbVersion.Text = "Version " & Me.GetType.Assembly.GetName.Version.ToString
         RegistryGetLogin()
         txtUsername.Text = ""
@@ -98,6 +101,12 @@ Public Class frmLogin
         ClientHostIP = Dns.GetHostByName(ClientHostName).AddressList(0).ToString()
     End Sub
     Dim updates As Boolean = False
+
+        Private Sub txtUsername_GotFocus(sender As Object, e As EventArgs) Handles txtUsername.GotFocus
+        txtUsername.SelectionStart = 0
+        txtUsername.SelectionLength = Len(txtUsername.Text)
+        txtUsername.SelectAll()
+    End Sub
     Private Sub txtUsername_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtUsername.KeyUp
         If updates = False Then
             GetIPAddress()
@@ -206,7 +215,7 @@ Public Class frmLogin
                 txtDBhostip.Text = Host
             Else
                 regKey.SetValue("smsHostIP", "localhost")
-                Host = "192.168.100.250"
+                Host = "192.168.100.172"
                 txtDBhostip.Text = Host
             End If
 
@@ -287,4 +296,7 @@ Public Class frmLogin
     End Sub
 
 
+Private Sub Panel2_Paint( sender As Object,  e As PaintEventArgs) Handles Panel2.Paint
+
+End Sub
 End Class

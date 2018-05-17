@@ -51,11 +51,11 @@ Partial Class frmLogin
         Me.MetroButton1 = New MetroFramework.Controls.MetroButton()
         Me.MetroLabel1 = New MetroFramework.Controls.MetroLabel()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.SuspendLayout()
+        Me.Panel1.SuspendLayout
+        Me.GroupBox1.SuspendLayout
+        Me.MenuStrip1.SuspendLayout
+        Me.Panel2.SuspendLayout
+        Me.SuspendLayout
         '
         'txtUsername
         '
@@ -87,11 +87,11 @@ Partial Class frmLogin
         Me.btLogin.Size = New System.Drawing.Size(59, 23)
         Me.btLogin.TabIndex = 2
         Me.btLogin.Text = "Login"
-        Me.btLogin.UseVisualStyleBackColor = False
+        Me.btLogin.UseVisualStyleBackColor = false
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Location = New System.Drawing.Point(171, 86)
         Me.Label1.Name = "Label1"
@@ -101,7 +101,7 @@ Partial Class frmLogin
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Location = New System.Drawing.Point(171, 112)
         Me.Label2.Name = "Label2"
@@ -118,12 +118,12 @@ Partial Class frmLogin
         Me.btCancel.Size = New System.Drawing.Size(59, 23)
         Me.btCancel.TabIndex = 5
         Me.btCancel.Text = "Cancel"
-        Me.btCancel.UseVisualStyleBackColor = False
+        Me.btCancel.UseVisualStyleBackColor = false
         '
         'lbInformation
         '
         Me.lbInformation.BackColor = System.Drawing.Color.Transparent
-        Me.lbInformation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbInformation.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.lbInformation.ForeColor = System.Drawing.Color.DarkRed
         Me.lbInformation.Location = New System.Drawing.Point(171, 162)
         Me.lbInformation.Name = "lbInformation"
@@ -153,7 +153,7 @@ Partial Class frmLogin
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(324, 156)
         Me.GroupBox1.TabIndex = 6
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.TabStop = false
         Me.GroupBox1.Text = "Database Connection Setting"
         '
         'txtDBusername
@@ -172,7 +172,7 @@ Partial Class frmLogin
         Me.btSaveUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btSaveUpdate.TabIndex = 6
         Me.btSaveUpdate.Text = "Save"
-        Me.btSaveUpdate.UseVisualStyleBackColor = True
+        Me.btSaveUpdate.UseVisualStyleBackColor = true
         '
         'btCancelUpdate
         '
@@ -182,7 +182,7 @@ Partial Class frmLogin
         Me.btCancelUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btCancelUpdate.TabIndex = 7
         Me.btCancelUpdate.Text = "Cancel"
-        Me.btCancelUpdate.UseVisualStyleBackColor = True
+        Me.btCancelUpdate.UseVisualStyleBackColor = true
         '
         'txtDBpassword
         '
@@ -194,7 +194,7 @@ Partial Class frmLogin
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
+        Me.Label5.AutoSize = true
         Me.Label5.Location = New System.Drawing.Point(16, 89)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(39, 13)
@@ -211,7 +211,7 @@ Partial Class frmLogin
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.AutoSize = true
         Me.Label4.Location = New System.Drawing.Point(16, 63)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(53, 13)
@@ -220,7 +220,7 @@ Partial Class frmLogin
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(16, 37)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
@@ -267,7 +267,7 @@ Partial Class frmLogin
         '
         'lbDBconnection
         '
-        Me.lbDBconnection.AutoSize = True
+        Me.lbDBconnection.AutoSize = true
         Me.lbDBconnection.BackColor = System.Drawing.Color.Transparent
         Me.lbDBconnection.Location = New System.Drawing.Point(12, 183)
         Me.lbDBconnection.Name = "lbDBconnection"
@@ -286,13 +286,13 @@ Partial Class frmLogin
         '
         'Label7
         '
-        Me.Label7.AutoSize = True
+        Me.Label7.AutoSize = true
         Me.Label7.Location = New System.Drawing.Point(24, 13)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(59, 13)
         Me.Label7.TabIndex = 26
         Me.Label7.Text = "Updating..."
-        Me.Label7.Visible = False
+        Me.Label7.Visible = false
         '
         'MetroButton1
         '
@@ -305,11 +305,11 @@ Partial Class frmLogin
         Me.MetroButton1.TabIndex = 0
         Me.MetroButton1.Text = "UPDATE"
         Me.MetroButton1.Theme = MetroFramework.MetroThemeStyle.Light
-        Me.MetroButton1.UseSelectable = True
+        Me.MetroButton1.UseSelectable = true
         '
         'MetroLabel1
         '
-        Me.MetroLabel1.AutoSize = True
+        Me.MetroLabel1.AutoSize = true
         Me.MetroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular
         Me.MetroLabel1.Location = New System.Drawing.Point(10, 32)
         Me.MetroLabel1.Name = "MetroLabel1"
@@ -325,16 +325,16 @@ Partial Class frmLogin
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(221, 171)
         Me.Panel2.TabIndex = 27
-        Me.Panel2.Visible = False
+        Me.Panel2.Visible = false
         '
         'frmLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"),System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(412, 237)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lbVersion)
         Me.Controls.Add(Me.btCancel)
@@ -343,27 +343,27 @@ Partial Class frmLogin
         Me.Controls.Add(Me.btLogin)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUsername)
-        Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.lbInformation)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lbDBconnection)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
+        Me.MaximizeBox = false
+        Me.MinimizeBox = false
         Me.Name = "frmLogin"
         Me.Text = "Login"
-        Me.Panel1.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.Panel1.ResumeLayout(false)
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox1.PerformLayout
+        Me.MenuStrip1.ResumeLayout(false)
+        Me.MenuStrip1.PerformLayout
+        Me.Panel2.ResumeLayout(false)
+        Me.Panel2.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents txtUsername As System.Windows.Forms.TextBox
     Friend WithEvents txtPassword As System.Windows.Forms.TextBox
     Friend WithEvents btLogin As System.Windows.Forms.Button
@@ -389,7 +389,7 @@ Partial Class frmLogin
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents MetroButton1 As MetroFramework.Controls.MetroButton
-    Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Private WithEvents MetroButton1 As MetroFramework.Controls.MetroButton
+    Private WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
 End Class

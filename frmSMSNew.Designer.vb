@@ -69,21 +69,21 @@ Partial Class frmSMSNew
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolStrip1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.ContextMenuSMSSetting.SuspendLayout()
-        Me.MenuStrip1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.TableLayoutPanel1.SuspendLayout()
-        Me.Panel5.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel4.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel3.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout
+        Me.StatusStrip1.SuspendLayout
+        Me.GroupBox1.SuspendLayout
+        Me.ContextMenuSMSSetting.SuspendLayout
+        Me.MenuStrip1.SuspendLayout
+        Me.Panel1.SuspendLayout
+        Me.TableLayoutPanel1.SuspendLayout
+        Me.Panel5.SuspendLayout
+        CType(Me.DataGridView2,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.Panel4.SuspendLayout
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.Panel3.SuspendLayout
+        Me.Panel2.SuspendLayout
+        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SuspendLayout
         '
         'txtMobile
         '
@@ -99,7 +99,7 @@ Partial Class frmSMSNew
         '
         Me.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMessage.Location = New System.Drawing.Point(12, 108)
-        Me.txtMessage.Multiline = True
+        Me.txtMessage.Multiline = true
         Me.txtMessage.Name = "txtMessage"
         Me.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtMessage.Size = New System.Drawing.Size(462, 173)
@@ -108,7 +108,7 @@ Partial Class frmSMSNew
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(9, 84)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(48, 13)
@@ -117,28 +117,28 @@ Partial Class frmSMSNew
         '
         'lbInvalid
         '
-        Me.lbInvalid.AutoSize = True
+        Me.lbInvalid.AutoSize = true
         Me.lbInvalid.ForeColor = System.Drawing.Color.Red
         Me.lbInvalid.Location = New System.Drawing.Point(498, 92)
         Me.lbInvalid.Name = "lbInvalid"
         Me.lbInvalid.Size = New System.Drawing.Size(109, 13)
         Me.lbInvalid.TabIndex = 6
         Me.lbInvalid.Text = "Invalid mobile number"
-        Me.lbInvalid.Visible = False
+        Me.lbInvalid.Visible = false
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SendToolStrip, Me.SaveToolStrip, Me.ExitToolStrip})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(658, 55)
+        Me.ToolStrip1.Size = New System.Drawing.Size(672, 55)
         Me.ToolStrip1.TabIndex = 7
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'SendToolStrip
         '
         Me.SendToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SendToolStrip.Image = CType(resources.GetObject("SendToolStrip.Image"), System.Drawing.Image)
+        Me.SendToolStrip.Image = CType(resources.GetObject("SendToolStrip.Image"),System.Drawing.Image)
         Me.SendToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SendToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SendToolStrip.Name = "SendToolStrip"
@@ -148,7 +148,7 @@ Partial Class frmSMSNew
         'SaveToolStrip
         '
         Me.SaveToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.SaveToolStrip.Image = CType(resources.GetObject("SaveToolStrip.Image"), System.Drawing.Image)
+        Me.SaveToolStrip.Image = CType(resources.GetObject("SaveToolStrip.Image"),System.Drawing.Image)
         Me.SaveToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.SaveToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.SaveToolStrip.Name = "SaveToolStrip"
@@ -158,7 +158,7 @@ Partial Class frmSMSNew
         'ExitToolStrip
         '
         Me.ExitToolStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ExitToolStrip.Image = CType(resources.GetObject("ExitToolStrip.Image"), System.Drawing.Image)
+        Me.ExitToolStrip.Image = CType(resources.GetObject("ExitToolStrip.Image"),System.Drawing.Image)
         Me.ExitToolStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ExitToolStrip.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ExitToolStrip.Name = "ExitToolStrip"
@@ -168,9 +168,9 @@ Partial Class frmSMSNew
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TxtLenghtToolStrip, Me.USAndBranchnameToolStripStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 530)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 543)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(658, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(672, 22)
         Me.StatusStrip1.TabIndex = 16
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -194,16 +194,16 @@ Partial Class frmSMSNew
         Me.btClear.Size = New System.Drawing.Size(75, 23)
         Me.btClear.TabIndex = 3
         Me.btClear.Text = "Clear"
-        Me.btClear.UseVisualStyleBackColor = True
+        Me.btClear.UseVisualStyleBackColor = true
         '
         'txtInvalidMobile
         '
         Me.txtInvalidMobile.BackColor = System.Drawing.SystemColors.Window
         Me.txtInvalidMobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtInvalidMobile.Location = New System.Drawing.Point(486, 108)
-        Me.txtInvalidMobile.Multiline = True
+        Me.txtInvalidMobile.Multiline = true
         Me.txtInvalidMobile.Name = "txtInvalidMobile"
-        Me.txtInvalidMobile.ReadOnly = True
+        Me.txtInvalidMobile.ReadOnly = true
         Me.txtInvalidMobile.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtInvalidMobile.Size = New System.Drawing.Size(160, 173)
         Me.txtInvalidMobile.TabIndex = 2
@@ -211,14 +211,14 @@ Partial Class frmSMSNew
         '
         'lsTemplate
         '
-        Me.lsTemplate.FullRowSelect = True
+        Me.lsTemplate.FullRowSelect = true
         Me.lsTemplate.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
         Me.lsTemplate.Location = New System.Drawing.Point(6, 19)
-        Me.lsTemplate.MultiSelect = False
+        Me.lsTemplate.MultiSelect = false
         Me.lsTemplate.Name = "lsTemplate"
         Me.lsTemplate.Size = New System.Drawing.Size(622, 177)
         Me.lsTemplate.TabIndex = 17
-        Me.lsTemplate.UseCompatibleStateImageBehavior = False
+        Me.lsTemplate.UseCompatibleStateImageBehavior = false
         Me.lsTemplate.View = System.Windows.Forms.View.Details
         '
         'GroupBox1
@@ -228,7 +228,7 @@ Partial Class frmSMSNew
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(634, 202)
         Me.GroupBox1.TabIndex = 18
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.TabStop = false
         Me.GroupBox1.Text = "Template"
         '
         'ContextMenuSMSSetting
@@ -251,20 +251,20 @@ Partial Class frmSMSNew
         '
         'chHelpdesk
         '
-        Me.chHelpdesk.AutoSize = True
+        Me.chHelpdesk.AutoSize = true
         Me.chHelpdesk.Location = New System.Drawing.Point(12, 291)
         Me.chHelpdesk.Name = "chHelpdesk"
         Me.chHelpdesk.Size = New System.Drawing.Size(109, 17)
         Me.chHelpdesk.TabIndex = 19
         Me.chHelpdesk.Text = "Belo Invite Footer"
-        Me.chHelpdesk.UseVisualStyleBackColor = True
+        Me.chHelpdesk.UseVisualStyleBackColor = true
         '
         'MenuStrip1
         '
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(658, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(672, 24)
         Me.MenuStrip1.TabIndex = 20
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -283,17 +283,17 @@ Partial Class frmSMSNew
         '
         'chHR
         '
-        Me.chHR.AutoSize = True
+        Me.chHR.AutoSize = true
         Me.chHR.Location = New System.Drawing.Point(12, 291)
         Me.chHR.Name = "chHR"
         Me.chHR.Size = New System.Drawing.Size(97, 17)
         Me.chHR.TabIndex = 21
         Me.chHR.Text = "Training Footer"
-        Me.chHR.UseVisualStyleBackColor = True
+        Me.chHR.UseVisualStyleBackColor = true
         '
         'Timer1
         '
-        Me.Timer1.Enabled = True
+        Me.Timer1.Enabled = true
         Me.Timer1.Interval = 1
         '
         'Panel1
@@ -301,12 +301,12 @@ Partial Class frmSMSNew
         Me.Panel1.Controls.Add(Me.TableLayoutPanel1)
         Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Panel1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Panel1.Location = New System.Drawing.Point(11, 77)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(658, 458)
         Me.Panel1.TabIndex = 22
-        Me.Panel1.Visible = False
+        Me.Panel1.Visible = false
         '
         'TableLayoutPanel1
         '
@@ -319,7 +319,7 @@ Partial Class frmSMSNew
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 29)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(658, 372)
         Me.TableLayoutPanel1.TabIndex = 5
         '
@@ -335,8 +335,8 @@ Partial Class frmSMSNew
         '
         'DataGridView2
         '
-        Me.DataGridView2.AllowUserToAddRows = False
-        Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.AllowUserToAddRows = false
+        Me.DataGridView2.AllowUserToDeleteRows = false
         Me.DataGridView2.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.mobile, Me.fname, Me.lname})
@@ -363,13 +363,13 @@ Partial Class frmSMSNew
         'Button5
         '
         Me.Button5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Button5.Location = New System.Drawing.Point(0, 343)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(269, 23)
         Me.Button5.TabIndex = 24
         Me.Button5.Text = "CLEAR"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.Button5.UseVisualStyleBackColor = true
         '
         'Panel4
         '
@@ -384,18 +384,18 @@ Partial Class frmSMSNew
         'Button1
         '
         Me.Button1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Button1.Location = New System.Drawing.Point(0, 343)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(377, 23)
         Me.Button1.TabIndex = 0
         Me.Button1.Text = "SELECT"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = true
         '
         'DataGridView1
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToAddRows = false
+        Me.DataGridView1.AllowUserToDeleteRows = false
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.check})
@@ -421,29 +421,29 @@ Partial Class frmSMSNew
         '
         'Button4
         '
-        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button4.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(64,Byte),Integer), CType(CType(64,Byte),Integer))
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Button4.ForeColor = System.Drawing.Color.White
         Me.Button4.Location = New System.Drawing.Point(6, 6)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(640, 21)
         Me.Button4.TabIndex = 2
         Me.Button4.Text = "DONE"
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.Button4.UseVisualStyleBackColor = false
         '
         'Button2
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0,Byte),Integer), CType(CType(64,Byte),Integer), CType(CType(64,Byte),Integer))
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
         Me.Button2.Location = New System.Drawing.Point(6, 30)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(640, 21)
         Me.Button2.TabIndex = 1
         Me.Button2.Text = "CANCEL"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.Button2.UseVisualStyleBackColor = false
         '
         'Panel2
         '
@@ -458,17 +458,17 @@ Partial Class frmSMSNew
         '
         'Button6
         '
-        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Button6.Location = New System.Drawing.Point(561, 3)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(85, 23)
         Me.Button6.TabIndex = 5
         Me.Button6.Text = "SEARCH"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.UseVisualStyleBackColor = true
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(3, 11)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(84, 13)
@@ -485,21 +485,21 @@ Partial Class frmSMSNew
         'PictureBox1
         '
         Me.PictureBox1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"),System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(422, 51)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(35, 28)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 24
-        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.TabStop = false
         Me.ToolTip1.SetToolTip(Me.PictureBox1, "select recipient")
         '
         'frmSMSNew
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
-        Me.ClientSize = New System.Drawing.Size(658, 552)
+        Me.ClientSize = New System.Drawing.Size(672, 565)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.chHR)
@@ -515,35 +515,35 @@ Partial Class frmSMSNew
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
+        Me.MaximizeBox = false
+        Me.MinimizeBox = false
         Me.Name = "frmSMSNew"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Compose SMS"
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.ContextMenuSMSSetting.ResumeLayout(False)
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.Panel5.ResumeLayout(False)
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel4.ResumeLayout(False)
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(false)
+        Me.ToolStrip1.PerformLayout
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        Me.GroupBox1.ResumeLayout(false)
+        Me.ContextMenuSMSSetting.ResumeLayout(false)
+        Me.MenuStrip1.ResumeLayout(false)
+        Me.MenuStrip1.PerformLayout
+        Me.Panel1.ResumeLayout(false)
+        Me.TableLayoutPanel1.ResumeLayout(false)
+        Me.Panel5.ResumeLayout(false)
+        CType(Me.DataGridView2,System.ComponentModel.ISupportInitialize).EndInit
+        Me.Panel4.ResumeLayout(false)
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.Panel3.ResumeLayout(false)
+        Me.Panel2.ResumeLayout(false)
+        Me.Panel2.PerformLayout
+        CType(Me.PictureBox1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents txtMobile As System.Windows.Forms.TextBox
     Friend WithEvents txtMessage As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label

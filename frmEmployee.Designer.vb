@@ -265,7 +265,7 @@ Partial Class frmEmployee
         Me.dtBirthdate.CustomFormat = "yyyy-MM-dd"
         Me.dtBirthdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtBirthdate.Location = New System.Drawing.Point(24, 138)
-        Me.dtBirthdate.MinimumSize = New System.Drawing.Size(4, 29)
+        Me.dtBirthdate.MinimumSize = New System.Drawing.Size(0, 29)
         Me.dtBirthdate.Name = "dtBirthdate"
         Me.dtBirthdate.Size = New System.Drawing.Size(230, 29)
         Me.dtBirthdate.TabIndex = 6
@@ -609,39 +609,39 @@ Partial Class frmEmployee
         Me.ResumeLayout(false)
 
 End Sub
-    Friend WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents txtEmpid As MetroFramework.Controls.MetroTextBox
-    Friend WithEvents txtFname As MetroFramework.Controls.MetroTextBox
-    Friend WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents txtLname As MetroFramework.Controls.MetroTextBox
-    Friend WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents txtMname As MetroFramework.Controls.MetroTextBox
-    Friend WithEvents MetroLabel4 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents txtMObile As MetroFramework.Controls.MetroTextBox
-    Friend WithEvents MetroLabel5 As MetroFramework.Controls.MetroLabel
     Friend WithEvents dtBirthdate As MetroFramework.Controls.MetroDateTime
-    Friend WithEvents MetroLabel6 As MetroFramework.Controls.MetroLabel
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents cbBranch As MetroFramework.Controls.MetroComboBox
-    Friend WithEvents MetroLabel7 As MetroFramework.Controls.MetroLabel
     Friend WithEvents ep As System.Windows.Forms.ErrorProvider
     Friend WithEvents btnSaveUpdate As MetroFramework.Controls.MetroTextBox.MetroTextButton
     Friend WithEvents MetroTextButton2 As MetroFramework.Controls.MetroTextBox.MetroTextButton
     Friend WithEvents dgEmployee As System.Windows.Forms.DataGridView
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents txtFilter As MetroFramework.Controls.MetroTextBox
-    Friend WithEvents MetroLabel8 As MetroFramework.Controls.MetroLabel
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents cbStatus As MetroFramework.Controls.MetroCheckBox
-    Friend WithEvents cbManager As MetroFramework.Controls.MetroCheckBox
-    Friend WithEvents lblRersult As MetroFramework.Controls.MetroLabel
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents MetroLabel9 As MetroFramework.Controls.MetroLabel
-    Friend WithEvents txtPOsition As MetroFramework.Controls.MetroTextBox
     Friend WithEvents MetroTextButton1 As MetroFramework.Controls.MetroTextBox.MetroTextButton
+    Private WithEvents MetroLabel1 As MetroFramework.Controls.MetroLabel
+    Private WithEvents txtEmpid As MetroFramework.Controls.MetroTextBox
+    Private WithEvents txtFname As MetroFramework.Controls.MetroTextBox
+    Private WithEvents MetroLabel2 As MetroFramework.Controls.MetroLabel
+    Private WithEvents txtLname As MetroFramework.Controls.MetroTextBox
+    Private WithEvents MetroLabel3 As MetroFramework.Controls.MetroLabel
+    Private WithEvents txtMname As MetroFramework.Controls.MetroTextBox
+    Private WithEvents MetroLabel4 As MetroFramework.Controls.MetroLabel
+    Private WithEvents txtMObile As MetroFramework.Controls.MetroTextBox
+    Private WithEvents MetroLabel5 As MetroFramework.Controls.MetroLabel
+    Private WithEvents MetroLabel6 As MetroFramework.Controls.MetroLabel
+    Private WithEvents MetroLabel7 As MetroFramework.Controls.MetroLabel
+    Private WithEvents txtFilter As MetroFramework.Controls.MetroTextBox
+    Private WithEvents MetroLabel8 As MetroFramework.Controls.MetroLabel
+    Private WithEvents cbStatus As MetroFramework.Controls.MetroCheckBox
+    Private WithEvents cbManager As MetroFramework.Controls.MetroCheckBox
+    Private WithEvents lblRersult As MetroFramework.Controls.MetroLabel
+    Private WithEvents MetroLabel9 As MetroFramework.Controls.MetroLabel
+    Private WithEvents txtPOsition As MetroFramework.Controls.MetroTextBox
 End Class

@@ -233,3 +233,35 @@ C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache
 C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.exe
 C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.xml
 C:\Projects\ian\new\BeloSMS\obj\x86\Debug\BeloSMS.pdb
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.exe
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.xml
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.pdb
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\bin\Debug\BeloSMS.exe
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\bin\Debug\BeloSMS.pdb
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\bin\Debug\BeloSMS.xml
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.vbprojResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmAccntInfo.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmEmployee.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSUpdate.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmContacts.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmContactsImport.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmContactsProfile.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmUserAccessGroup.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSBirthday.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmLogin.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmMain.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmPatientProfile.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmPatientsList.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmPatientSMS.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSFullBlast.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSNew.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSReply.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMS.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSResend.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmSMSSend.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmUserAccess.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmUserAdd.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmUserBranchFooter.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.frmUserUpdateProfile.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.Resources.resources
+C:\Users\User\Documents\Visual Studio 2013\Projects\BeloSMS\belo-sms\obj\x86\Debug\BeloSMS.vbproj.GenerateResource.Cache

@@ -32,9 +32,9 @@ Module connection_setting
     Public FFPxProfile As New frmPatientProfile()
     Public FFMain As New frmMain()
 
-    Public Host As String = "192.168.100.250"
-    Public UserName As String = "admin"
-    Public Password As String = "webdeveoper"
+    Public Host As String = "192.168.100.172" ' "192.168.100.250"
+    Public UserName As String ="root"         ' "admin"
+    Public Password As String = "belo"        ' "webdeveoper"
 
     'User Information
     Public ClientName As String = "Belo"
