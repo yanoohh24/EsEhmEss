@@ -284,7 +284,7 @@ Public Class frmUserAccess
         LstColumns()
         UserGroupList()
         combo_Branch_List()
-        connStrSMS = "Database=Messages_tester;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+        connStrSMS = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
         connStrBMG = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
         txtUsername.Text = ""
         txtLUsername.Text = ""

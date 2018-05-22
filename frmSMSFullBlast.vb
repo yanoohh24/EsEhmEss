@@ -436,7 +436,7 @@ Public Class frmSMSFullBlast
 
             px_mobile(pxMobile)
 
-            If Mid(txtMobile.Text.Trim, 1, 4) = "+639" Then
+            If Mid(txtMobile.Text.Trim, 1, 4) = "+639" or Mid(txtMobile.Text.Trim, 1, 3) = "639"  Then
 
                 txtClientName.Text = "Hi " & pxName & " This is " & ClientName & " from the Belo Medical Group. This is to remind you of your appointment with " & pxDocAes & " on " & pxDate &
                 "; " & pxTime & " scheduled for " & ServiceListName(strProcedure(0)) & " at Belo clinic." & vbNewLine & vbNewLine &

@@ -89,7 +89,7 @@ Public Class frmSMSBirthday
             End If
 
             px_mobile(pxMobile)
-            If Mid(txtMobile.Text, 1, 4) = "+639" Then
+            If Mid(txtMobile.Text, 1, 4) = "+639" or Mid(txtMobile.Text,1,3) = "639" Then
 
                 txtBirthday.Text = "A Belo Beautiful Birthday to you " & pxName & vbNewLine & "Belo " & pxBranch & " would like to extend a warm birthday greeting on this special day! " & vbNewLine _
                 & "We would be delighted to see you back at the clinic you may call (8192356) for your next appointment. See you soon! " & vbNewLine & vbNewLine _
@@ -98,7 +98,7 @@ Public Class frmSMSBirthday
                 & "To unsubscribe reply OFF"
 
                 messages_sms_out(txtBirthday.Text, pxID, pxBranchCode, txtMobile.Text.Trim)                     'Belo_Database (Messages_SMS)
-                CommandXpertSMS_Birthday(txtBirthday.Text, 0, pxID, pxBranchCode, txtMobile.Text.Trim)          '
+                CommandXpertSMS_Birthday(txtBirthday.Text, 0, pxID, pxBranchCode, txtMobile.Text.Trim)          'Messages ( Database : Messages )
             End If
 
         Next

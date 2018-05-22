@@ -41,7 +41,7 @@ Public Class frmSMSNew
     End Sub
 
     Private Sub txtMessage_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtMessage.KeyUp
-        If e.KeyCode = Keys.F5 Then
+        If e.KeyCode = Keys.F5 Then 'or (e.KeyCode = keys.Enter andalso e.Control) Then
             SendToolStrip_Click(Me, EventArgs.Empty)
         End If
         TxtLenghtToolStrip.Text = Len(txtMessage.Text)
@@ -52,7 +52,6 @@ Public Class frmSMSNew
         txtMobile.SelectionStart = Len(txtMobile.Text)
     End Sub
 
-
     Private Sub txtMessage_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles txtMessage.MouseUp
         
         TxtLenghtToolStrip.Text = Len(txtMessage.Text)
@@ -61,7 +60,7 @@ Public Class frmSMSNew
     Private Sub SendToolStrip_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendToolStrip.Click
         Dim str() As String
         Dim txt_mobile As String = txtMobile.Text.Trim
-        Dim SMSMsg As String = txtMessage.Text.Trim & vbNewLine & vbNewLine & FooterSMS
+        Dim SMSMsg As String = txtMessage.Text.Trim '& vbNewLine & vbNewLine & FooterSMS
 
         If chHelpdesk.Checked = True Then
             SMSMsg = txtMessage.Text.Trim & vbNewLine & vbNewLine & _BeloHelpdesk
@@ -269,6 +268,12 @@ Public Class frmSMSNew
 
     Private Sub btClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btClear.Click
         txtInvalidMobile.Text = ""
+    End Sub
+
+    Private Sub txtMobile_KeyUp(sender As Object, e As KeyEventArgs) Handles txtMobile.KeyUp
+        If e.KeyCode = Keys.Enter then
+            txtMessage.Focus()
+        End If
     End Sub
 
     Private Sub txtMobile_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtMobile.LostFocus
@@ -545,4 +550,15 @@ Public Class frmSMSNew
         Panel1.Location = New Point(1,82)
     End Sub
 
+Private Sub txtMobile_TextChanged( sender As Object,  e As EventArgs) Handles txtMobile.TextChanged
+
+End Sub
+
+Private Sub ToolStrip1_ItemClicked( sender As Object,  e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
+
+End Sub
+
+Private Sub txtMessage_TextChanged( sender As Object,  e As EventArgs) Handles txtMessage.TextChanged
+
+End Sub
 End Class

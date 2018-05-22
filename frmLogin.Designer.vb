@@ -333,7 +333,6 @@ Partial Class frmLogin
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"),System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(412, 237)
-        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lbVersion)
@@ -347,6 +346,7 @@ Partial Class frmLogin
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.lbDBconnection)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Controls.Add(Me.Panel2)
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = false

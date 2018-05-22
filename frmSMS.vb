@@ -480,19 +480,19 @@ Public Class frmSMS
 
     Private Sub ResendAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ResendAllToolStripMenuItem.Click
         Dim sql As String
-        'RESEND TO ALL (SET STATUS TO = PENDING FROM FAILURE)
+        'RESEND TO ALL (SET STATUS TO PENDING FROM FAILURE)
         'OLD DATABASE (4.1) `messages`.`type` == ID:2 | DESCRIPTION:SMS
         'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
+        'REMOVED (sysForwarded=0,sysGwReference='',) Column doesn't exist in new ActiveXperts Database  
         Timer1.Enabled = False
 
         sql = "UPDATE messages SET StatusDetailsID=200, STATUSID=1, ChannelID=0, MessageReference='', SentTimeSecs=0, ReceivedTimeSecs=0, ScheduledTimeSecs=0, " _
-        & "LastUpdateSecs=0, BodyFormat=0, CustomField1=0, CustomField2='', sysCreator=0, sysArchive=0, sysLock=0, sysHash='', sysForwarded=0, " _
-        & "sysGwReference='', Header='' WHERE DirectionID=2 AND TYPEID=1 AND STATUSID=3"
+        & "LastUpdateSecs=0, BodyFormatID=0, CustomField1=0, CustomField2='', sysCreator=0, sysArchive=0, sysLock=0, sysHash='', Header='' WHERE DirectionID=2 AND TYPEID=1 AND STATUSID=3 "
         SMS_UPDATE(sql)
         btSMSCounter_Click(Me, EventArgs.Empty)
     End Sub
 
-    Private Sub DeleteAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteAllToolStripMenuItem.Click
+    Private Sub DeleteAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal Counte As System.EventArgs) Handles DeleteAllToolStripMenuItem.Click
         Dim SQLquery As String = ""
 
         Select Case lstSMS.SelectedItems(0).SubItems(1).Text.Trim()

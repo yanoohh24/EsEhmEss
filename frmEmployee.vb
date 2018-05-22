@@ -63,7 +63,8 @@ Public Class frmEmployee
 
         If reader.HasRows = True Then
             While reader.Read
-                cbBranch.Items.Add(reader.Item("branch").ToString())
+                cbBranch.Items.Add(
+                    ("branch").ToString())
             End While
         End If
     End Sub

@@ -812,7 +812,8 @@ Public Class frmPatientSMS
         RetriveSMS()
     End Sub
 
-    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+    
+Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         i += 1
         lbTimer.Text = i
 

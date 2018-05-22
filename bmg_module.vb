@@ -50,7 +50,7 @@ Module bmg_module
         Try
             id = Replace(id.Trim, "'", "\'")
 
-            Dim sql As String = "SELECT service_name FROM `service_list` WHERE id='" & id & "'"
+            Dim sql As String = "SELECT full_description FROM `master_list` WHERE id='" & id & "'"
             Dim connection As New MySqlConnection(connStrBMG)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
@@ -59,7 +59,7 @@ Module bmg_module
 
             If reader.HasRows = True Then
                 While reader.Read
-                    ServiceListName = reader.Item("service_name").ToString.Trim()
+                    ServiceListName = reader.Item("full_description").ToString.Trim()
                 End While
 
             End If

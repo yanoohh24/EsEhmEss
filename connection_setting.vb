@@ -67,8 +67,9 @@ Module connection_setting
     'End Footer
     Public Branch_End_Footer As String
     Public Department_End_Footer As String
-
-    Public connStrSMS As String = "Database=Messages_tester;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+    'belo_test
+    'messages_tester
+    Public connStrSMS As String = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
     Public connStrBMG As String = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
        
  Public Structure UsertInformation
@@ -172,7 +173,6 @@ Module connection_setting
                 While reader.Read
                     ResultCount = reader.Item("TTL").ToString()
                 End While
-
             Else
                 ResultCount = "0"
             End If
@@ -192,7 +192,7 @@ Module connection_setting
 
             Dim _DeptKey As String = FFMain.KeyToolStrip.Text.Trim
 
-            If MBchk = "+639" Then
+            If MBchk = "+639" or Mid(MBchk,1,3) = "639" Then
 
                 If Len(EmpMobile) = 13 Then
                     'query = "INSERT INTO Messages SET DirectionID=2, TypeID=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
@@ -203,8 +203,8 @@ Module connection_setting
                     'TYPE = SMS(1)
                     'STATUS = PENDING(1)
                     'DIRECTION = OUT(2)
-                    'FromAddress = Sender : ToAddress = Recipient
-
+                    'FromAddress = Sender ; ToAddress = Recipient
+                    
                     query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, ToAddress='" & EmpMobile & "', " _
                     & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
 
