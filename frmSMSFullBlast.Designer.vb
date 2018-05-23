@@ -57,6 +57,7 @@ Partial Class frmSMSFullBlast
         Me.btView = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btSend_Select = New System.Windows.Forms.Button()
         Me.lbPxName = New System.Windows.Forms.Label()
         Me.lbPxID = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -76,6 +77,8 @@ Partial Class frmSMSFullBlast
         Me.AutoTemplateToolStrip = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.BlankToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.check = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.ToolStrip1.SuspendLayout
         Me.StatusStrip1.SuspendLayout
         Me.TabControl1.SuspendLayout
@@ -83,6 +86,7 @@ Partial Class frmSMSFullBlast
         Me.TabPage2.SuspendLayout
         Me.gbTemplate.SuspendLayout
         Me.ContextMessageInbox.SuspendLayout
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).BeginInit
         Me.SuspendLayout
         '
         'lstPatientsContact
@@ -101,7 +105,7 @@ Partial Class frmSMSFullBlast
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStrip, Me.ExcelToolStrip, Me.ToolStripSeparator2, Me.ToolStripViewAll})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1069, 39)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1062, 39)
         Me.ToolStrip1.TabIndex = 1
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -291,7 +295,7 @@ Partial Class frmSMSFullBlast
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RowCountTool, Me.pbExtract, Me.PercentToolStrip, Me.BranchCodeTool, Me.AddressToolStripStatus})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 525)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1069, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1062, 22)
         Me.StatusStrip1.TabIndex = 17
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -367,6 +371,7 @@ Partial Class frmSMSFullBlast
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage1.Controls.Add(Me.btSend_Select)
         Me.TabPage1.Controls.Add(Me.lbPxName)
         Me.TabPage1.Controls.Add(Me.lbPxID)
         Me.TabPage1.Controls.Add(Me.btSendToAll)
@@ -380,6 +385,17 @@ Partial Class frmSMSFullBlast
         Me.TabPage1.Size = New System.Drawing.Size(505, 218)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Auto Template"
+        '
+        'btSend_Select
+        '
+        Me.btSend_Select.Enabled = false
+        Me.btSend_Select.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btSend_Select.Location = New System.Drawing.Point(321, 189)
+        Me.btSend_Select.Name = "btSend_Select"
+        Me.btSend_Select.Size = New System.Drawing.Size(89, 23)
+        Me.btSend_Select.TabIndex = 17
+        Me.btSend_Select.Text = "Send to Many?"
+        Me.btSend_Select.UseVisualStyleBackColor = true
         '
         'lbPxName
         '
@@ -559,11 +575,28 @@ Partial Class frmSMSFullBlast
         Me.BlankToolStripMenuItem.Name = "BlankToolStripMenuItem"
         Me.BlankToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.check})
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 69)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.Size = New System.Drawing.Size(1046, 178)
+        Me.DataGridView1.TabIndex = 18
+        Me.DataGridView1.Visible = false
+        '
+        'check
+        '
+        Me.check.HeaderText = "Check"
+        Me.check.Name = "check"
+        Me.check.Width = 50
+        '
         'frmSMSFullBlast
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1069, 547)
+        Me.ClientSize = New System.Drawing.Size(1062, 547)
         Me.Controls.Add(Me.lbDocAes)
         Me.Controls.Add(Me.cbDocAes)
         Me.Controls.Add(Me.chAesthetician)
@@ -578,13 +611,14 @@ Partial Class frmSMSFullBlast
         Me.Controls.Add(Me.cbSatus)
         Me.Controls.Add(Me.lbStatus)
         Me.Controls.Add(Me.cbBranch)
-        Me.Controls.Add(Me.lstPatientsContact)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.dpTo)
         Me.Controls.Add(Me.pBar)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.lstPatientsContact)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MaximizeBox = false
@@ -602,6 +636,7 @@ Partial Class frmSMSFullBlast
         Me.TabPage2.PerformLayout
         Me.gbTemplate.ResumeLayout(false)
         Me.ContextMessageInbox.ResumeLayout(false)
+        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
         Me.ResumeLayout(false)
         Me.PerformLayout
 
@@ -658,4 +693,7 @@ End Sub
     Friend WithEvents BlankToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lbPxID As System.Windows.Forms.Label
     Friend WithEvents lbPxName As System.Windows.Forms.Label
+    Friend WithEvents btSend_Select As System.Windows.Forms.Button
+    Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+    Friend WithEvents check As System.Windows.Forms.DataGridViewCheckBoxColumn
 End Class

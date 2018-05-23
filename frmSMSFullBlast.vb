@@ -4,6 +4,78 @@ Imports Microsoft.Office.Interop
 Public Class frmSMSFullBlast
     Dim Pri_Contact As String
     Dim Pri_banchCode As String
+    
+    Public Sub Display_patient_Grid(_name As String)
+        Dim dt = New DataTable()
+        Dim apStatus As String = Replace(cbSatus.Text.Trim(), "'", "\'")
+        Dim srchDoc As String
+        Dim srchAes As String
+
+        If chDotors.Checked = True Then
+            srchDoc = " AND doctor LIKE '%" & lbDocAes.Text.Trim & "%'"
+        Else
+            srchDoc = ""
+        End If
+
+        If chAesthetician.Checked = True Then
+            srchAes = " AND aesthetician LIKE '%" & lbDocAes.Text.Trim & "%'"
+        Else
+            srchAes = ""
+        End If
+
+        If cbSatus.SelectedIndex = -1 Or cbSatus.SelectedIndex = 0 Then
+            apStatus = ""
+        End If
+
+        ListViewPatientsContactSetting()
+        Try
+            Dim i As Integer = 0
+            Dim query As String
+            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC")
+
+            'ID | PATIENT_ID | GENDER | FULLNAME | MOBILE | PROCEDURE_DATA | SCHEDULE | APPOINTMENT_STATUS | SCHED_DATE | DOCAES
+            query = "SELECT id,patientid,(SELECT gender FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_gender, " _
+                    & " (SELECT CONCAT(TRIM(firstname),' ',TRIM(lastname)) FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_name, " _
+                    & " (SELECT mobile FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_mobile,procedure_data, " _
+                    & " CONCAT(DATE_FORMAT(time_start,'%h:%i %p'), ' to ', DATE_FORMAT(time_end,'%h:%i %p')) schedTime,appointment_status,appointment_date,IF(LENGTH(TRIM(doctor))<2,(SELECT CONCAT (IF(gender='female','Ms.','Mr.') ,' ',NAME) FROM ref_aes WHERE CODE=aesthetician),(SELECT NAME FROM ref_doc WHERE CODE=doctor)) DocAes FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) " _
+                    & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC"
+
+
+            Dim connection As New MySqlConnection(connStrBMG)
+            Dim cmd As New MySqlCommand(query, connection)
+            Dim reader As MySqlDataReader
+            connection.Open()
+            reader = cmd.ExecuteReader()
+            dt.Load(reader)
+            'this will clear the listbox
+            DataGridView1.DataSource = dt
+            connection.Close()
+            DataGridView1.Columns(1).HeaderText = "AID"
+            DataGridView1.Columns(3).HeaderText = "Gender"
+            DataGridView1.Columns(4).HeaderText = "Patient Name"
+            DataGridView1.Columns(5).HeaderText = "Mobile"
+            DataGridView1.Columns(6).HeaderText = "Procedure Data"
+            DataGridView1.Columns(7).HeaderText = "Schedule"
+            DataGridView1.Columns(8).HeaderText = "Status"
+            DataGridView1.Columns(9).HeaderText = "Date"
+            DataGridView1.Columns(10).HeaderText = "Doctors/Aesthetician"
+            
+            DataGridView1.Columns(1).Width = 50
+            DataGridView1.Columns(2).Visible = false
+            DataGridView1.Columns(3).Width = 55
+            DataGridView1.Columns(4).Width = 150
+            DataGridView1.Columns(5).Width = 80
+            DataGridView1.Columns(6).Width = 280
+            DataGridView1.Columns(7).Width = 120
+            DataGridView1.Columns(8).Width = 80
+            DataGridView1.Columns(9).Width = 80
+            DataGridView1.Columns(10).Width = 120
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
     Private Sub Branch_List()
         Try
             Dim i As Integer = 1
@@ -77,6 +149,13 @@ Public Class frmSMSFullBlast
             apStatus = ""
         End If
 
+        if btSend_Select.Text = "Cancel Send." then
+            Datagridview1.Visible = False
+            DataGridView1.ClearSelection()
+            DataGridView1.SendToBack()
+            btSend_Select.Text = "Send to Many?"
+        End If
+
         ListViewPatientsContactSetting()
 
         Try
@@ -95,7 +174,7 @@ Public Class frmSMSFullBlast
             Dim connection As New MySqlConnection(connStrBMG)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
-
+            Dim dt as new DataTable()
             connection.Open()
             reader = cmd.ExecuteReader()
             If reader.HasRows = True Then
@@ -112,16 +191,21 @@ Public Class frmSMSFullBlast
                     ls.SubItems.Add(reader.Item("appointment_status").ToString())
                     ls.SubItems.Add(reader.Item("DocAes").ToString())
                     lstPatientsContact.Items.Add(ls)
+
+
                     pBar.Value += 1
                 End While
+                
             End If
             connection.Close()
             RowCountTool.Text = "Rows: " & lstPatientsContact.Items.Count
 
             If lstPatientsContact.Items.Count > 0 Then
+                btSend_Select.Enabled = True
                 btSendToAll.Enabled = True
                 ExcelToolStrip.Enabled = True
             Else
+                btSend_Select.Enabled = False
                 btSendToAll.Enabled = False
                 ExcelToolStrip.Enabled = False
             End If
@@ -154,6 +238,7 @@ Public Class frmSMSFullBlast
         pbExtract.Value = 0
         btView.Enabled = False
         ToolStripViewAll.Enabled = False
+        'POPULATE LISTVIEW
         RetriveSMS()
         btView.Enabled = True
         ToolStripViewAll.Enabled = True
@@ -166,7 +251,6 @@ Public Class frmSMSFullBlast
         gbTemplate.Visible = False
         Branch_List()
         FFMain.AsDeptFooters()
-
         'Combo Status
         cbSatus.Text = "All"
         cbSatus.Items.Add("All")
@@ -334,10 +418,14 @@ Public Class frmSMSFullBlast
 
             lstPatientsContact_Click(Me, EventArgs.Empty)
         Catch ex As Exception
+            if lstPatientsContact.Items.Count = 0 then
+            Else 
             lstPatientsContact.Items(0).Selected = True
             lstPatientsContact.Select()
 
             lstPatientsContact_Click(Me, EventArgs.Empty)
+            End If
+            
         End Try
     End Sub
 
@@ -416,14 +504,14 @@ Public Class frmSMSFullBlast
         End If
 
         For Each item As ListViewItem In lstPatientsContact.Items
-            Dim pxID As String = item.SubItems(1).Text.Trim 'item.Text.Trim
-            Dim pxGender As String = item.SubItems(2).Text.Trim
-            Dim pxName As String = item.SubItems(3).Text.Trim
-            Dim pxMobile As String = item.SubItems(4).Text.Trim
-            Dim pxProcedure As String = item.SubItems(5).Text.Trim
-            Dim pxTime As String = item.SubItems(6).Text.Trim
-            Dim pxDate As String = item.SubItems(7).Text.Trim
-            Dim pxDocAes As String = item.SubItems(9).Text.Trim
+            Dim pxID As String = item.SubItems(1).Text.Trim             'AID
+            Dim pxGender As String = item.SubItems(2).Text.Trim         'GENDER
+            Dim pxName As String = item.SubItems(3).Text.Trim           'FULLNAME
+            Dim pxMobile As String = item.SubItems(4).Text.Trim         'MOBILE
+            Dim pxProcedure As String = item.SubItems(5).Text.Trim      'PROCEDUTE DATA
+            Dim pxTime As String = item.SubItems(6).Text.Trim           'SCHEDULE
+            Dim pxDate As String = item.SubItems(7).Text.Trim           'DATE
+            Dim pxDocAes As String = item.SubItems(9).Text.Trim         'DOC/AES
 
             'strProcedure = pxProcedure.Split(New String() {"   "}, StringSplitOptions.None)
 
@@ -867,4 +955,97 @@ Public Class frmSMSFullBlast
 Private Sub ToolStrip1_ItemClicked( sender As Object,  e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
 
 End Sub
+
+Private Sub CheckedListBox1_SelectedIndexChanged( sender As Object,  e As EventArgs) 
+
+End Sub
+
+Private Sub pBar_Click( sender As Object,  e As EventArgs) Handles pBar.Click
+
+End Sub
+
+Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSend_Select.Click    
+    if DataGridView1.Visible = False Then
+        'POPULATE DATAGRID
+        DataGridView1.BringToFront()
+        DataGridView1.Visible = True
+        Display_patient_Grid("")
+        btSend_Select.Text = "Cancel Send."
+
+    elseif DataGridView1.Visible = True and btSend_Select.Text = "Cancel Send."
+        DataGridView1.ClearSelection()
+        DataGridView1.SendToBack()
+        DataGridView1.Visible = false
+        btSend_Select.Text = "Send to Many?"
+    ElseIf DataGridView1.Rowcount > 0 and btSend_Select.Text = "Send Selected" then
+        Dim strProcedure() As String
+
+        If MsgBox("Send Selected blast SMS?", MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.No Then
+            Exit Sub
+        End If
+
+        For  i As Integer = 0 To DataGridView1.Rows.Count - 1
+            If CBool(DirectCast(DataGridView1.Rows(i).Cells("check"), DataGridViewCheckBoxCell).Value) = True Then
+                Dim pxID As String = DataGridView1.Rows(i).Cells(1).Value.ToString() 
+                Dim pxGender As String = DataGridView1.Rows(i).Cells(3).Value.ToString() 
+                Dim pxName As String = DataGridView1.Rows(i).Cells(4).Value.ToString() 
+                Dim pxMobile As String = DataGridView1.Rows(i).Cells(5).Value.ToString() 
+                Dim pxProcedure As String = DataGridView1.Rows(i).Cells(6).Value.ToString() 
+                Dim pxTime As String = DataGridView1.Rows(i).Cells(7).Value.ToString() 
+                Dim pxDate As String = DataGridView1.Rows(i).Cells(9).Value.ToString() 
+                Dim pxDocAes As String = DataGridView1.Rows(i).Cells(10).Value.ToString() 
+                'strProcedure = pxProcedure.Split(New String() {"   "}, StringSplitOptions.None)
+
+                strProcedure = pxProcedure.Split("|")
+                pxName = PX_MrMs(pxGender) & pxName
+
+                If Len(pxName) > 1 Then
+                    pxName = pxName & "!"
+                End If
+
+                px_mobile(pxMobile)
+
+                If Mid(txtMobile.Text.Trim, 1, 4) = "+639" or Mid(txtMobile.Text.Trim, 1, 3) = "639"  Then
+
+                    txtClientName.Text = "Hi " & pxName & " This is " & ClientName & " from the Belo Medical Group. This is to remind you of your appointment with " & pxDocAes & " on " & pxDate &
+                                         "; " & pxTime & " scheduled for " & ServiceListName(strProcedure(0)) & " at Belo clinic." & vbNewLine & vbNewLine &
+                                         "Our branch is located at " & AddressToolStripStatus.Text & vbNewLine & vbNewLine & FooterSMS
+
+                    'sms_body, Branch_code, px_id, sms_sender, Username,UserHostName,UserHostIP
+                    messages_sms_out(txtClientName.Text, pxID, txtMobile.Text.Trim)         'Belo_Database (Messages_SMS)
+                    CommandXpertSMS(txtClientName.Text, 0, pxID, txtMobile.Text.Trim)       'Messages ( Database : Messages )
+
+                End If'CHECK MOBILE NUMBER
+            End If'DATAGRID CHECKED RECORDS
+        Next'LOOP
+
+        MsgBox("Selected SMS successfully send on que", MsgBoxStyle.Information, "")
+    End If 'MAIN CONDITION
+End Sub
+
+Private Sub DataGridView1_CellContentClick( sender As Object,  e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    dim xxx As String
+    For i As Integer = 0 To DataGridView1.Rows.Count - 1
+        If CBool(DirectCast(DataGridView1.Rows(i).Cells("check"), DataGridViewCheckBoxCell).Value) = True Then
+            xxx = DataGridView1.RowCount
+            if not String.IsNullOrEmpty(DataGridView1.Rows(i).Cells(1).Value.ToString()) Then
+                btSend_Select.Text = "Send Selected"
+            Else 
+                btSend_Select.Text = "Cancel Send."
+            End If
+        else
+            if i = (CInt(xxx) - 1) Then
+            else
+            btSend_Select.Text = "Cancel Send."
+            'xxx = DataGridView1.RowCount
+            end if 
+        End If
+    Next
+End Sub
+
+    Private Sub DataGridView1_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles DataGridView1.CurrentCellDirtyStateChanged
+        If dataGridView1.IsCurrentCellDirty Then
+            dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+        End If
+    End Sub
 End Class
