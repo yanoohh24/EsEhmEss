@@ -4,7 +4,7 @@ Imports Microsoft.Office.Interop
 Public Class frmSMSFullBlast
     Dim Pri_Contact As String
     Dim Pri_banchCode As String
-    
+    Dim i as Integer
     Public Sub Display_patient_Grid(_name As String)
         Dim dt = New DataTable()
         Dim apStatus As String = Replace(cbSatus.Text.Trim(), "'", "\'")
@@ -70,6 +70,8 @@ Public Class frmSMSFullBlast
             DataGridView1.Columns(8).Width = 80
             DataGridView1.Columns(9).Width = 80
             DataGridView1.Columns(10).Width = 120
+
+            DataGridView1.Columns(7).DefaultCellStyle.Format=("MMM dd, yyyy")
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -149,7 +151,7 @@ Public Class frmSMSFullBlast
             apStatus = ""
         End If
 
-        if btSend_Select.Text = "Cancel Send." then
+        if btSend_Select.Text <> "Send to Many?" then
             Datagridview1.Visible = False
             DataGridView1.ClearSelection()
             DataGridView1.SendToBack()
@@ -973,6 +975,7 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
         btSend_Select.Text = "Cancel Send."
 
     elseif DataGridView1.Visible = True and btSend_Select.Text = "Cancel Send."
+        RetriveSMS()
         DataGridView1.ClearSelection()
         DataGridView1.SendToBack()
         DataGridView1.Visible = false
@@ -991,8 +994,9 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
                 Dim pxName As String = DataGridView1.Rows(i).Cells(4).Value.ToString() 
                 Dim pxMobile As String = DataGridView1.Rows(i).Cells(5).Value.ToString() 
                 Dim pxProcedure As String = DataGridView1.Rows(i).Cells(6).Value.ToString() 
-                Dim pxTime As String = DataGridView1.Rows(i).Cells(7).Value.ToString() 
-                Dim pxDate As String = DataGridView1.Rows(i).Cells(9).Value.ToString() 
+                Dim pxTime As String = DataGridView1.Rows(i).Cells(7).Value.ToString()
+                Dim pxDate As String =Format(CDate(DataGridView1.Rows(i).Cells(9).Value.ToString()),"MMM dd, yyyy")
+                'pxdate = (pxdate)
                 Dim pxDocAes As String = DataGridView1.Rows(i).Cells(10).Value.ToString() 
                 'strProcedure = pxProcedure.Split(New String() {"   "}, StringSplitOptions.None)
 
@@ -1019,7 +1023,8 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
             End If'DATAGRID CHECKED RECORDS
         Next'LOOP
 
-        MsgBox("Selected SMS successfully send on que", MsgBoxStyle.Information, "")
+        MsgBox("Selected SMS successfully send " & (DataGridView1.RowCount) - 1 & " message(s) on que", MsgBoxStyle.Information, "")
+        'datagridview1.ClearSelection()
     End If 'MAIN CONDITION
 End Sub
 
@@ -1030,6 +1035,46 @@ Private Sub DataGridView1_CellContentClick( sender As Object,  e As DataGridView
             xxx = DataGridView1.RowCount
             if not String.IsNullOrEmpty(DataGridView1.Rows(i).Cells(1).Value.ToString()) Then
                 btSend_Select.Text = "Send Selected"
+                Try
+                    If DataGridView1.RowCount > 0 Then
+                        Dim strProcedure() As String
+
+                        Dim pxID As String = DataGridView1.Rows(i).Cells(1).Value.ToString() 
+                        Dim pxName As String = DataGridView1.Rows(i).Cells(4).Value.ToString() 
+                        Dim pxMobile As String = DataGridView1.Rows(i).Cells(5).Value.ToString() 
+                        Dim pxProcedure As String = DataGridView1.Rows(i).Cells(6).Value.ToString() 
+                        Dim pxTime As String = DataGridView1.Rows(i).Cells(7).Value.ToString()
+                        Dim pxDate As String = Format(CDate(DataGridView1.Rows(i).Cells(9).Value.ToString()),"MMM dd, yyyy")
+                        Dim pxDocAes As String = DataGridView1.Rows(i).Cells(10).Value.ToString() 
+
+                        'strProcedure = lstPatientsContact.SelectedItems(0).SubItems(5).Text.Trim().Split(New String() {"   "}, StringSplitOptions.None)
+
+                        lbPxID.Text = pxID
+                        'pxName = PX_MrMs(lstPatientsContact.SelectedItems(0).SubItems(2).Text.Trim()) & lstPatientsContact.SelectedItems(0).SubItems(3).Text.Trim()
+                        lbPxName.Text = pxName
+                        strProcedure = pxProcedure.ToString().Trim().Split("|")
+                        'pxTime = lstPatientsContact.SelectedItems(0).SubItems(6).Text.Trim()
+                        'pxDate = pxDate
+                        'pxDocAes = lstPatientsContact.SelectedItems(0).SubItems(9).Text.Trim()
+
+                        If Len(pxName) > 1 Then
+                            pxName = pxName & "!"
+                        End If
+
+                        px_mobile(pxMobile)
+                        txtMobile_c.Text = txtMobile.Text.Trim
+
+                        txtClientName.Text = "Hi " & pxName & " This is " & ClientName & " from the Belo Medical Group. This is to remind you of your appointment with " & pxDocAes & " on " & pxDate &
+                                             "; " & pxTime & " scheduled for " & ServiceListName(strProcedure(0)) & " at Belo clinic." & vbNewLine & vbNewLine &
+                                             "Our branch is located at " & AddressToolStripStatus.Text & vbNewLine & vbNewLine & FooterSMS
+
+                        lbTxtLength.Text = Len(txtClientName.Text)
+                        lbTxtLength_c.Text = Len(txtMessage_c.Text)
+                    End If'DISPLAY MESSAGES BELOW
+
+                Catch ex As Exception
+                        MsgBox("You Have selected a EMPTY Record!",vbCritical + vbOKOnly,"Selection Error!")'ERROR MESSAGE
+                End Try 
             Else 
                 btSend_Select.Text = "Cancel Send."
             End If
@@ -1043,9 +1088,21 @@ Private Sub DataGridView1_CellContentClick( sender As Object,  e As DataGridView
     Next
 End Sub
 
+    Private Sub DataGridView1_CellLeave(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellLeave
+        TRy 
+
+        Catch ex As Exception
+            MsgBox("")
+        End Try
+    End Sub
+
     Private Sub DataGridView1_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles DataGridView1.CurrentCellDirtyStateChanged
         If dataGridView1.IsCurrentCellDirty Then
             dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
         End If
+    End Sub
+
+    Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
+        '// IGNORED //
     End Sub
 End Class
