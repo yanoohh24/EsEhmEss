@@ -57,11 +57,11 @@ Public Class frmSMSReply
     Private Sub frmReplySMS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtMessage.Text = ""
         lbUsernameAndBranchname.Text = UserAndBranchName
-        TxtLenghtToolStrip.Text = "Lenght : " & Len(txtMessage.Text)
+        TxtLenghtToolStrip.Text = "Length : " & Len(txtMessage.Text)
     End Sub
 
     Private Sub txtMessage_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtMessage.KeyDown
-        TxtLenghtToolStrip.Text = "Lenght : " & Len(txtMessage.Text)
+        TxtLenghtToolStrip.Text = "Length : " & Len(txtMessage.Text)
     End Sub
 
     Private Sub txtMessage_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtMessage.KeyUp
@@ -69,7 +69,7 @@ Public Class frmSMSReply
             btSend_Click(Me, EventArgs.Empty)
         End If
 
-        TxtLenghtToolStrip.Text = "Lenght : " & Len(txtMessage.Text)
+        TxtLenghtToolStrip.Text = "Length : " & Len(txtMessage.Text)
     End Sub
 
     Private Sub btSend_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSend.Click
@@ -176,7 +176,7 @@ Public Class frmSMSReply
     End Function
 
     Private Sub txtMessage_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles txtMessage.MouseUp
-        TxtLenghtToolStrip.Text = "Lenght : " & Len(txtMessage.Text)
+        TxtLenghtToolStrip.Text = "Length : " & Len(txtMessage.Text)
     End Sub
 
     Private Sub frmSMSReply_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
@@ -205,7 +205,7 @@ Public Class frmSMSReply
         If lsTemplate.Items.Count > 0 Then
             _Cid = lsTemplate.SelectedItems(0).Text.Trim()
             _Ctemplate = lsTemplate.SelectedItems(0).SubItems(2).Text.Trim()
-            TxtLenghtToolStrip.Text = "Lenght : " & Len(_Ctemplate)
+            TxtLenghtToolStrip.Text = "Length : " & Len(_Ctemplate)
             txtMessage.Text = _Ctemplate
         End If
     End Sub

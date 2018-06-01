@@ -163,7 +163,7 @@ Module connection_setting
 
     Function ResultCount(ByVal SQL As String) As Integer
         Try
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(SQL, connection)
             Dim reader As MySqlDataReader
             connection.Open()

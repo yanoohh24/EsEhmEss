@@ -806,7 +806,7 @@ Public Class frmPatientSMS
             FFResend.txtMobile.Focus()
             FFResend.txtMessage.Text = Pri_lst_content
             FFResend.txtMessage.SelectionStart = Len(Pri_lst_content)
-            FFResend.TxtLenghtToolStrip.Text = "Lenght : " & Len(Pri_lst_content)
+            FFResend.TxtLenghtToolStrip.Text = "Length : " & Len(Pri_lst_content)
             FFResend.lbUsernameAndBranchname.Text = UserAndBranchName
             Thread.Sleep(500)
             FFResend.Show()
@@ -914,6 +914,10 @@ Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventAr
     Private Sub sl_MyScroll(ByVal sender As Object, ByVal e As System.EventArgs) Handles sl.MyScroll
         i = 0
     End Sub
+
+        Private Sub lsPxSMS_MouseEnter(sender As Object, e As EventArgs) Handles lsPxSMS.MouseEnter
+
+    End Sub
     Private Sub lsPxSMS_MouseWheel(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lsPxSMS.MouseWheel
         i = 0
     End Sub
@@ -1000,6 +1004,10 @@ Private Sub Button1_Click_2( sender As Object,  e As EventArgs) Handles Button1.
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+End Sub
+
+Private Sub ContextMessageInbox_Opening( sender As Object,  e As System.ComponentModel.CancelEventArgs) Handles ContextMessageInbox.Opening
 
 End Sub
 End Class

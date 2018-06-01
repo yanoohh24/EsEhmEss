@@ -597,6 +597,7 @@ Partial Class frmSMSFullBlast
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1062, 547)
+        Me.Controls.Add(Me.lstPatientsContact)
         Me.Controls.Add(Me.lbDocAes)
         Me.Controls.Add(Me.cbDocAes)
         Me.Controls.Add(Me.chAesthetician)
@@ -617,7 +618,6 @@ Partial Class frmSMSFullBlast
         Me.Controls.Add(Me.dpTo)
         Me.Controls.Add(Me.pBar)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Controls.Add(Me.lstPatientsContact)
         Me.Controls.Add(Me.DataGridView1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)

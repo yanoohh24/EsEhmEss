@@ -209,31 +209,31 @@ Partial Class frmPatientSMS
         '
         Me.ContextMessageInbox.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ResendToolStripMenuItem, Me.ToolStripSeparator2, Me.BlankToolStripMenuItem})
         Me.ContextMessageInbox.Name = "ContextMenuStrip1"
-        Me.ContextMessageInbox.Size = New System.Drawing.Size(113, 76)
+        Me.ContextMessageInbox.Size = New System.Drawing.Size(153, 98)
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Image = Global.BeloSMS.My.Resources.Resources.Email_Reply_icon_24
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(112, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem1.Text = "Reply"
         '
         'ResendToolStripMenuItem
         '
         Me.ResendToolStripMenuItem.Image = CType(resources.GetObject("ResendToolStripMenuItem.Image"),System.Drawing.Image)
         Me.ResendToolStripMenuItem.Name = "ResendToolStripMenuItem"
-        Me.ResendToolStripMenuItem.Size = New System.Drawing.Size(112, 22)
+        Me.ResendToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ResendToolStripMenuItem.Text = "Resend"
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(109, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(149, 6)
         '
         'BlankToolStripMenuItem
         '
         Me.BlankToolStripMenuItem.Name = "BlankToolStripMenuItem"
-        Me.BlankToolStripMenuItem.Size = New System.Drawing.Size(112, 22)
+        Me.BlankToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         '
         'Timer1
         '

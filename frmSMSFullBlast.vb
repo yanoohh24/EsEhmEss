@@ -136,13 +136,13 @@ Public Class frmSMSFullBlast
         Dim srchAes As String
 
         If chDotors.Checked = True Then
-            srchDoc = " AND doctor LIKE '%" & lbDocAes.Text.Trim & "%'"
+            srchDoc = " AND medical_personnel_id LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
             srchDoc = ""
         End If
 
         If chAesthetician.Checked = True Then
-            srchAes = " AND aesthetician LIKE '%" & lbDocAes.Text.Trim & "%'"
+            srchAes = " AND medical_personnel_id LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
             srchAes = ""
         End If
@@ -162,18 +162,20 @@ Public Class frmSMSFullBlast
 
         Try
             Dim query As String
-            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC")
+            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM `appointments` WHERE DATE(start_at) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " ORDER BY DATE(start_at) ASC")
 
             pBar.Value = 0
             pBar.Maximum = TTL
 
-            query = "SELECT id,patientid,(SELECT gender FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_gender, " _
-            & " (SELECT CONCAT(TRIM(firstname),' ',TRIM(lastname)) FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_name, " _
-            & " (SELECT mobile FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_mobile,procedure_data, " _
-            & " CONCAT(DATE_FORMAT(time_start,'%h:%i %p'), ' to ', DATE_FORMAT(time_end,'%h:%i %p')) schedTime,appointment_status,appointment_date,IF(LENGTH(TRIM(doctor))<2,(SELECT CONCAT (IF(gender='female','Ms.','Mr.') ,' ',NAME) FROM ref_aes WHERE CODE=aesthetician),(SELECT NAME FROM ref_doc WHERE CODE=doctor)) DocAes FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) " _
-            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC"
+            query = "SELECT id,patient_id,(SELECT gender FROM patient WHERE  patient.patient_id=`appointments`.patient_id) px_gender, " _
+            & " (SELECT CONCAT(TRIM(first_name),' ',TRIM(last_name)) FROM patient WHERE  patient.patient_id=`appointments`.patient_id) px_name, " _
+            & " (SELECT mobile_number FROM patient WHERE  patient.patient_id=`appointments`.`patient_id`) px_mobile," _
+            & " (SELECT `master_list`.`full_description` FROM master_list WHERE `barcode`=`appointments`.`procedure`) Procedure_data, " _
+            & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date," _
+            & " IF(LENGTH(`appointments`.`medical_personnel_id`) > 1,(SELECT CONCAT(Title ,' ',NAME) FROM medical_personnel WHERE `id` = `appointments`.`medical_personnel_id`),'') DocAes FROM `appointments` WHERE (DATE(start_at) " _
+            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " ORDER BY DATE(start_at) ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             Dim dt as new DataTable()
@@ -183,7 +185,7 @@ Public Class frmSMSFullBlast
                 While reader.Read
                     Dim ls As New ListViewItem(reader.Item("id").ToString.Trim())
                     Dim appointment_date As Date = reader.Item("appointment_date").ToString()
-                    ls.SubItems.Add(reader.Item("patientid").ToString.Trim())
+                    ls.SubItems.Add(reader.Item("patient_id").ToString.Trim())
                     ls.SubItems.Add(StrConv(reader.Item("px_gender").ToString.Trim(), VbStrConv.Uppercase))
                     ls.SubItems.Add(StrConv(reader.Item("px_name").ToString.Trim(), VbStrConv.ProperCase))
                     ls.SubItems.Add(reader.Item("px_mobile").ToString.Trim())
@@ -194,7 +196,7 @@ Public Class frmSMSFullBlast
                     ls.SubItems.Add(reader.Item("DocAes").ToString())
                     lstPatientsContact.Items.Add(ls)
 
-
+                    
                     pBar.Value += 1
                 End While
                 
