@@ -57,6 +57,7 @@ Partial Class frmPatientSMS
         Me.Label3 = New System.Windows.Forms.Label()
         Me.btnUnread = New System.Windows.Forms.Button()
         Me.BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.ContextMenuMessages.SuspendLayout
         Me.ContextMessageInbox.SuspendLayout
         CType(Me.BindingSource1,System.ComponentModel.ISupportInitialize).BeginInit
@@ -335,12 +336,23 @@ Partial Class frmPatientSMS
         Me.btnUnread.UseVisualStyleBackColor = true
         Me.btnUnread.Visible = false
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1050, 15)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 26
+        Me.Button1.Text = "Update"
+        Me.Button1.UseVisualStyleBackColor = true
+        Me.Button1.Visible = false
+        '
         'frmPatientSMS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1108, 504)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.btnUnread)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtFilter)
@@ -408,4 +420,5 @@ End Sub
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents btnUnread As System.Windows.Forms.Button
     Friend WithEvents BindingSource1 As System.Windows.Forms.BindingSource
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

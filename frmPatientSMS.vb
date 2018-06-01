@@ -160,26 +160,26 @@ Public Class frmPatientSMS
             DateTo = Format(dpTo.Value, "yyyy-MM-dd")
             lbDBconnection.Text = ""
             If FFMain.ToolStripStatusLabel2.Text = "1" Then
-                query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID), Sender) pxName, " _
-                & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY sender ORDER BY doc DESC"
+                query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID), fromaddress) pxName, " _
+                & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
             Else
                 If StrConv(cbBranch.Text.Trim, VbStrConv.Uppercase) = "BIRTHDAY" Then
 
                     If FFMain.ToolStripStatusLabel2.Text = "1" Then
-                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID),Sender) pxName, " _
-                        & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientDepartmentKey & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY sender ORDER BY doc DESC"
+                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.PatientID=messages.PatientID),fromaddress) pxName, " _
+                        & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientDepartmentKey & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
                     Else
-                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID),Sender) pxName, " _
-                        & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientBranch & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY sender ORDER BY doc DESC"
+                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.PatientID=messages.PatientID),fromaddress) pxName, " _
+                        & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientBranch & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
                     End If
                 Else
-                    query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID),Sender) pxName, " _
-                    & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY sender ORDER BY doc DESC"
+                    query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.PatientID=messages.PatientID),fromaddress) pxName, " _
+                    & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
                 End If
 
             End If
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -193,7 +193,7 @@ Public Class frmPatientSMS
                     Dim ls As New ListViewItem(reader.Item("patientid").ToString.Trim())
                     ls.SubItems.Add(reader.Item("pxName").ToString.Trim())
                     ls.SubItems.Add(reader.Item("sms").ToString.Trim())
-                    ls.SubItems.Add(px_pri_mobile(reader.Item("Sender").ToString.Trim()))
+                    ls.SubItems.Add(px_pri_mobile(reader.Item("fromaddress").ToString.Trim()))
                     ls.SubItems.Add(reader.Item("Read_Stats").ToString.Trim())
                     lsPxSMS.Items.Add(ls)
                 End While
@@ -299,21 +299,25 @@ Public Class frmPatientSMS
             lbDBconnection.Text = ""
 
             If FFMain.ToolStripStatusLabel2.Text = "1" Then
-                query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID), Sender) pxName, " _
-                & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND sender IN (SELECT REPLACE(mobile,'09','+639') FROM patient_info WHERE CONCAT(firstname, ' ', lastname)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patientid) GROUP BY sender ORDER BY doc DESC"
+                query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient_info WHERE patient.Patient_ID=messages.PatientID), Sender) pxName, " _
+                & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "'" _
+                & " AND FromAddress IN (SELECT REPLACE(mobile_number,'09','+639') FROM patient WHERE CONCAT(firstname, ' ', lastname)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patientid) GROUP BY fromaddress ORDER BY doc DESC"
             Else
                 If StrConv(cbBranch.Text.Trim, VbStrConv.Uppercase) = "BIRTHDAY" Then
 
                     If FFMain.ToolStripStatusLabel2.Text = "1" Then
-                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID),Sender) pxName, " _
-                        & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientDepartmentKey & "'  AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND sender IN (SELECT REPLACE(mobile,'09','+639') FROM patient_info WHERE CONCAT(firstname, ' ', lastname)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patientid) GROUP BY sender ORDER BY doc DESC"
+                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID),Sender) pxName, " _
+                        & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientDepartmentKey & "'  AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND " _
+                        & " FromAddress IN (SELECT REPLACE(mobile_number,'09','+639') FROM patient WHERE CONCAT(first_name, ' ', last_name)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patient_id) GROUP BY fromaddress ORDER BY doc DESC"
                     Else
-                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID),Sender) pxName, " _
-                        & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientBranch & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND sender IN (SELECT REPLACE(mobile,'09','+639') FROM patient_info WHERE  CONCAT(firstname, ' ', lastname)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patientid) GROUP BY sender ORDER BY doc DESC"
+                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID),Sender) pxName, " _
+                        & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientBranch & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND " _
+                        & " FromAddress IN (SELECT REPLACE(mobile_number,'09','+639') FROM patient WHERE  CONCAT(first_name, ' ', last_name)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patient_id) GROUP BY fromaddress ORDER BY doc DESC"
                     End If
                 Else
-                    query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID),Sender) pxName, " _
-                    & " COUNT(patientid) SMS, Sender, MIN(Read_Stats) Read_Stats FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND sender IN (SELECT REPLACE(mobile,'09','+639') FROM patient_info WHERE  CONCAT(firstname, ' ', lastname)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patientid) GROUP BY sender ORDER BY doc DESC"
+                    query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID),Sender) pxName, " _
+                    & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND " _
+                    & " FromAddress IN (SELECT REPLACE(mobile_number,'09','+639') FROM patient WHERE  CONCAT(first_name, ' ', last_name)  LIKE '%" & txtFilter.Text.Trim & "%' ORDER  BY patient_id) GROUP BY fromaddress ORDER BY doc DESC"
                 End If
 
             End If
@@ -332,7 +336,7 @@ Public Class frmPatientSMS
                     Dim ls As New ListViewItem(reader.Item("patientid").ToString.Trim())
                     ls.SubItems.Add(reader.Item("pxName").ToString.Trim())
                     ls.SubItems.Add(reader.Item("sms").ToString.Trim())
-                    ls.SubItems.Add(px_pri_mobile(reader.Item("Sender").ToString.Trim()))
+                    ls.SubItems.Add(px_pri_mobile(reader.Item("FromAddress").ToString.Trim()))
                     ls.SubItems.Add(reader.Item("Read_Stats").ToString.Trim())
                     lsPxSMS.Items.Add(ls)
                 End While
@@ -368,25 +372,25 @@ Public Class frmPatientSMS
             lbDBconnection.Text = ""
 
             If ClientAsDept = 1 Then
-                query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID) pxName, " _
-                & " sender,Direction,body,doc,Username,invalid FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(sender,' ','')='" & px_Sender & "' ORDER BY id DESC"
+                query = "SELECT (SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID) pxName, " _
+                & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
             Else
                 query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID) pxName, " _
-                & " sender,Direction,body,doc,Username,invalid FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(sender,' ','')='" & px_Sender & "' ORDER BY id DESC"
+                & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
 
                 If StrConv(cbBranch.Text.Trim, VbStrConv.Uppercase) = "BIRTHDAY" Then
 
                     query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID) pxName, " _
-                    & " sender,Direction,body,doc,Username,invalid FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.KeyToolStrip.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(sender,' ','')='" & px_Sender & "' ORDER BY id DESC"
+                    & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.KeyToolStrip.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
                 Else
                     query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient_info WHERE patient_info.PatientID=messages_sms.PatientID) pxName, " _
-                    & " sender,Direction,body,doc,Username,invalid FROM messages_sms WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(sender,' ','')='" & px_Sender & "' ORDER BY id DESC"
+                    & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
 
                 End If
             End If
 
             'MsgBox(query)
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -397,9 +401,9 @@ Public Class frmPatientSMS
             ListViewPx_LstSMS()
             If reader.HasRows = True Then
                 While reader.Read
-                    Dim ls As New ListViewItem(reader.Item("Direction").ToString.Trim())
+                    Dim ls As New ListViewItem(reader.Item("DirectionID").ToString.Trim())
                     ls.SubItems.Add(reader.Item("pxName").ToString.Trim())
-                    ls.SubItems.Add(Replace(reader.Item("sender").ToString.Trim(), " ", ""))
+                    ls.SubItems.Add(Replace(reader.Item("FromAddress").ToString.Trim(), " ", ""))
                     ls.SubItems.Add(reader.Item("body").ToString.Trim())
                     ls.SubItems.Add(Format(reader.Item("doc"), "MMM dd, yyyy hh:mm tt"))
                     ls.SubItems.Add(reader.Item("Username").ToString())
@@ -463,6 +467,7 @@ Public Class frmPatientSMS
             Dim pxStat As Integer = lsPxSMS.SelectedItems(0).SubItems(4).Text.Trim()
             lbpxID.Text = Pri_lst_pxID
             'MsgBox(pxMobile)
+            'pxMobile = Replace(pxMobile,"+","")
             RetrivePX_SMS(pxMobile)
 
             If pxStat < 1 Then
@@ -488,11 +493,11 @@ Public Class frmPatientSMS
         Cursor = Cursors.Default
     End Sub
     Function SMS_Read_status(px_RS_ID As String)
-        Dim sql As String = "UPDATE `messages_sms` SET Read_Stats='1'  WHERE Sender='" & px_RS_ID & "'"
-
+        'Dim sql As String = "UPDATE `messages_sms` SET Read_Stats='1'  WHERE Sender='" & px_RS_ID & "'"
+        Dim sql As String = "UPDATE `messages` SET Read_Stats='1'  WHERE fromaddress='" & px_RS_ID & "'"
         Try
             Dim rowsEffected = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
 
             connection.Open()
@@ -533,7 +538,7 @@ Public Class frmPatientSMS
 
     Private Sub btView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btView.Click
         Timer1.Enabled = False
-        ListViewPx_LstSMS()
+        ListViewPx_LstSMS()'SET COLUMNS IN LISTVIEW
         SetToBlank()
         RetriveSMS()
         lstPx_lsSMS.Items.Clear()
@@ -547,6 +552,8 @@ Public Class frmPatientSMS
             lsPxSMS.Items(lsPxSMS.FocusedItem.Index).Selected = True
             lsPxSMS.Select()
             lsPxSMS_Click(Me, EventArgs.Empty)
+            MobileUp
+
         End If
 
     End Sub
@@ -932,4 +939,67 @@ Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventAr
     Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs) Handles btnUnread.Click
         RetriveSMSUnread()
     End Sub
+
+    Function UpdateMessages(CPnum As string , ID As String)
+        dim sql as String = "Update `messages` set FromAddress '" & CPnum & "' where id = '" & ID & "'"
+        Try
+            Dim rowsEffected = 0
+            Dim connection As New MySqlConnection(connStrSMS)
+            Dim cmd As New MySqlCommand(sql, connection)
+
+            connection.Open()
+
+            rowsEffected = cmd.ExecuteNonQuery()
+
+            connection.Close()
+
+            Return rowsEffected
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Function
+
+    Function MobileUp
+        dim sql as String = "UPDATE messages SET fromAddress = CONCAT('+',fromaddress) WHERE fromaddress NOT LIKE '%+%'"
+        Try
+            Dim rowsEffected = 0
+            Dim connection As New MySqlConnection(connStrSMS)
+            Dim cmd As New MySqlCommand(sql, connection)
+
+            connection.Open()
+
+            rowsEffected = cmd.ExecuteNonQuery()
+
+            connection.Close()
+
+            Return rowsEffected
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Function
+
+Private Sub Button1_Click_2( sender As Object,  e As EventArgs) Handles Button1.Click
+        Try
+            dim query ,sql , CPNum,ID as String
+            query = "select id,directionid,IF(directionid = 1,fromaddress,toaddress) CPNO from messages WHERE (fromaddress IS NOT NULL AND fromaddress <> '') OR (toaddress IS NOT NULL AND toaddress <> '')"
+            Dim connection as new MySqlConnection(connStrSMS)
+            Dim cmd as new MySqlCommand(query,connection)
+            Dim reader as MySqlDataReader
+            connection.Open()
+            reader = cmd.ExecuteReader()
+            if reader.HasRows Then
+                While reader.Read
+                    'if reader.Item("DirectionID") = 1 Then
+                        ID = reader.Item("ID")
+                        CPNum = reader.Item("CPNO").ToString().Trim()
+                        UpdateMessages(CPNum,ID)
+                    'End If
+                End While
+            End If
+            connection.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+End Sub
 End Class

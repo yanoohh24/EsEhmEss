@@ -34,10 +34,10 @@ Public Class frmSMSFullBlast
             Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC")
 
             'ID | PATIENT_ID | GENDER | FULLNAME | MOBILE | PROCEDURE_DATA | SCHEDULE | APPOINTMENT_STATUS | SCHED_DATE | DOCAES
-            query = "SELECT id,patientid,(SELECT gender FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_gender, " _
-                    & " (SELECT CONCAT(TRIM(firstname),' ',TRIM(lastname)) FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_name, " _
-                    & " (SELECT mobile FROM patient_info WHERE  patient_info.patientid=" & lbBranchDB.Text.Trim() & ".patientid) px_mobile,procedure_data, " _
-                    & " CONCAT(DATE_FORMAT(time_start,'%h:%i %p'), ' to ', DATE_FORMAT(time_end,'%h:%i %p')) schedTime,appointment_status,appointment_date,IF(LENGTH(TRIM(doctor))<2,(SELECT CONCAT (IF(gender='female','Ms.','Mr.') ,' ',NAME) FROM ref_aes WHERE CODE=aesthetician),(SELECT NAME FROM ref_doc WHERE CODE=doctor)) DocAes FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) " _
+            query = "SELECT id,patient_id,(SELECT gender FROM patient WHERE  patient.patient_id=" & lbBranchDB.Text.Trim() & ".patient_id) px_gender, " _
+                    & " (SELECT CONCAT(TRIM(first_name),' ',TRIM(last_name)) FROM patient WHERE  patient.patient_id=" & lbBranchDB.Text.Trim() & ".patient_id) px_name, " _
+                    & " (SELECT mobile_number FROM patient WHERE  patient.patient_id=" & lbBranchDB.Text.Trim() & ".patient_id) px_mobile," & lbBranchDB.Text.Trim() & ".procedure, " _
+                    & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date,IF(LENGTH(TRIM(doctor))<2,(SELECT CONCAT (IF(gender='female','Ms.','Mr.') ,' ',NAME) FROM ref_aes WHERE CODE=aesthetician),(SELECT NAME FROM ref_doc WHERE CODE=doctor)) DocAes FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) " _
                     & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC"
 
 
@@ -248,9 +248,11 @@ Public Class frmSMSFullBlast
         Application.DoEvents()
     End Sub
     Private Sub frmFullBlastSMS_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'SET LISTVIEW COLUMNS
         ListViewPatientsContactSetting()
         HeaderTemplate()
         gbTemplate.Visible = False
+        'GET BRANCH
         Branch_List()
         FFMain.AsDeptFooters()
         'Combo Status
@@ -982,7 +984,7 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
         btSend_Select.Text = "Send to Many?"
     ElseIf DataGridView1.Rowcount > 0 and btSend_Select.Text = "Send Selected" then
         Dim strProcedure() As String
-
+        dim xxx as Integer
         If MsgBox("Send Selected blast SMS?", MsgBoxStyle.YesNo, "Confirmation") = MsgBoxResult.No Then
             Exit Sub
         End If
@@ -1020,10 +1022,11 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
                     CommandXpertSMS(txtClientName.Text, 0, pxID, txtMobile.Text.Trim)       'Messages ( Database : Messages )
 
                 End If'CHECK MOBILE NUMBER
+                xxx = xxx + 1
             End If'DATAGRID CHECKED RECORDS
-        Next'LOOP
+        Next'LOOP IN RECORDS
 
-        MsgBox("Selected SMS successfully send " & (DataGridView1.RowCount) - 1 & " message(s) on que", MsgBoxStyle.Information, "")
+        MsgBox("Selected SMS successfully send " & xxx & " message(s) on que", MsgBoxStyle.Information, "")
         'datagridview1.ClearSelection()
     End If 'MAIN CONDITION
 End Sub

@@ -70,7 +70,7 @@ Module connection_setting
     'belo_test
     'messages_tester
     Public connStrSMS As String = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-    Public connStrBMG As String = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
+    Public connStrBMG As String = " Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
        
  Public Structure UsertInformation
         Dim username As String

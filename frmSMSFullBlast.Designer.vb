@@ -617,8 +617,8 @@ Partial Class frmSMSFullBlast
         Me.Controls.Add(Me.dpTo)
         Me.Controls.Add(Me.pBar)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.lstPatientsContact)
+        Me.Controls.Add(Me.DataGridView1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.MaximizeBox = false
