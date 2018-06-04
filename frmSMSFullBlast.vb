@@ -12,13 +12,13 @@ Public Class frmSMSFullBlast
         Dim srchAes As String
 
         If chDotors.Checked = True Then
-            srchDoc = " AND doctor LIKE '%" & lbDocAes.Text.Trim & "%'"
+            srchDoc = " AND medical_personnel LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
             srchDoc = ""
         End If
 
         If chAesthetician.Checked = True Then
-            srchAes = " AND aesthetician LIKE '%" & lbDocAes.Text.Trim & "%'"
+            srchAes = " AND medical_personnel LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
             srchAes = ""
         End If
@@ -31,14 +31,19 @@ Public Class frmSMSFullBlast
         Try
             Dim i As Integer = 0
             Dim query As String
-            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC")
+            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM `appointments` WHERE DATE(start_at) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " ORDER BY DATE(start_at) ASC")
+
+            pBar.Value = 0
+            pBar.Maximum = TTL
 
             'ID | PATIENT_ID | GENDER | FULLNAME | MOBILE | PROCEDURE_DATA | SCHEDULE | APPOINTMENT_STATUS | SCHED_DATE | DOCAES
-            query = "SELECT id,patient_id,(SELECT gender FROM patient WHERE  patient.patient_id=" & lbBranchDB.Text.Trim() & ".patient_id) px_gender, " _
-                    & " (SELECT CONCAT(TRIM(first_name),' ',TRIM(last_name)) FROM patient WHERE  patient.patient_id=" & lbBranchDB.Text.Trim() & ".patient_id) px_name, " _
-                    & " (SELECT mobile_number FROM patient WHERE  patient.patient_id=" & lbBranchDB.Text.Trim() & ".patient_id) px_mobile," & lbBranchDB.Text.Trim() & ".procedure, " _
-                    & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date,IF(LENGTH(TRIM(doctor))<2,(SELECT CONCAT (IF(gender='female','Ms.','Mr.') ,' ',NAME) FROM ref_aes WHERE CODE=aesthetician),(SELECT NAME FROM ref_doc WHERE CODE=doctor)) DocAes FROM " & lbBranchDB.Text.Trim() & " WHERE DATE(appointment_date) " _
-                    & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC"
+            query = "SELECT id,patient_id,(SELECT gender FROM patient WHERE  patient.patient_id=`appointments`.patient_id) px_gender, " _
+            & " (SELECT CONCAT(TRIM(first_name),' ',TRIM(last_name)) FROM patient WHERE  patient.patient_id=`appointments`.patient_id) px_name, " _
+            & " (SELECT mobile_number FROM patient WHERE  patient.patient_id=`appointments`.`patient_id`) px_mobile," _
+            & " (SELECT `master_list`.`full_description` FROM master_list WHERE `barcode`=`appointments`.`procedure`) Procedure_data, " _
+            & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date," _
+            & " IF(LENGTH(`appointments`.`medical_personnel_id`) > 1,(SELECT CONCAT(Title ,' ',NAME) FROM medical_personnel WHERE `id` = `appointments`.`medical_personnel_id`),'') DocAes FROM `appointments` WHERE (DATE(start_at) " _
+            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " and Branch = '" & Pri_banchCode & "' ORDER BY DATE(start_at) ASC"
 
 
             Dim connection As New MySqlConnection(connStrSMS)
@@ -84,12 +89,12 @@ Public Class frmSMSFullBlast
             Dim query As String
 
             If ClientAccAdmin = 1 Then
-                query = "SELECT * FROM `branches` WHERE CODE NOT LIKE '00' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' ORDER BY name ASC"
             Else
-                query = "SELECT * FROM `branches` WHERE CODE NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
             End If
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
 
@@ -174,7 +179,7 @@ Public Class frmSMSFullBlast
             & " (SELECT `master_list`.`full_description` FROM master_list WHERE `barcode`=`appointments`.`procedure`) Procedure_data, " _
             & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date," _
             & " IF(LENGTH(`appointments`.`medical_personnel_id`) > 1,(SELECT CONCAT(Title ,' ',NAME) FROM medical_personnel WHERE `id` = `appointments`.`medical_personnel_id`),'') DocAes FROM `appointments` WHERE (DATE(start_at) " _
-            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " ORDER BY DATE(start_at) ASC"
+            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " and Branch = '" & Pri_banchCode & "' ORDER BY DATE(start_at) ASC"
 
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
@@ -301,9 +306,9 @@ Public Class frmSMSFullBlast
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT name FROM ref_doc WHERE clinic='" & lbBranchCode.Text.Trim & "' ORDER BY name ASC"
+            query = "SELECT name FROM medical_personnel WHERE id='" & lbBranchCode.Text.Trim & "' and type = 'Doctor' ORDER BY name ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
 
@@ -326,9 +331,9 @@ Public Class frmSMSFullBlast
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT name FROM ref_aes WHERE clinic='" & lbBranchCode.Text.Trim & "' ORDER BY name ASC"
+            query = "SELECT name FROM medical_personnel WHERE id='" & lbBranchCode.Text.Trim & "' and type = 'Aesthetician' ORDER BY name ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
 
@@ -406,11 +411,11 @@ Public Class frmSMSFullBlast
 
             px_mobile(lstPatientsContact.SelectedItems(0).SubItems(4).Text.Trim())
             txtMobile_c.Text = txtMobile.Text.Trim
-
+            '"; " & pxTime & " scheduled for " & ServiceListName(strProcedure(0)) & " at Belo clinic." & vbNewLine & vbNewLine &
             txtClientName.Text = "Hi " & pxName & " This is " & ClientName & " from the Belo Medical Group. This is to remind you of your appointment with " & pxDocAes & " on " & pxDate &
-            "; " & pxTime & " scheduled for " & ServiceListName(strProcedure(0)) & " at Belo clinic." & vbNewLine & vbNewLine &
+            "; " & pxTime & " scheduled for " & strProcedure(0).ToString() & " at Belo clinic." & vbNewLine & vbNewLine &
             "Our branch is located at " & AddressToolStripStatus.Text & vbNewLine & vbNewLine & FooterSMS
-
+            
             lbTxtLength.Text = Len(txtClientName.Text)
             lbTxtLength_c.Text = Len(txtMessage_c.Text)
 
@@ -633,12 +638,12 @@ Public Class frmSMSFullBlast
             Dim query As String
 
             If chDotors.Checked = True Then
-                query = "SELECT code FROM `ref_doc` WHERE clinic='" & lbBranchCode.Text.Trim & "' AND NAME LIKE '%" & Replace(DocAesName, "'", "\'") & "%'"
+                query = "SELECT ID FROM `medical_personnel` WHERE branch_code='" & lbBranchCode.Text.Trim & "' AND NAME LIKE '%" & Replace(DocAesName, "'", "\'") & "%'"
             Else
-                query = "SELECT code FROM `ref_aes` WHERE clinic='" & lbBranchCode.Text.Trim & "' AND NAME LIKE '%" & Replace(DocAesName, "'", "\'") & "%'"
+                query = "SELECT ID FROM `medical_personnel` WHERE branch_code='" & lbBranchCode.Text.Trim & "' AND NAME LIKE '%" & Replace(DocAesName, "'", "\'") & "%'"
             End If
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -646,7 +651,7 @@ Public Class frmSMSFullBlast
 
             If reader.HasRows = True Then
                 While reader.Read
-                    DoctorschAestheticianID = reader.Item("code").ToString()
+                    DoctorschAestheticianID = reader.Item("ID").ToString()
                 End While
             Else
                 DoctorschAestheticianID = ""
