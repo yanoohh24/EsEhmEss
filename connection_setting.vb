@@ -427,20 +427,23 @@ Module connection_setting
     End Function
     Function px_name(ByVal px_id As String) As String
 
-        On Error Resume Next
+        'On Error Resume Next
 
-        Dim sql As String = "SELECT CONCAT(firstname,' ',lastname) pxName FROM patient_info WHERE PatientID='" & px_id & "'"
-        Dim connection As New MySqlConnection(connStrBMG)
+        Dim sql As String = "SELECT CONCAT(first_name,' ',last_name) pxName FROM patient WHERE Patient_ID='" & px_id & "'"
+        Dim connection As New MySqlConnection(connStrSMS)
         Dim cmd As New MySqlCommand(sql, connection)
         Dim reader As MySqlDataReader
         connection.Open()
         reader = cmd.ExecuteReader()
-
-        If reader.HasRows = True Then
-            While reader.Read
-                px_name = reader.Item("pxName").ToString.Trim()
-            End While
-        End If
+        Try
+            If reader.HasRows = True Then
+                While reader.Read
+                    px_name = reader.Item("pxName").ToString.Trim()
+                End While
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
         connection.Close()
 
     End Function

@@ -5,12 +5,16 @@ Public Class frmPatientProfile
 
     Function RetriveSMS()
         Try
-
+            'REMOVED MOBILE 2 & 3
             Dim query As String
-            query = "SELECT firstname,middlename,lastname,MONTH(birthday) Bmm,DAY(birthday) Bdd,YEAR(birthday) Byyy,telephone,mobile,mobile2,mobile3,marital_status,gender, " _
-                & " CONCAT(local_street,' ',local_subdivision,' ', local_city,' ', local_country) address,email FROM `patient_info` WHERE PatientID='" & lbPxID.Text.Trim & "'"
+            'query = "SELECT firstname,middlename,lastname,MONTH(birthday) Bmm,DAY(birthday) Bdd,YEAR(birthday) Byyy,telephone,mobile,mobile2,mobile3,marital_status,gender, " _
+            '    & " CONCAT(local_street,' ',local_subdivision,' ', local_city,' ', local_country) address,email FROM `patient_info` WHERE PatientID='" & lbPxID.Text.Trim & "'"
+            
+            query = "SELECT first_name,middle_name,last_name,MONTH(birthday) Bmm,DAY(birthday) Bdd,YEAR(birthday) Byyy,telephone_number,mobile_number,marital_status,gender, " _
+            & " CONCAT(IFNULL(house_number,''),' ',IFNULL(street,''),' ',IFNULL(subdivision,''),' ',IFNULL(city,''),' ', IFNULL(country,'')) address," _
+            & " email_address FROM `patient` WHERE Patient_ID='" & lbPxID.Text.Trim & "'"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -20,17 +24,17 @@ Public Class frmPatientProfile
                 While reader.Read
                     Dim BirthdayYear As Integer = reader.Item("Byyy").ToString()
 
-                    txtName.Text = reader.Item("firstname").ToString.Trim()
-                    txtMiddleName.Text = reader.Item("middlename").ToString.Trim()
-                    txtSurname.Text = reader.Item("lastname").ToString.Trim()
+                    txtName.Text = reader.Item("first_name").ToString.Trim()
+                    txtMiddleName.Text = reader.Item("middle_name").ToString.Trim()
+                    txtSurname.Text = reader.Item("last_name").ToString.Trim()
                     txtStatus.Text = reader.Item("marital_status").ToString.Trim()
                     txtGender.Text = reader.Item("gender").ToString.Trim()
                     txtAddress.Text = reader.Item("address").ToString.Trim()
-                    txtTel.Text = reader.Item("telephone").ToString.Trim()
-                    txtMobile.Text = reader.Item("mobile").ToString.Trim()
-                    txtMobile2.Text = reader.Item("mobile2").ToString.Trim()
-                    txtMobile3.Text = reader.Item("mobile3").ToString.Trim()
-                    txtEmail.Text = reader.Item("email").ToString.Trim()
+                    txtTel.Text = reader.Item("telephone_number").ToString.Trim()
+                    txtMobile.Text = reader.Item("mobile_number").ToString.Trim()
+                    'txtMobile2.Text = reader.Item("mobile2").ToString.Trim()
+                    'txtMobile3.Text = reader.Item("mobile3").ToString.Trim()
+                    txtEmail.Text = reader.Item("email_address").ToString.Trim()
 
 
                     If BirthdayYear < 1 Then
@@ -142,7 +146,9 @@ Public Class frmPatientProfile
 
     Private Sub txtEmail_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtEmail.GotFocus
         lbEmailValidate.Text = ""
-        txtEmail.SelectionStart = Len(txtEmail)
+        txtEmail.SelectionStart = 0 
+        txtEmail.SelectionLength = Len(txtEmail.Text)
+        txtEmail.SelectAll()
     End Sub
 
     Private Sub txtEmail_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtEmail.KeyPress
@@ -230,19 +236,18 @@ Public Class frmPatientProfile
 
             Dim BdayFormat As String = byy & "-" & bmm & "-" & bdd
             Dim query As String
-
+            'UPDATE BIRTHDAY
             If cbMonth.SelectedIndex > 0 Or cbDay.SelectedIndex > 0 Or cbYear.SelectedIndex > 0 Then
-
-                query = "UPDATE patient_info SET birthday = '" & BdayFormat & "', telephone='" & tel & "',mobile='" & mobile & "',mobile2='" & mobile2 & "',mobile3='" & mobile3 & "', " _
-                & " email='" & email & "',updated_by='" & ClientUsername & "',date_updated=DATE(NOW()) WHERE PatientID='" & id & "'"
+                query = "UPDATE patient SET birthday = '" & BdayFormat & "', telephone_number='" & tel & "',mobile_number='" & mobile & "'," _ 
+                & " updated_by='" & ClientUsername & "', email_address='" & email & "',updated_at=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s') WHERE Patient_ID='" & id & "'"
 
             Else
-                query = "UPDATE patient_info SET birthday = NULL, telephone='" & tel & "',mobile='" & mobile & "',mobile2='" & mobile2 & "',mobile3='" & mobile3 & "', " _
-                & " email='" & email & "',updated_by='" & ClientUsername & "',date_updated=DATE(NOW()) WHERE PatientID='" & id & "'"
+                query = "UPDATE patient SET birthday = NULL, telephone_number='" & tel & "',mobile_number='" & mobile & "'," _ 
+                & " updated_by='" & ClientUsername & "',email_address='" & email & "',updated_at=DATE(NOW()) WHERE Patient_ID='" & id & "'"
             End If
 
             Dim rowsEffected As Integer = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
 
             connection.Open()

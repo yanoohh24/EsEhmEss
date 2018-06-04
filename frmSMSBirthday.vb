@@ -35,11 +35,11 @@ Public Class frmSMSBirthday
             Dim DayFirst As Integer = Format(dpFrom.Value, "dd")
 
 
-            query = "SELECT PatientID,patientid,gender px_gender,CONCAT(firstname,' ',lastname) px_name,mobile px_mobile,birthday, " _
-            & " (SELECT NAME FROM `ref_branch` WHERE CODE=clinic_name) Branch_name,clinic_name FROM patient_info WHERE MONTH(birthday)=" & Format(dpFrom.Value, "MM") & " AND DAY(birthday)=" & DayFirst & " " _
-            & " AND LENGTH(patientid)>1 ORDER BY DAY(birthday),MONTH(birthday) ASC"
+            query = "SELECT Patient_ID,(gender) px_gender,CONCAT(first_name,' ',last_name) px_name,(mobile_number) px_mobile,birthday, " _
+            & " (SELECT NAME FROM `branches` WHERE id=`patient`.`branch`) Branch_name,branch FROM patient WHERE MONTH(birthday)=" & Format(dpFrom.Value, "MM") & " AND DAY(birthday)=" & DayFirst & " " _
+            & " AND LENGTH(patient_id)>1 ORDER BY DAY(birthday),MONTH(birthday) ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
 
@@ -47,13 +47,13 @@ Public Class frmSMSBirthday
             reader = cmd.ExecuteReader()
             If reader.HasRows = True Then
                 While reader.Read
-                    Dim ls As New ListViewItem(reader.Item("PatientID").ToString.Trim())
+                    Dim ls As New ListViewItem(reader.Item("Patient_ID").ToString.Trim())
                     ls.SubItems.Add(StrConv(reader.Item("px_gender").ToString.Trim(), VbStrConv.Uppercase))
                     ls.SubItems.Add(reader.Item("px_name").ToString.Trim())
                     ls.SubItems.Add(Replace(Replace(Replace(reader.Item("px_mobile").ToString.Trim(), " ", ""), ".", ""), "-", ""))
                     ls.SubItems.Add(Format(reader.Item("birthday"), "MMM dd, yyyy"))
                     ls.SubItems.Add(reader.Item("Branch_name").ToString.Trim())
-                    ls.SubItems.Add(reader.Item("clinic_name").ToString.Trim())
+                    ls.SubItems.Add(reader.Item("branch").ToString.Trim())
                     lstPatientsBirthday.Items.Add(ls)
                 End While
             End If

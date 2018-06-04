@@ -407,9 +407,9 @@ First_line:
 
         If ClientDepartmentKey = "HD" Or ClientUserAccessGroup = "IT Admins" Then
 
-            Dim sql As String = "SELECT COUNT(*) FROM messages_sms WHERE  `DeptKey` LIKE '%HD%' AND `Read_Stats` = 0"
+            Dim sql As String = "SELECT COUNT(*) FROM messages WHERE  `DeptKey` LIKE '%HD%' AND `Read_Stats` = 0"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             Try

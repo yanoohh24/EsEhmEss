@@ -60,7 +60,7 @@ Public Class frmSMSNew
     Private Sub SendToolStrip_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SendToolStrip.Click
         Dim str() As String
         Dim txt_mobile As String = txtMobile.Text.Trim
-        Dim SMSMsg As String = txtMessage.Text.Trim '& vbNewLine & vbNewLine & FooterSMS
+        Dim SMSMsg As String = txtMessage.Text.Trim & vbNewLine & vbNewLine & FooterSMS
 
         If chHelpdesk.Checked = True Then
             SMSMsg = txtMessage.Text.Trim & vbNewLine & vbNewLine & _BeloHelpdesk
@@ -237,9 +237,9 @@ Public Class frmSMSNew
             Exit Function
         End If
 
-        Dim sql As String = "SELECT PatientID FROM  `patient_info` WHERE REPLACE(REPLACE(REPLACE(mobile,' ',''),'-',''),'.','') LIKE '%" & mobile_no & "%'"
+        Dim sql As String = "SELECT Patient_ID FROM  `patient` WHERE REPLACE(REPLACE(REPLACE(mobile,' ',''),'-',''),'.','') LIKE '%" & mobile_no & "%'"
         Try
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -247,7 +247,7 @@ Public Class frmSMSNew
             'this will clear the listbox
             If reader.HasRows = True Then
                 While reader.Read
-                    PatientID_Mobile = reader.Item("PatientID").ToString.Trim()
+                    PatientID_Mobile = reader.Item("Patient_ID").ToString.Trim()
                 End While
             Else
                 PatientID_Mobile = ""
@@ -466,12 +466,12 @@ Public Class frmSMSNew
             Dim query As String
             Dim i As Integer = 0
             If _name = "" Then
-                query = "SELECT `mobile`,`firstname`,lastname FROM `patient_info` WHERE MOBILE <> '' LIMIT 100"
+                query = "SELECT `mobile_number`,`first_name`,last_name FROM `patient` WHERE MOBILE_NUMBER <> '' LIMIT 100"
             Else
-                query = "SELECT `mobile`,`firstname`,lastname FROM `patient_info`where firstname like '%" & TextBox1.Text.Trim & "%' AND MOBILE <> '' or lastname like '%" & TextBox1.Text.Trim & "%' AND MOBILE <> '' or mobile like '%" & TextBox1.Text.Trim & "%' AND MOBILE <> '' LIMIT 100"
+                query = "SELECT `mobile_number`,`first_name`,last_name FROM `patient` where first_name like '%" & TextBox1.Text.Trim & "%' AND MOBILE_number <> '' or last_name like '%" & TextBox1.Text.Trim & "%' AND MOBILE_number <> '' or mobile_number like '%" & TextBox1.Text.Trim & "%' AND MOBILE_number <> '' LIMIT 100"
             End If
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()

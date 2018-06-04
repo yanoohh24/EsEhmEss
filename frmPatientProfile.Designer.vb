@@ -31,16 +31,17 @@ Partial Class frmPatientProfile
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtMiddleName = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chBirthday = New System.Windows.Forms.CheckBox()
+        Me.cbYear = New System.Windows.Forms.ComboBox()
+        Me.cbDay = New System.Windows.Forms.ComboBox()
         Me.txtAddress = New System.Windows.Forms.TextBox()
+        Me.cbMonth = New System.Windows.Forms.ComboBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtGender = New System.Windows.Forms.TextBox()
         Me.txtStatus = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cbYear = New System.Windows.Forms.ComboBox()
-        Me.cbDay = New System.Windows.Forms.ComboBox()
-        Me.cbMonth = New System.Windows.Forms.ComboBox()
         Me.lbEmailValidate = New System.Windows.Forms.Label()
         Me.txtEmail = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -54,24 +55,23 @@ Partial Class frmPatientProfile
         Me.txtMobile2 = New System.Windows.Forms.TextBox()
         Me.btUpdate = New System.Windows.Forms.Button()
         Me.btCancel = New System.Windows.Forms.Button()
-        Me.chBirthday = New System.Windows.Forms.CheckBox()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.SuspendLayout()
+        Me.GroupBox1.SuspendLayout
+        Me.GroupBox2.SuspendLayout
+        Me.SuspendLayout
         '
         'lbPxID
         '
-        Me.lbPxID.AutoSize = True
-        Me.lbPxID.Location = New System.Drawing.Point(12, 326)
+        Me.lbPxID.AutoSize = true
+        Me.lbPxID.Location = New System.Drawing.Point(15, 273)
         Me.lbPxID.Name = "lbPxID"
         Me.lbPxID.Size = New System.Drawing.Size(38, 13)
         Me.lbPxID.TabIndex = 0
         Me.lbPxID.Text = "lbPxID"
-        Me.lbPxID.Visible = False
+        Me.lbPxID.Visible = false
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(6, 28)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(35, 13)
@@ -80,7 +80,7 @@ Partial Class frmPatientProfile
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(6, 80)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 13)
@@ -93,7 +93,7 @@ Partial Class frmPatientProfile
         Me.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtName.Location = New System.Drawing.Point(78, 25)
         Me.txtName.Name = "txtName"
-        Me.txtName.ReadOnly = True
+        Me.txtName.ReadOnly = true
         Me.txtName.Size = New System.Drawing.Size(179, 20)
         Me.txtName.TabIndex = 0
         Me.txtName.Text = "txtName"
@@ -104,14 +104,14 @@ Partial Class frmPatientProfile
         Me.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtSurname.Location = New System.Drawing.Point(79, 77)
         Me.txtSurname.Name = "txtSurname"
-        Me.txtSurname.ReadOnly = True
+        Me.txtSurname.ReadOnly = true
         Me.txtSurname.Size = New System.Drawing.Size(178, 20)
         Me.txtSurname.TabIndex = 2
         Me.txtSurname.Text = "txtSurname"
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(6, 54)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(67, 13)
@@ -124,7 +124,7 @@ Partial Class frmPatientProfile
         Me.txtMiddleName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMiddleName.Location = New System.Drawing.Point(78, 51)
         Me.txtMiddleName.Name = "txtMiddleName"
-        Me.txtMiddleName.ReadOnly = True
+        Me.txtMiddleName.ReadOnly = true
         Me.txtMiddleName.Size = New System.Drawing.Size(179, 20)
         Me.txtMiddleName.TabIndex = 1
         Me.txtMiddleName.Text = "txtMiddleName"
@@ -151,24 +151,62 @@ Partial Class frmPatientProfile
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(573, 161)
         Me.GroupBox1.TabIndex = 7
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.TabStop = false
         Me.GroupBox1.Text = "Patient basic information"
+        '
+        'chBirthday
+        '
+        Me.chBirthday.AutoSize = true
+        Me.chBirthday.Location = New System.Drawing.Point(275, 25)
+        Me.chBirthday.Name = "chBirthday"
+        Me.chBirthday.Size = New System.Drawing.Size(64, 17)
+        Me.chBirthday.TabIndex = 14
+        Me.chBirthday.Text = "Birthday"
+        Me.chBirthday.UseVisualStyleBackColor = true
+        '
+        'cbYear
+        '
+        Me.cbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbYear.FormattingEnabled = true
+        Me.cbYear.Location = New System.Drawing.Point(489, 22)
+        Me.cbYear.Name = "cbYear"
+        Me.cbYear.Size = New System.Drawing.Size(65, 21)
+        Me.cbYear.TabIndex = 13
+        '
+        'cbDay
+        '
+        Me.cbDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbDay.FormattingEnabled = true
+        Me.cbDay.Location = New System.Drawing.Point(426, 22)
+        Me.cbDay.Name = "cbDay"
+        Me.cbDay.Size = New System.Drawing.Size(57, 21)
+        Me.cbDay.TabIndex = 12
         '
         'txtAddress
         '
         Me.txtAddress.BackColor = System.Drawing.SystemColors.HighlightText
         Me.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAddress.Location = New System.Drawing.Point(79, 103)
-        Me.txtAddress.Multiline = True
+        Me.txtAddress.Multiline = true
         Me.txtAddress.Name = "txtAddress"
-        Me.txtAddress.ReadOnly = True
+        Me.txtAddress.ReadOnly = true
         Me.txtAddress.Size = New System.Drawing.Size(475, 52)
         Me.txtAddress.TabIndex = 13
         Me.txtAddress.Text = "txtAddress"
         '
+        'cbMonth
+        '
+        Me.cbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMonth.FormattingEnabled = true
+        Me.cbMonth.Items.AddRange(New Object() {"Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"})
+        Me.cbMonth.Location = New System.Drawing.Point(345, 22)
+        Me.cbMonth.Name = "cbMonth"
+        Me.cbMonth.Size = New System.Drawing.Size(75, 21)
+        Me.cbMonth.TabIndex = 11
+        '
         'Label11
         '
-        Me.Label11.AutoSize = True
+        Me.Label11.AutoSize = true
         Me.Label11.Location = New System.Drawing.Point(6, 106)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(45, 13)
@@ -177,7 +215,7 @@ Partial Class frmPatientProfile
         '
         'Label10
         '
-        Me.Label10.AutoSize = True
+        Me.Label10.AutoSize = true
         Me.Label10.Location = New System.Drawing.Point(274, 80)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(42, 13)
@@ -186,7 +224,7 @@ Partial Class frmPatientProfile
         '
         'Label9
         '
-        Me.Label9.AutoSize = True
+        Me.Label9.AutoSize = true
         Me.Label9.Location = New System.Drawing.Point(274, 54)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(37, 13)
@@ -199,7 +237,7 @@ Partial Class frmPatientProfile
         Me.txtGender.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtGender.Location = New System.Drawing.Point(345, 78)
         Me.txtGender.Name = "txtGender"
-        Me.txtGender.ReadOnly = True
+        Me.txtGender.ReadOnly = true
         Me.txtGender.Size = New System.Drawing.Size(209, 20)
         Me.txtGender.TabIndex = 9
         Me.txtGender.Text = "txtGender"
@@ -210,7 +248,7 @@ Partial Class frmPatientProfile
         Me.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtStatus.Location = New System.Drawing.Point(345, 52)
         Me.txtStatus.Name = "txtStatus"
-        Me.txtStatus.ReadOnly = True
+        Me.txtStatus.ReadOnly = true
         Me.txtStatus.Size = New System.Drawing.Size(209, 20)
         Me.txtStatus.TabIndex = 8
         Me.txtStatus.Text = "txtStatus"
@@ -230,42 +268,14 @@ Partial Class frmPatientProfile
         Me.GroupBox2.Controls.Add(Me.txtMobile2)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 179)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(573, 136)
+        Me.GroupBox2.Size = New System.Drawing.Size(573, 78)
         Me.GroupBox2.TabIndex = 8
-        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.TabStop = false
         Me.GroupBox2.Text = "Contact Datails"
-        '
-        'cbYear
-        '
-        Me.cbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbYear.FormattingEnabled = True
-        Me.cbYear.Location = New System.Drawing.Point(489, 22)
-        Me.cbYear.Name = "cbYear"
-        Me.cbYear.Size = New System.Drawing.Size(65, 21)
-        Me.cbYear.TabIndex = 13
-        '
-        'cbDay
-        '
-        Me.cbDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbDay.FormattingEnabled = True
-        Me.cbDay.Location = New System.Drawing.Point(426, 22)
-        Me.cbDay.Name = "cbDay"
-        Me.cbDay.Size = New System.Drawing.Size(57, 21)
-        Me.cbDay.TabIndex = 12
-        '
-        'cbMonth
-        '
-        Me.cbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbMonth.FormattingEnabled = True
-        Me.cbMonth.Items.AddRange(New Object() {"Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"})
-        Me.cbMonth.Location = New System.Drawing.Point(345, 22)
-        Me.cbMonth.Name = "cbMonth"
-        Me.cbMonth.Size = New System.Drawing.Size(75, 21)
-        Me.cbMonth.TabIndex = 11
         '
         'lbEmailValidate
         '
-        Me.lbEmailValidate.AutoSize = True
+        Me.lbEmailValidate.AutoSize = true
         Me.lbEmailValidate.Location = New System.Drawing.Point(329, 48)
         Me.lbEmailValidate.Name = "lbEmailValidate"
         Me.lbEmailValidate.Size = New System.Drawing.Size(78, 13)
@@ -283,7 +293,7 @@ Partial Class frmPatientProfile
         '
         'Label12
         '
-        Me.Label12.AutoSize = True
+        Me.Label12.AutoSize = true
         Me.Label12.Location = New System.Drawing.Point(284, 28)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(32, 13)
@@ -292,8 +302,8 @@ Partial Class frmPatientProfile
         '
         'Label7
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 106)
+        Me.Label7.AutoSize = true
+        Me.Label7.Location = New System.Drawing.Point(6, 113)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(47, 13)
         Me.Label7.TabIndex = 7
@@ -302,7 +312,7 @@ Partial Class frmPatientProfile
         'txtMobile3
         '
         Me.txtMobile3.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.txtMobile3.Location = New System.Drawing.Point(79, 103)
+        Me.txtMobile3.Location = New System.Drawing.Point(79, 110)
         Me.txtMobile3.MaxLength = 11
         Me.txtMobile3.Name = "txtMobile3"
         Me.txtMobile3.Size = New System.Drawing.Size(178, 20)
@@ -311,7 +321,7 @@ Partial Class frmPatientProfile
         '
         'Label4
         '
-        Me.Label4.AutoSize = True
+        Me.Label4.AutoSize = true
         Me.Label4.Location = New System.Drawing.Point(6, 28)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(22, 13)
@@ -330,8 +340,8 @@ Partial Class frmPatientProfile
         '
         'Label5
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 80)
+        Me.Label5.AutoSize = true
+        Me.Label5.Location = New System.Drawing.Point(6, 87)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(47, 13)
         Me.Label5.TabIndex = 2
@@ -339,7 +349,7 @@ Partial Class frmPatientProfile
         '
         'Label6
         '
-        Me.Label6.AutoSize = True
+        Me.Label6.AutoSize = true
         Me.Label6.Location = New System.Drawing.Point(6, 54)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(38, 13)
@@ -359,7 +369,7 @@ Partial Class frmPatientProfile
         'txtMobile2
         '
         Me.txtMobile2.BackColor = System.Drawing.SystemColors.HighlightText
-        Me.txtMobile2.Location = New System.Drawing.Point(79, 77)
+        Me.txtMobile2.Location = New System.Drawing.Point(79, 84)
         Me.txtMobile2.MaxLength = 11
         Me.txtMobile2.Name = "txtMobile2"
         Me.txtMobile2.Size = New System.Drawing.Size(178, 20)
@@ -368,57 +378,47 @@ Partial Class frmPatientProfile
         '
         'btUpdate
         '
-        Me.btUpdate.Location = New System.Drawing.Point(429, 321)
+        Me.btUpdate.Location = New System.Drawing.Point(429, 263)
         Me.btUpdate.Name = "btUpdate"
         Me.btUpdate.Size = New System.Drawing.Size(75, 23)
         Me.btUpdate.TabIndex = 9
         Me.btUpdate.Text = "Update"
-        Me.btUpdate.UseVisualStyleBackColor = True
+        Me.btUpdate.UseVisualStyleBackColor = true
         '
         'btCancel
         '
-        Me.btCancel.Location = New System.Drawing.Point(510, 321)
+        Me.btCancel.Location = New System.Drawing.Point(510, 263)
         Me.btCancel.Name = "btCancel"
         Me.btCancel.Size = New System.Drawing.Size(75, 23)
         Me.btCancel.TabIndex = 10
         Me.btCancel.Text = "Cancel"
-        Me.btCancel.UseVisualStyleBackColor = True
-        '
-        'chBirthday
-        '
-        Me.chBirthday.AutoSize = True
-        Me.chBirthday.Location = New System.Drawing.Point(275, 25)
-        Me.chBirthday.Name = "chBirthday"
-        Me.chBirthday.Size = New System.Drawing.Size(64, 17)
-        Me.chBirthday.TabIndex = 14
-        Me.chBirthday.Text = "Birthday"
-        Me.chBirthday.UseVisualStyleBackColor = True
+        Me.btCancel.UseVisualStyleBackColor = true
         '
         'frmPatientProfile
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(598, 354)
+        Me.ClientSize = New System.Drawing.Size(598, 299)
         Me.Controls.Add(Me.btCancel)
         Me.Controls.Add(Me.btUpdate)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.lbPxID)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
+        Me.MaximizeBox = false
+        Me.MinimizeBox = false
         Me.Name = "frmPatientProfile"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Patient Profile"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox1.PerformLayout
+        Me.GroupBox2.ResumeLayout(false)
+        Me.GroupBox2.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents lbPxID As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label

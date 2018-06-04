@@ -89,7 +89,7 @@ Partial Class frmSMSNew
         '
         Me.txtMobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtMobile.Location = New System.Drawing.Point(63, 82)
-        Me.txtMobile.MaxLength = 18008
+        Me.txtMobile.MaxLength = 20
         Me.txtMobile.Name = "txtMobile"
         Me.txtMobile.Size = New System.Drawing.Size(394, 20)
         Me.txtMobile.TabIndex = 0
@@ -478,6 +478,7 @@ Partial Class frmSMSNew
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(115, 6)
+        Me.TextBox1.MaxLength = 50
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(440, 21)
         Me.TextBox1.TabIndex = 0

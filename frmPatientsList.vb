@@ -39,7 +39,7 @@ Public Class frmPatientsList
             '& " (firstname LIKE '" & pxNameLast & "%' OR lastname LIKE '" & pxNameLast & "%') AND gender LIKE '" & pxGender & "' " _
             '& " AND sms_alert" & pxAlert & " ORDER BY firstname ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -49,17 +49,17 @@ Public Class frmPatientsList
             If reader.HasRows = True Then
                 While reader.Read
                     Dim byear As Integer = reader.Item("Byyyy").ToString()
-                    Dim ls As New ListViewItem(reader.Item("PatientID").ToString())
+                    Dim ls As New ListViewItem(reader.Item("Patient_ID").ToString())
                     ls.SubItems.Add(reader.Item("pxName").ToString.Trim())
                     ls.SubItems.Add(reader.Item("gender").ToString())
-                    ls.SubItems.Add(reader.Item("mobile").ToString())
+                    ls.SubItems.Add(reader.Item("mobile_number").ToString())
                     If byear <= 1 Then
                         ls.SubItems.Add("")
                     Else
                         ls.SubItems.Add(Format(reader.Item("birthday"), "MMM dd yyyy"))
                     End If
                     ls.SubItems.Add(PX_SMS_Status(reader.Item("sms_alert").ToString()))
-                    ls.SubItems.Add(reader.Item("clinic_name").ToString())
+                    ls.SubItems.Add(reader.Item("branch").ToString())
                     ls.SubItems.Add(reader.Item("branchname").ToString())
                     lstPatientList.Items.Add(ls)
                 End While
@@ -113,32 +113,32 @@ Public Class frmPatientsList
 
         End If
         If pxFirstName <> "First Name" Then
-            pxFirstName = " firstname LIKE '%" & pxFirstName & "%' AND "
+            pxFirstName = " first_name LIKE '%" & pxFirstName & "%' AND "
         Else
             pxFirstName = ""
         End If
 
         If pxLastName <> "Last Name" Then
-            pxLastName = " lastname LIKE '%" & pxLastName & "%' AND "
+            pxLastName = " last_name LIKE '%" & pxLastName & "%' AND "
         Else
             pxLastName = ""
         End If
 
         If pxMiddleName <> "Middle Name" Then
-            pxMiddleName = " middlename LIKE '%" & pxMiddleName & "%' AND "
+            pxMiddleName = " middle_name LIKE '%" & pxMiddleName & "%' AND "
         Else
             pxMiddleName = ""
         End If
 
         If pxMobile <> "Mobile" Then
 
-            pxMobile = " mobile LIKE '%" & Replace(Replace(Replace(pxMobile, " ", ""), "-", ""), ".", "") & "%' AND "
+            pxMobile = " mobile_number LIKE '%" & Replace(Replace(Replace(pxMobile, " ", ""), "-", ""), ".", "") & "%' AND "
         Else
             pxMobile = ""
         End If
-
-        query = "SELECT PatientID, CONCAT(IF(LENGTH(lastname)<1,'',CONCAT(lastname,', ')),' ', firstname,' ',middlename) pxName, gender, mobile,birthday,YEAR(birthday) Byyyy, sms_alert,clinic_name,(SELECT NAME FROM `ref_branch` WHERE CODE=clinic_name) branchname " _
-        & " FROM `patient_info` WHERE " & pxFirstName & pxLastName & pxMiddleName & pxMobile & " gender LIKE '" & pxGender & "' AND sms_alert" & pxAlert & " ORDER BY firstname ASC LIMIT 0,1000 "
+        'REMOVED Clinic_name & BranchName ('clinic_name,(SELECT NAME FROM `ref_branch` WHERE CODE=clinic_name) branchname " _)
+        query = "SELECT Patient_ID, CONCAT(IF(LENGTH(last_name)<1,'',CONCAT(last_name,', ')),' ', first_name,' ',middle_name) pxName, gender, mobile_number,birthday,YEAR(birthday) Byyyy, sms_alert,branch,(SELECT NAME FROM `branches` WHERE id=branch) branchname " _
+        & " FROM `patient` WHERE " & pxFirstName & pxLastName & pxMiddleName & pxMobile & " gender LIKE '" & pxGender & "' AND sms_alert" & pxAlert & " ORDER BY first_name ASC LIMIT 0,1000 "
 
         RetriveSMS()
     End Sub

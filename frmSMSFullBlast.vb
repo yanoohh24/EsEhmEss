@@ -41,7 +41,7 @@ Public Class frmSMSFullBlast
                     & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patientid)>1 " & srchDoc & srchAes & " ORDER BY DATE(appointment_date) ASC"
 
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -84,9 +84,9 @@ Public Class frmSMSFullBlast
             Dim query As String
 
             If ClientAccAdmin = 1 Then
-                query = "SELECT * FROM `ref_branch` WHERE CODE NOT LIKE '00' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE CODE NOT LIKE '00' ORDER BY name ASC"
             Else
-                query = "SELECT * FROM `ref_branch` WHERE CODE NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE CODE NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
             End If
 
             Dim connection As New MySqlConnection(connStrBMG)
@@ -99,6 +99,7 @@ Public Class frmSMSFullBlast
             connection.Open()
             reader = cmd.ExecuteReader()
             If reader.HasRows = True Then
+                'cbBranch.Items.Add("All Branch")
                 While reader.Read
                     cbBranch.Items.Add(reader.Item("name").ToString())
                 End While
@@ -597,9 +598,10 @@ Public Class frmSMSFullBlast
 
     End Function
     Function BranchDatabaseName(ByVal BranchName As String) As String
+        'GETBRANCH
         Try
-            Dim query As String = "SELECT * FROM `ref_branch` WHERE NAME LIKE '%" & BranchName & "%'"
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim query As String = "SELECT * FROM `branches` WHERE NAME LIKE '%" & BranchName & "%'"
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -607,9 +609,9 @@ Public Class frmSMSFullBlast
 
             If reader.HasRows = True Then
                 While reader.Read
-                    Pri_banchCode = reader.Item("code").ToString()
-                    BranchDatabaseName = reader.Item("db_name").ToString()
-                    lbBranchCode.Text = reader.Item("code").ToString()
+                    Pri_banchCode = reader.Item("id").ToString()
+                    BranchDatabaseName = "Appointments" 'reader.Item("db_name").ToString()
+                    lbBranchCode.Text = reader.Item("id").ToString()
                     BranchCodeTool.Text = "Branch Code: " & Pri_banchCode
                     AddressToolStripStatus.Text = reader.Item("address").ToString.Trim()
                     Pri_Contact = reader.Item("contact_number").ToString.Trim()
@@ -1110,4 +1112,8 @@ End Sub
     Private Sub DataGridView1_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles DataGridView1.DataError
         '// IGNORED //
     End Sub
+
+Private Sub lbBranchCode_Click( sender As Object,  e As EventArgs) Handles lbBranchCode.Click
+
+End Sub
 End Class

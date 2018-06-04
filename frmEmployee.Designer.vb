@@ -265,7 +265,7 @@ Partial Class frmEmployee
         Me.dtBirthdate.CustomFormat = "yyyy-MM-dd"
         Me.dtBirthdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtBirthdate.Location = New System.Drawing.Point(24, 138)
-        Me.dtBirthdate.MinimumSize = New System.Drawing.Size(0, 29)
+        Me.dtBirthdate.MinimumSize = New System.Drawing.Size(4, 29)
         Me.dtBirthdate.Name = "dtBirthdate"
         Me.dtBirthdate.Size = New System.Drawing.Size(230, 29)
         Me.dtBirthdate.TabIndex = 6

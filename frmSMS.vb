@@ -492,7 +492,7 @@ Public Class frmSMS
         btSMSCounter_Click(Me, EventArgs.Empty)
     End Sub
 
-    Private Sub DeleteAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal Counte As System.EventArgs) Handles DeleteAllToolStripMenuItem.Click
+    Private Sub DeleteAllToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteAllToolStripMenuItem.Click
         Dim SQLquery As String = ""
 
         Select Case lstSMS.SelectedItems(0).SubItems(1).Text.Trim()
