@@ -237,7 +237,7 @@ Public Class frmSMSNew
             Exit Function
         End If
 
-        Dim sql As String = "SELECT Patient_ID FROM  `patient` WHERE REPLACE(REPLACE(REPLACE(mobile,' ',''),'-',''),'.','') LIKE '%" & mobile_no & "%'"
+        Dim sql As String = "SELECT Patient_ID FROM  `patient` WHERE REPLACE(REPLACE(REPLACE(mobile_number,' ',''),'-',''),'.','') LIKE '%" & mobile_no & "%'"
         Try
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
@@ -287,7 +287,7 @@ Public Class frmSMSNew
     Function SaveTemplate(ByVal query As String) As Integer
         Try
             Dim rowsEffected As Integer = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
 
             connection.Open()
@@ -321,7 +321,7 @@ Public Class frmSMSNew
             Exit Sub
         End If
 
-        sql = "INSERT sms_template SET template='" & _template & "',created_by='" & ClientUsername & "',department_key='" & ClientDepartmentKey & "',user_access_group='" & ClientUserAccessGroup & "'"
+        sql = "INSERT template SET template='" & _template & "',created_by='" & ClientUsername & "',department_key='" & ClientDepartmentKey & "',user_access_group='" & ClientUserAccessGroup & "'"
         If SaveTemplate(sql) > 0 Then
             txtMessage.Text = ""
             Retrive_SMS_TEMPLATE()
@@ -333,9 +333,9 @@ Public Class frmSMSNew
         Try
             Dim query As String
             Dim i As Integer = 0
-            query = "SELECT * FROM sms_template WHERE user_access_group LIKE '" & ClientUserAccessGroup & "'"
+            query = "SELECT * FROM template WHERE user_access_group LIKE '" & ClientUserAccessGroup & "'"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -363,10 +363,10 @@ Public Class frmSMSNew
     Function Delete_SMS_TEMPLATE(ByVal id As String)
         Try
             Dim query As String
-            query = "DELETE FROM sms_template WHERE id= '" & id & "'"
+            query = "DELETE FROM template WHERE id= '" & id & "'"
 
             Dim rowsEffected As Integer = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
 
             connection.Open()
@@ -424,7 +424,7 @@ Public Class frmSMSNew
     End Sub
 
     Private Sub DeleteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DeleteToolStripMenuItem.Click
-        If MsgBox("Delete Template", vbYesNo, "Template") = MsgBoxResult.Yes Then
+        If MsgBox("Delete Selected Template?", vbYesNo, "Dispose Template [Y/N]?") = MsgBoxResult.Yes Then
             Delete_SMS_TEMPLATE(_Cid)
             Retrive_SMS_TEMPLATE()
         End If
@@ -451,7 +451,6 @@ Public Class frmSMSNew
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         bln = False
     End Sub
-
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Panel1.Visible = False
@@ -510,11 +509,6 @@ Public Class frmSMSNew
         End If
     End Sub
 
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBox1.TextChanged
-
-    End Sub
-
-
     Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
 
     End Sub
@@ -524,14 +518,6 @@ Public Class frmSMSNew
             txtMobile.AppendText(DataGridView2.Rows(i).Cells(0).Value.ToString & ";")
         Next
         Panel1.Visible = False
-    End Sub
-
-    Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
-
-    End Sub
-
-    Private Sub Button5_Click(sender As Object, e As EventArgs)
-
     End Sub
 
     Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
@@ -549,20 +535,4 @@ Public Class frmSMSNew
         Panel1.Visible = True
         Panel1.Location = New Point(1,82)
     End Sub
-
-Private Sub txtMobile_TextChanged( sender As Object,  e As EventArgs) Handles txtMobile.TextChanged
-
-End Sub
-
-Private Sub ToolStrip1_ItemClicked( sender As Object,  e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
-
-End Sub
-
-Private Sub txtMessage_TextChanged( sender As Object,  e As EventArgs) Handles txtMessage.TextChanged
-
-End Sub
-
-Private Sub DataGridView1_CellContentClick( sender As Object,  e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
-End Sub
 End Class

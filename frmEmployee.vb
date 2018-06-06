@@ -57,16 +57,20 @@ Public Class frmEmployee
         Dim connection As New MySqlConnection(connStrBMG)
         Dim cmd As New MySqlCommand(query, connection)
         Dim reader As MySqlDataReader
-
+        try   
         connection.Open()
         reader = cmd.ExecuteReader()
-
-        If reader.HasRows = True Then
-            While reader.Read
-                cbBranch.Items.Add(
-                    ("branch").ToString())
-            End While
-        End If
+          
+            If reader.HasRows = True Then
+                While reader.Read
+                    cbBranch.Items.Add(
+                        reader.Item("branch").ToString())
+                End While
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        
     End Sub
 
     Public Sub Employee_list(isSearch As Boolean)
@@ -354,4 +358,6 @@ Public Class frmEmployee
         End If
         MsgBox("No selected record", MsgBoxStyle.Information)
        End Sub
+
+
 End Class

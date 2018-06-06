@@ -22,9 +22,9 @@ Public Class frmContactsProfile
         Try
 
             Dim query As String
-            query = "SELECT * FROM sms_contacs WHERE id='" & lbID.Text.Trim & "'"
+            query = "SELECT * FROM `sms_contacts` WHERE id='" & lbID.Text.Trim & "'"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -108,7 +108,7 @@ Public Class frmContactsProfile
             sms_group = Replace(cbGroups.Text.Trim, "'", "\'")
         End If
 
-        sql = "UPDATE `sms_contacs` SET firstname='" & firstname & "',lastname='" & lastname & "',middlename='" & middlename & "',address='" & address & "', " _
+        sql = "UPDATE `sms_contacts` SET firstname='" & firstname & "',lastname='" & lastname & "',middlename='" & middlename & "',address='" & address & "', " _
             & " telephone='" & telephone & "',mobile='" & mobile & "',email='" & email & "',company='" & company & "',sms_group='" & sms_group & "',created_by='" & ClientUsername & "' WHERE id='" & lbID.Text.Trim & "'"
 
         If Update_contact_person(sql) > 0 Then

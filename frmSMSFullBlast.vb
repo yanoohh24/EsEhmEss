@@ -5,20 +5,22 @@ Public Class frmSMSFullBlast
     Dim Pri_Contact As String
     Dim Pri_banchCode As String
     Dim i as Integer
+    Dim OL as Integer 
+
     Public Sub Display_patient_Grid(_name As String)
         Dim dt = New DataTable()
         Dim apStatus As String = Replace(cbSatus.Text.Trim(), "'", "\'")
         Dim srchDoc As String
         Dim srchAes As String
-
+        Dim Branch as String
         If chDotors.Checked = True Then
-            srchDoc = " AND medical_personnel LIKE '%" & lbDocAes.Text.Trim & "%'"
+            srchDoc = " AND medical_personnel_id LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
             srchDoc = ""
         End If
 
         If chAesthetician.Checked = True Then
-            srchAes = " AND medical_personnel LIKE '%" & lbDocAes.Text.Trim & "%'"
+            srchAes = " AND medical_personnel_id LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
             srchAes = ""
         End If
@@ -27,11 +29,17 @@ Public Class frmSMSFullBlast
             apStatus = ""
         End If
 
+        if cbBranch.Text = "All Branch" then
+            Branch = " AND Branch like '%%' "
+        else
+            Branch = " AND Branch ='" & lbBranchCode.Text & "'"
+        End If
+
         ListViewPatientsContactSetting()
         Try
             Dim i As Integer = 0
             Dim query As String
-            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM `appointments` WHERE DATE(start_at) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " ORDER BY DATE(start_at) ASC")
+            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM `appointments` WHERE DATE(start_at) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & Branch & " ORDER BY DATE(start_at) ASC")
 
             pBar.Value = 0
             pBar.Maximum = TTL
@@ -43,7 +51,7 @@ Public Class frmSMSFullBlast
             & " (SELECT `master_list`.`full_description` FROM master_list WHERE `barcode`=`appointments`.`procedure`) Procedure_data, " _
             & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date," _
             & " IF(LENGTH(`appointments`.`medical_personnel_id`) > 1,(SELECT CONCAT(Title ,' ',NAME) FROM medical_personnel WHERE `id` = `appointments`.`medical_personnel_id`),'') DocAes FROM `appointments` WHERE (DATE(start_at) " _
-            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " and Branch = '" & Pri_banchCode & "' ORDER BY DATE(start_at) ASC"
+            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & Branch & " ORDER BY DATE(start_at) ASC"
 
 
             Dim connection As New MySqlConnection(connStrSMS)
@@ -91,7 +99,7 @@ Public Class frmSMSFullBlast
             If ClientAccAdmin = 1 Then
                 query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' ORDER BY name ASC"
             Else
-                query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' AND ID='" & ClientBranch & "' ORDER BY name ASC"
             End If
 
             Dim connection As New MySqlConnection(connStrSMS)
@@ -140,7 +148,7 @@ Public Class frmSMSFullBlast
         Dim apStatus As String = Replace(cbSatus.Text.Trim(), "'", "\'")
         Dim srchDoc As String
         Dim srchAes As String
-
+        Dim Branch as String
         If chDotors.Checked = True Then
             srchDoc = " AND medical_personnel_id LIKE '%" & lbDocAes.Text.Trim & "%'"
         Else
@@ -157,6 +165,12 @@ Public Class frmSMSFullBlast
             apStatus = ""
         End If
 
+        if cbBranch.Text = "All Branch" then
+            Branch = " AND Branch like '%%' "
+        else
+            Branch = " AND Branch ='" & lbBranchCode.Text & "'"
+        End If
+
         if btSend_Select.Text <> "Send to Many?" then
             Datagridview1.Visible = False
             DataGridView1.ClearSelection()
@@ -168,7 +182,7 @@ Public Class frmSMSFullBlast
 
         Try
             Dim query As String
-            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM `appointments` WHERE DATE(start_at) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " ORDER BY DATE(start_at) ASC")
+            Dim TTL As Integer = ResultCount("SELECT COUNT(*) TTL FROM `appointments` WHERE DATE(start_at) BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "' AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & Branch & " ORDER BY DATE(start_at) ASC")
 
             pBar.Value = 0
             pBar.Maximum = TTL
@@ -179,7 +193,7 @@ Public Class frmSMSFullBlast
             & " (SELECT `master_list`.`full_description` FROM master_list WHERE `barcode`=`appointments`.`procedure`) Procedure_data, " _
             & " CONCAT(DATE_FORMAT(start_at,'%h:%i %p'), ' to ', DATE_FORMAT(end_at,'%h:%i %p')) schedTime,appointment_status,(DATE_FORMAT(start_at,'%Y-%m-%d')) appointment_date," _
             & " IF(LENGTH(`appointments`.`medical_personnel_id`) > 1,(SELECT CONCAT(Title ,' ',NAME) FROM medical_personnel WHERE `id` = `appointments`.`medical_personnel_id`),'') DocAes FROM `appointments` WHERE (DATE(start_at) " _
-            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & " and Branch = '" & Pri_banchCode & "' ORDER BY DATE(start_at) ASC"
+            & " BETWEEN '" & Format(dpFrom.Value, "yyyy-MM-dd") & "' AND '" & Format(dpTo.Value, "yyyy-MM-dd") & "') AND appointment_status LIKE '%" & apStatus & "%' AND LENGTH(patient_id)>1 " & srchDoc & srchAes & Branch & " ORDER BY DATE(start_at) ASC"
 
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
@@ -228,6 +242,7 @@ Public Class frmSMSFullBlast
     End Sub
 
     Private Sub ToolStripViewAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripViewAll.Click
+        cbBranch.Text = "All Branch"
         btView_Click(Me, EventArgs.Empty)
     End Sub
 
@@ -306,7 +321,7 @@ Public Class frmSMSFullBlast
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT name FROM medical_personnel WHERE id='" & lbBranchCode.Text.Trim & "' and type = 'Doctor' ORDER BY name ASC"
+            query = "SELECT name FROM medical_personnel WHERE Branch_code='" & lbBranchCode.Text.Trim & "' and type = 'Doctor' ORDER BY name ASC"
 
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
@@ -331,7 +346,7 @@ Public Class frmSMSFullBlast
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT name FROM medical_personnel WHERE id='" & lbBranchCode.Text.Trim & "' and type = 'Aesthetician' ORDER BY name ASC"
+            query = "SELECT name FROM medical_personnel WHERE Branch_code='" & lbBranchCode.Text.Trim & "' and type = 'Aesthetician' ORDER BY name ASC"
 
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
@@ -728,9 +743,9 @@ Public Class frmSMSFullBlast
         Try
             Dim query As String
             Dim i As Integer = 0
-            query = "SELECT * FROM sms_template WHERE user_access_group LIKE '" & ClientUserAccessGroup & "'"
+            query = "SELECT * FROM template WHERE user_access_group LIKE '" & ClientUserAccessGroup & "'"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -965,18 +980,6 @@ Public Class frmSMSFullBlast
         End Try
     End Sub
 
-Private Sub ToolStrip1_ItemClicked( sender As Object,  e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
-
-End Sub
-
-Private Sub CheckedListBox1_SelectedIndexChanged( sender As Object,  e As EventArgs) 
-
-End Sub
-
-Private Sub pBar_Click( sender As Object,  e As EventArgs) Handles pBar.Click
-
-End Sub
-
 Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSend_Select.Click    
     if DataGridView1.Visible = False Then
         'POPULATE DATAGRID
@@ -1023,7 +1026,7 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
                 If Mid(txtMobile.Text.Trim, 1, 4) = "+639" or Mid(txtMobile.Text.Trim, 1, 3) = "639"  Then
 
                     txtClientName.Text = "Hi " & pxName & " This is " & ClientName & " from the Belo Medical Group. This is to remind you of your appointment with " & pxDocAes & " on " & pxDate &
-                                         "; " & pxTime & " scheduled for " & ServiceListName(strProcedure(0)) & " at Belo clinic." & vbNewLine & vbNewLine &
+                                         "; " & pxTime & " scheduled for " & strProcedure(0).ToString() & " at Belo clinic." & vbNewLine & vbNewLine &
                                          "Our branch is located at " & AddressToolStripStatus.Text & vbNewLine & vbNewLine & FooterSMS
 
                     'sms_body, Branch_code, px_id, sms_sender, Username,UserHostName,UserHostIP
@@ -1035,8 +1038,10 @@ Private Sub btSend_Select_Click( sender As Object,  e As EventArgs) Handles btSe
             End If'DATAGRID CHECKED RECORDS
         Next'LOOP IN RECORDS
 
-        MsgBox("Selected SMS successfully send " & xxx & " message(s) on que", MsgBoxStyle.Information, "")
-        'datagridview1.ClearSelection()
+        MsgBox("Selected SMS successfully send " & xxx & " message(s) on que", MsgBoxStyle.Information, "") 
+        datagridview1.ClearSelection()
+        datagridview1.SendToBack()
+        btView_Click(Me,EventArgs.Empty)
     End If 'MAIN CONDITION
 End Sub
 
@@ -1119,6 +1124,10 @@ End Sub
     End Sub
 
 Private Sub lbBranchCode_Click( sender As Object,  e As EventArgs) Handles lbBranchCode.Click
+
+End Sub
+
+Private Sub ToolStrip1_ItemClicked( sender As Object,  e As ToolStripItemClickedEventArgs) Handles ToolStrip1.ItemClicked
 
 End Sub
 End Class

@@ -17,6 +17,7 @@ Public Class frmLogin
 
         connStrSMS = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
         connStrBMG = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
+        connStrLOC = "Database=belo_test;Data Source=localhost;User Id=root;Password='';UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
         Application.DoEvents()
 
         If Len(Lusername) < 1 Then
@@ -54,6 +55,11 @@ Public Class frmLogin
                     FFPatientsSMS = New frmPatientSMS
                     FFMain = New frmMain()
                     FFMain.Show()
+                    If ClientUserAccessGroup = "HR" Or ClientUserAccessGroup = "IT Admins" Then
+                        FFMain.tsEmployee.Visible = True
+                    Else
+                        FFMain.tsEmployee.Visible = False
+                    End If
                     FFMain.BringToFront()
                     txtUsername.Text = ""
                     txtPassword.Text = ""

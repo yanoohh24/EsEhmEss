@@ -207,11 +207,11 @@ Public Class frmContactsImport
 
             Dim SQL As String
 
-            SQL = "INSERT INTO sms_contacs SET firstname='" & c_Name & "', lastname='" & c_LastName & "', mobile='" & c_Mobile & "', " _
+            SQL = "INSERT INTO `sms_contacts` SET firstname='" & c_Name & "', lastname='" & c_LastName & "', mobile='" & c_Mobile & "', " _
             & " email='" & c_Email & "', address='" & c_Address & "', company='" & c_Company & "',sms_group='" & c_groups & "',created_by='" & ClientUsername & "' "
 
             Dim rowsEffected As Integer = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(SQL, connection)
 
             connection.Open()

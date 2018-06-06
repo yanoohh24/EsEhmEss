@@ -347,6 +347,7 @@ Partial Class frmSMSFullBlast
         Me.lbBranchCode.Size = New System.Drawing.Size(74, 13)
         Me.lbBranchCode.TabIndex = 20
         Me.lbBranchCode.Text = "lbBranchCode"
+        Me.lbBranchCode.Visible = false
         '
         'btView
         '

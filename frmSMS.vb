@@ -99,12 +99,18 @@ Public Class frmSMS
         'NEW DATABASE (5.6) `messages`.`type` == ID:1 | DESCRIPTION:SMS
         Try
             Dim sqlCount As String
-
-            sqlCount = "SELECT COUNT(*) AS INBOX, " _
-            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 210 AND 212) AS OUTBOX, " _
-            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 220 AND 221) AS SENT, " _
-            & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 200 AND 202) AS PENDING FROM Messages WHERE DirectionID=1 AND TypeID=1"
-
+            if ClientDepartmentKey <> "ICT" and ClientDepartmentKey <> "HR" Then
+                sqlCount = "SELECT COUNT(*) AS INBOX, " _
+                & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 210 AND 212 AND branch = '" & ClientBranch & "') AS OUTBOX, " _
+                & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 220 AND 221 AND branch = '" & ClientBranch & "') AS SENT, " _
+                & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 200 AND 202 AND branch = '" & ClientBranch & "') AS PENDING FROM Messages WHERE DirectionID=1 AND TypeID=1 AND branch = '" & ClientBranch & "'"
+            Else 
+                sqlCount = "SELECT COUNT(*) AS INBOX, " _
+                & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 210 AND 212) AS OUTBOX, " _
+                & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 220 AND 221) AS SENT, " _
+                & " (SELECT COUNT(*) AS TTL FROM Messages WHERE DirectionID=2 AND TYPEID=1 AND StatusDetailsID BETWEEN 200 AND 202) AS PENDING FROM Messages WHERE DirectionID=1 AND TypeID=1"
+            End If   
+            
             Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sqlCount, connection)
             Dim reader As MySqlDataReader
@@ -121,7 +127,9 @@ Public Class frmSMS
             End If
             connection.Close()
         Catch ex As Exception
-
+            dim xxx as String
+            xxx = ex.Message
+            MsgBox(xxx)
         End Try
 
         Timer1.Enabled = True
@@ -237,7 +245,7 @@ Public Class frmSMS
                     While reader.Read
                         Dim ls As New ListViewItem(reader.Item("id").ToString())
                         'ls.SubItems.Add(reader.Item("Recipient").ToString.Trim()) 'Recipient 'Sender
-                        ls.SubItems.Add(reader.Item("FromAddress").ToString.Trim()) 'Recipient 'Sender
+                        ls.SubItems.Add(reader.Item("ToAddress").ToString.Trim()) 'Recipient 'Sender
                         ls.SubItems.Add(reader.Item("Body").ToString())
                         ls.SubItems.Add(Format(reader.Item("doc"), "hh:mm tt MM-dd-yyyy"))
                         ls.SubItems.Add(reader.Item("Username"))
@@ -409,7 +417,10 @@ Public Class frmSMS
                 Else
                     BlankToolStripMenuItem1.Enabled = False
                 End If
-
+                if ClientAccAdmin = 0 and ClientDepartmentKey <> "ICT" then 
+                ContextMenuMessages.Items("BlankToolStripMenuItem1").Visible = False
+                ContextMenuMessages.Items("DeleteToolStripMenuItem").Visible = False 
+                End If
                 ContextMenuMessages.Show(lstMessages, e.Location)
             End If
         End If
@@ -557,12 +568,17 @@ Public Class frmSMS
         Select Case lstSMS.SelectedItems(0).SubItems(1).Text.Trim()
             Case "Inbox"
                 lbListSelection.Text = "Inbox"
-                SQLquery = "SELECT * FROM Messages WHERE Direction=1 AND TypeID=1 AND (Body LIKE '%" & _search & "%' OR Sender LIKE '%" & _search & "%') ORDER BY ID DESC LIMIT 0,400"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=1 AND TypeID=1 AND (Body LIKE '%" & _search & "%' OR fromAddress LIKE '%" & _search & "%') ORDER BY ID DESC LIMIT 0,400"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
             Case "Sent"
                 lbListSelection.Text = "Sent"
-                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND (Body LIKE '%" & _search & "%' OR Recipient LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND (Body LIKE '%" & _search & "%' OR toaddress LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
+                RetriveSMSToDevice(SQLquery)
+                ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
+            Case "Pending"
+                lbListSelection.Text = "Pending"
+                SQLquery = "SELECT * FROM Messages WHERE DirectionID=2 AND TypeID=1 AND StatusID = 1 AND (Body LIKE '%" & _search & "%' OR toaddress LIKE '%" & _search & "%')  ORDER BY ID DESC LIMIT 0,400"
                 RetriveSMSToDevice(SQLquery)
                 ToolStripSMSCount.Text = "Rows: " & lstMessages.Items.Count
         End Select
@@ -623,4 +639,8 @@ Public Class frmSMS
     Private Sub lstSMS_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstSMS.SelectedIndexChanged
 
     End Sub
+
+Private Sub ContextMenuMessages_Opening( sender As Object,  e As System.ComponentModel.CancelEventArgs) Handles ContextMenuMessages.Opening
+
+End Sub
 End Class

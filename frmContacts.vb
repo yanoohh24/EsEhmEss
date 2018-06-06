@@ -15,7 +15,7 @@ Public Class frmContacts
     Function save_contact_person(ByVal sql As String) As Integer
         Try
             Dim rowsEffected As Integer = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
 
             connection.Open()
@@ -55,7 +55,7 @@ Public Class frmContacts
             sms_group = Replace(cbGroups.Text.Trim, "'", "\'")
         End If
 
-        sql = "INSERT INTO `sms_contacs` SET firstname='" & firstname & "',lastname='" & lastname & "',middlename='" & middlename & "',address='" & address & "', " _
+        sql = "INSERT INTO `sms_contacts` SET firstname='" & firstname & "',lastname='" & lastname & "',middlename='" & middlename & "',address='" & address & "', " _
             & " telephone='" & telephone & "',mobile='" & mobile & "',email='" & email & "',company='" & company & "',sms_group='" & sms_group & "',created_by='" & ClientUsername & "'"
         If save_contact_person(sql) > 0 Then
             txtName.Text = ""
@@ -108,9 +108,9 @@ Public Class frmContacts
             End If
 
             Dim query As String
-            query = "SELECT * FROM sms_contacs WHERE " & frstName & " " & lstName & " " & sMobile & grpName & " gender LIKE '%' ORDER BY firstname ASC"
+            query = "SELECT * FROM sms_contacts WHERE " & frstName & " " & lstName & " " & sMobile & grpName & " gender LIKE '%' ORDER BY firstname ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -159,7 +159,7 @@ Public Class frmContacts
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT name FROM `sms_groups` ORDER BY name"
+            query = "SELECT name FROM `belo_database`.`sms_groups` ORDER BY name"
 
             Dim connection As New MySqlConnection(connStrBMG)
             Dim cmd As New MySqlCommand(query, connection)
@@ -205,6 +205,7 @@ Public Class frmContacts
         chCheckAll.Checked = False
         'this will clear the listbox
         LisContactList()
+        'DISPLAY CONTACTS
         RetriveSMS()
 
         RowsToolStrip.Text = "Rows: " & lstContacts.Items.Count
@@ -328,7 +329,7 @@ Public Class frmContacts
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT name FROM `sms_groups` ORDER BY name"
+            query = "SELECT name FROM `belo_database`.`sms_groups` ORDER BY name"
 
 
             Dim connection As New MySqlConnection(connStrBMG)
@@ -528,14 +529,6 @@ Public Class frmContacts
             FFNewSMS.BringToFront()
             FFNewSMS.txtMobile.Text = _multiPxMobile
         End Try
-
-    End Sub
-
-    Private Sub cbGroupslst_Click(sender As Object, e As EventArgs) Handles cbGroupslst.Click
-
-    End Sub
-
-    Private Sub cbGroupslst_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbGroupslst.SelectedIndexChanged
 
     End Sub
 End Class

@@ -50,23 +50,23 @@ Partial Class frmSMS
         Me.DeleteAllToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btSearch = New System.Windows.Forms.Button()
-        Me.ToolStrip1.SuspendLayout()
-        Me.StatusStrip1.SuspendLayout()
-        Me.ContextMenuMessages.SuspendLayout()
-        Me.ContextMenuSMSSetting.SuspendLayout()
-        Me.SuspendLayout()
+        Me.ToolStrip1.SuspendLayout
+        Me.StatusStrip1.SuspendLayout
+        Me.ContextMenuMessages.SuspendLayout
+        Me.ContextMenuSMSSetting.SuspendLayout
+        Me.SuspendLayout
         '
         'lstSMS
         '
-        Me.lstSMS.FullRowSelect = True
+        Me.lstSMS.FullRowSelect = true
         Me.lstSMS.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None
         Me.lstSMS.Location = New System.Drawing.Point(12, 76)
-        Me.lstSMS.MultiSelect = False
+        Me.lstSMS.MultiSelect = false
         Me.lstSMS.Name = "lstSMS"
-        Me.lstSMS.Scrollable = False
+        Me.lstSMS.Scrollable = false
         Me.lstSMS.Size = New System.Drawing.Size(125, 91)
         Me.lstSMS.TabIndex = 0
-        Me.lstSMS.UseCompatibleStateImageBehavior = False
+        Me.lstSMS.UseCompatibleStateImageBehavior = false
         Me.lstSMS.View = System.Windows.Forms.View.Details
         '
         'btSMSCounter
@@ -76,17 +76,17 @@ Partial Class frmSMS
         Me.btSMSCounter.Size = New System.Drawing.Size(78, 23)
         Me.btSMSCounter.TabIndex = 1
         Me.btSMSCounter.Text = "SMS Counter"
-        Me.btSMSCounter.UseVisualStyleBackColor = True
-        Me.btSMSCounter.Visible = False
+        Me.btSMSCounter.UseVisualStyleBackColor = true
+        Me.btSMSCounter.Visible = false
         '
         'lstMessages
         '
-        Me.lstMessages.FullRowSelect = True
+        Me.lstMessages.FullRowSelect = true
         Me.lstMessages.Location = New System.Drawing.Point(143, 76)
         Me.lstMessages.Name = "lstMessages"
         Me.lstMessages.Size = New System.Drawing.Size(857, 217)
         Me.lstMessages.TabIndex = 2
-        Me.lstMessages.UseCompatibleStateImageBehavior = False
+        Me.lstMessages.UseCompatibleStateImageBehavior = false
         Me.lstMessages.View = System.Windows.Forms.View.Details
         '
         'Timer1
@@ -95,17 +95,17 @@ Partial Class frmSMS
         '
         'lbTimer
         '
-        Me.lbTimer.AutoSize = True
+        Me.lbTimer.AutoSize = true
         Me.lbTimer.Location = New System.Drawing.Point(12, 228)
         Me.lbTimer.Name = "lbTimer"
         Me.lbTimer.Size = New System.Drawing.Size(41, 13)
         Me.lbTimer.TabIndex = 3
         Me.lbTimer.Text = "lbTimer"
-        Me.lbTimer.Visible = False
+        Me.lbTimer.Visible = false
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.CanOverflow = False
+        Me.ToolStrip1.CanOverflow = false
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripNew})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
@@ -117,7 +117,7 @@ Partial Class frmSMS
         'ToolStripNew
         '
         Me.ToolStripNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripNew.Image = CType(resources.GetObject("ToolStripNew.Image"), System.Drawing.Image)
+        Me.ToolStripNew.Image = CType(resources.GetObject("ToolStripNew.Image"),System.Drawing.Image)
         Me.ToolStripNew.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripNew.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripNew.Name = "ToolStripNew"
@@ -143,7 +143,7 @@ Partial Class frmSMS
         '
         'lbListSelection
         '
-        Me.lbListSelection.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbListSelection.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.lbListSelection.Location = New System.Drawing.Point(8, 50)
         Me.lbListSelection.Name = "lbListSelection"
         Me.lbListSelection.Size = New System.Drawing.Size(138, 23)
@@ -155,9 +155,9 @@ Partial Class frmSMS
         Me.txtContent.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.txtContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtContent.Location = New System.Drawing.Point(143, 299)
-        Me.txtContent.Multiline = True
+        Me.txtContent.Multiline = true
         Me.txtContent.Name = "txtContent"
-        Me.txtContent.ReadOnly = True
+        Me.txtContent.ReadOnly = true
         Me.txtContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtContent.Size = New System.Drawing.Size(857, 143)
         Me.txtContent.TabIndex = 7
@@ -165,45 +165,45 @@ Partial Class frmSMS
         '
         'btDelete
         '
-        Me.btDelete.Enabled = False
+        Me.btDelete.Enabled = false
         Me.btDelete.Location = New System.Drawing.Point(12, 173)
         Me.btDelete.Name = "btDelete"
         Me.btDelete.Size = New System.Drawing.Size(78, 23)
         Me.btDelete.TabIndex = 8
         Me.btDelete.Text = "Delete"
-        Me.btDelete.UseVisualStyleBackColor = True
-        Me.btDelete.Visible = False
+        Me.btDelete.UseVisualStyleBackColor = true
+        Me.btDelete.Visible = false
         '
         'ContextMenuMessages
         '
         Me.ContextMenuMessages.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.ReplyToolStripMenuItem, Me.ToolStripSeparator1, Me.BlankToolStripMenuItem1, Me.DeleteToolStripMenuItem})
         Me.ContextMenuMessages.Name = "ContextMenuStrip1"
-        Me.ContextMenuMessages.Size = New System.Drawing.Size(108, 98)
+        Me.ContextMenuMessages.Size = New System.Drawing.Size(153, 120)
         '
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.Image = Global.BeloSMS.My.Resources.Resources.Document_Write_icon_32
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.NewToolStripMenuItem.Text = "New"
         '
         'ReplyToolStripMenuItem
         '
         Me.ReplyToolStripMenuItem.Image = Global.BeloSMS.My.Resources.Resources.Email_Reply_icon_24
         Me.ReplyToolStripMenuItem.Name = "ReplyToolStripMenuItem"
-        Me.ReplyToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.ReplyToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ReplyToolStripMenuItem.Text = "Reply"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(104, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
         '
         'BlankToolStripMenuItem1
         '
         Me.BlankToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ForceQueToolStripMenuItem})
         Me.BlankToolStripMenuItem1.Name = "BlankToolStripMenuItem1"
-        Me.BlankToolStripMenuItem1.Size = New System.Drawing.Size(107, 22)
+        Me.BlankToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         '
         'ForceQueToolStripMenuItem
         '
@@ -215,7 +215,7 @@ Partial Class frmSMS
         '
         Me.DeleteToolStripMenuItem.Image = Global.BeloSMS.My.Resources.Resources.deletered_24
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'ContextMenuSMSSetting
@@ -246,7 +246,7 @@ Partial Class frmSMS
         Me.DeleteAllToolStripMenuItem.Name = "DeleteAllToolStripMenuItem"
         Me.DeleteAllToolStripMenuItem.Size = New System.Drawing.Size(129, 22)
         Me.DeleteAllToolStripMenuItem.Text = "Delete All"
-        Me.DeleteAllToolStripMenuItem.Visible = False
+        Me.DeleteAllToolStripMenuItem.Visible = false
         '
         'txtSearch
         '
@@ -265,11 +265,11 @@ Partial Class frmSMS
         Me.btSearch.Size = New System.Drawing.Size(75, 23)
         Me.btSearch.TabIndex = 10
         Me.btSearch.Text = "Search"
-        Me.btSearch.UseVisualStyleBackColor = True
+        Me.btSearch.UseVisualStyleBackColor = true
         '
         'frmSMS
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1032, 476)
@@ -284,21 +284,21 @@ Partial Class frmSMS
         Me.Controls.Add(Me.lstMessages)
         Me.Controls.Add(Me.lbListSelection)
         Me.Controls.Add(Me.txtContent)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Icon = CType(resources.GetObject("$this.Icon"),System.Drawing.Icon)
         Me.Name = "frmSMS"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Belo SMS"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
-        Me.StatusStrip1.ResumeLayout(False)
-        Me.StatusStrip1.PerformLayout()
-        Me.ContextMenuMessages.ResumeLayout(False)
-        Me.ContextMenuSMSSetting.ResumeLayout(False)
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(false)
+        Me.ToolStrip1.PerformLayout
+        Me.StatusStrip1.ResumeLayout(false)
+        Me.StatusStrip1.PerformLayout
+        Me.ContextMenuMessages.ResumeLayout(false)
+        Me.ContextMenuSMSSetting.ResumeLayout(false)
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents lstSMS As System.Windows.Forms.ListView
     Friend WithEvents btSMSCounter As System.Windows.Forms.Button
     Friend WithEvents lstMessages As System.Windows.Forms.ListView

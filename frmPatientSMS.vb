@@ -25,11 +25,11 @@ Public Class frmPatientSMS
 
             lbDBconnection.Text = ""
             If ClientAccAdmin = 1 Then
-                query = "SELECT * FROM `ref_branch` WHERE CODE NOT LIKE '00' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE id NOT LIKE '00' ORDER BY name ASC"
             Else
-                query = "SELECT * FROM `ref_branch` WHERE CODE NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE id NOT LIKE '00' AND id='" & ClientBranch & "' ORDER BY name ASC"
             End If
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             cbBranch.Text = "[Branch]"
@@ -38,7 +38,7 @@ Public Class frmPatientSMS
             connection.Open()
             reader = cmd.ExecuteReader()
             If reader.HasRows = True Then
-
+                'cbBranch.Items.Add("All Branches")
                 cbBranch.Items.Add("Birthday")
 
                 While reader.Read
@@ -166,14 +166,14 @@ Public Class frmPatientSMS
                 If StrConv(cbBranch.Text.Trim, VbStrConv.Uppercase) = "BIRTHDAY" Then
 
                     If FFMain.ToolStripStatusLabel2.Text = "1" Then
-                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.PatientID=messages.PatientID),fromaddress) pxName, " _
+                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID),fromaddress) pxName, " _
                         & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientDepartmentKey & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
                     Else
-                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.PatientID=messages.PatientID),fromaddress) pxName, " _
+                        query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID),fromaddress) pxName, " _
                         & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & ClientBranch & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
                     End If
                 Else
-                    query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.PatientID=messages.PatientID),fromaddress) pxName, " _
+                    query = "SELECT DISTINCT PatientID, IFNULL((SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID),fromaddress) pxName, " _
                     & " COUNT(patientid) SMS, fromaddress, MIN(Read_Stats) Read_Stats FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' GROUP BY fromaddress ORDER BY doc DESC"
                 End If
 
@@ -248,7 +248,7 @@ Public Class frmPatientSMS
 
             End If
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -375,15 +375,15 @@ Public Class frmPatientSMS
                 query = "SELECT (SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID) pxName, " _
                 & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
             Else
-                query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient WHERE patient.PatientID=messages_sms.PatientID) pxName, " _
+                query = "SELECT (SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID) pxName, " _
                 & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
 
                 If StrConv(cbBranch.Text.Trim, VbStrConv.Uppercase) = "BIRTHDAY" Then
 
-                    query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient WHERE patient.PatientID=messages_sms.PatientID) pxName, " _
+                    query = "SELECT (SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID) pxName, " _
                     & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.KeyToolStrip.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
                 Else
-                    query = "SELECT (SELECT CONCAT(firstname,' ', lastname) FROM patient WHERE patient.PatientID=messages_sms.PatientID) pxName, " _
+                    query = "SELECT (SELECT CONCAT(first_name,' ', last_name) FROM patient WHERE patient.Patient_ID=messages.PatientID) pxName, " _
                     & " FromAddress,DirectionID,body,doc,Username,invalid FROM messages WHERE DATE(doc) BETWEEN '" & DateFrom & "' AND '" & DateTo & "' AND branch='" & FFMain.BranchDept.Text.Trim & "' AND DeptKey='" & FFMain.BranchDept.Text.Trim & "' AND REPLACE(FromAddress,' ','')='" & px_Sender & "' ORDER BY id DESC"
 
                 End If
@@ -540,6 +540,7 @@ Public Class frmPatientSMS
         Timer1.Enabled = False
         ListViewPx_LstSMS()'SET COLUMNS IN LISTVIEW
         SetToBlank()
+        'DISPLAY MESSAGES
         RetriveSMS()
         lstPx_lsSMS.Items.Clear()
         Timer1.Enabled = True
@@ -573,6 +574,7 @@ Public Class frmPatientSMS
         i = 0
         If e.Button = Windows.Forms.MouseButtons.Right Then
             If lsPxSMS.Items.Count > 0 Then
+                'ContextMenuMessages.
                 ContextMenuMessages.Show(lsPxSMS, e.Location)
             End If
         End If
@@ -600,8 +602,14 @@ Public Class frmPatientSMS
     Function px_BranchDatabaseName(ByVal BranchName As String) As String
         Try
 
-            Dim query As String = "SELECT * FROM `ref_branch` WHERE NAME LIKE '%" & BranchName & "%'"
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim query As String
+            if BranchName = "All Branches" then
+                query = "SELECT * FROM `branches` WHERE NAME LIKE '%%'"
+            else
+                query = "SELECT * FROM `branches` WHERE NAME LIKE '%" & BranchName & "%'"
+            End If
+            
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -611,8 +619,8 @@ Public Class frmPatientSMS
 
             If reader.HasRows = True Then
                 While reader.Read
-                    px_BranchDatabaseName = reader.Item("db_name").ToString()
-                    Pri_BranchCode = reader.Item("code").ToString()
+                    px_BranchDatabaseName = "Appointments"
+                    Pri_BranchCode = reader.Item("id").ToString()
                 End While
             Else
                 px_BranchDatabaseName = ""

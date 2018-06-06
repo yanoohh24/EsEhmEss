@@ -70,8 +70,8 @@ Module connection_setting
     'belo_test
     'messages_tester
     Public connStrSMS As String = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-    Public connStrBMG As String = " Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
-       
+    Public connStrBMG As String = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
+    Public connStrLOC as string = "Database=belo_test;Data Source=localhost;User Id=root;Password='';UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
  Public Structure UsertInformation
         Dim username As String
         Dim password As String
@@ -89,13 +89,21 @@ Module connection_setting
             & " firstname AS ClietName,IFNULL(acc_admin,'0') acc_admin,acc_sms,acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_send,as_dept, " _
             & " (SELECT contact_number FROM `ref_branch` WHERE CODE=branch) AS contact_number  FROM `user_account_backend` WHERE username ='" & lg_username & "'"
 
-            sql = "SELECT username, PASSWORD,user_access_group,branch,(SELECT NAME FROM `ref_branch` WHERE CODE=branch) AS branchName, " _
-            & " IFNULL((SELECT department_name FROM ref_user_access WHERE group_name=user_access_group),'') AS department, " _
-            & " IFNULL((SELECT department_key FROM ref_user_access WHERE group_name=user_access_group),'') AS department_key, " _
-            & " (SELECT db_name FROM `ref_branch` WHERE CODE=branch) AS db_name, firstname AS ClientName,IFNULL(acc_admin,'0') acc_admin,acc_sms, " _
-            & " acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_contacts,acc_sms_send,acc_sms_birthday,as_dept, (SELECT contact_number FROM `ref_branch` WHERE CODE=branch) AS contact_number  FROM `user_account_backend` WHERE username ='" & lg_username & "'"
+            sql = "SELECT username, PASSWORD,user_access_group,branch,(SELECT NAME FROM `belo_test`.`Branches` WHERE id=branch) AS branchName, " _
+            & " IFNULL((SELECT department_name FROM user_access WHERE group_name=user_access_group),'') AS department, " _
+            & " IFNULL((SELECT department_key FROM user_access WHERE group_name=user_access_group),'') AS department_key, " _
+            & " ('appointments') AS db_name, firstname AS ClientName,IFNULL(acc_admin,'0') acc_admin,acc_sms, " _
+            & " acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_contacts,acc_sms_send,acc_sms_birthday,as_dept, " _
+            & " (SELECT contact_number FROM `branches` WHERE id=`belo_database`.`user_account_backend`.`branch`) AS contact_number" _
+            & " FROM `belo_database`.`user_account_backend` WHERE username ='" & lg_username & "'"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            'sql = "SELECT username, PASSWORD,user_access_group,branch,(SELECT NAME FROM `ref_branch` WHERE CODE=branch) AS branchName, " _
+            '& " IFNULL((SELECT department_name FROM ref_user_access WHERE group_name=user_access_group),'') AS department, " _
+            '& " IFNULL((SELECT department_key FROM ref_user_access WHERE group_name=user_access_group),'') AS department_key, " _
+            '& " (SELECT db_name FROM `ref_branch` WHERE CODE=branch) AS db_name, firstname AS ClientName,IFNULL(acc_admin,'0') acc_admin,acc_sms, " _
+            '& " acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_contacts,acc_sms_send,acc_sms_birthday,as_dept, (SELECT contact_number FROM `ref_branch` WHERE CODE=branch) AS contact_number  FROM `user_account_backend` WHERE username ='" & lg_username & "'"
+
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -206,7 +214,8 @@ Module connection_setting
                     'FromAddress = Sender ; ToAddress = Recipient
                     
                     query = "INSERT INTO Messages SET DirectionID=2, TypeID=1, StatusDetailsID=200, StatusID=1, ChannelID=0, ToAddress='" & EmpMobile & "', " _
-                    & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
+                    & " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "',Read_stats = 1," _
+                    & " Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "', DeptKey='" & _DeptKey & "'"
 
                     Dim rowsEffected As Integer = 0
                     Dim connection As New MySqlConnection(connStrSMS)
@@ -374,13 +383,14 @@ Module connection_setting
             MsgBox(ex.Message & "::department_first_footer", MsgBoxStyle.Information, "Belo SMS:Login")
         End Try
     End Function
-    Function Branch_First_Footer(ByVal branch_code As String) As String
+    Function Branch_First_Footer(ByVal branch_code As String, ByVal Type As String) As String
         Try
             branch_code = Replace(branch_code, "'", "\'")
 
-            Dim sql As String = "SELECT branch_first_footer,branch_end_footer FROM sms_branch_footer WHERE branch_code LIKE '" & branch_code & "'"
+            'Dim sql As String = "SELECT branch_first_footer,branch_end_footer FROM `sms_branch_footer` WHERE branch_code LIKE '" & branch_code & "'"
+            Dim sql As String = "SELECT template FROM `template` WHERE location LIKE '" & branch_code & "' AND type = '" & Type & "'"
             'MsgBox(sql)
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -388,8 +398,8 @@ Module connection_setting
 
             If reader.HasRows = True Then
                 While reader.Read
-                    Branch_First_Footer = reader.Item("branch_first_footer").ToString.Trim() & vbNewLine & vbNewLine
-                    Branch_End_Footer = reader.Item("branch_end_footer").ToString.Trim()
+                    'Branch_First_Footer = reader.Item("branch_first_footer").ToString.Trim() & vbNewLine & vbNewLine
+                    Branch_End_Footer = reader.Item("template").ToString.Trim()
                 End While
             Else
                 Branch_First_Footer = ""
@@ -456,8 +466,8 @@ Module connection_setting
 
         On Error Resume Next
 
-        Dim sql As String = "SELECT name FROM ref_branch WHERE code='" & branchCode & "'"
-        Dim connection As New MySqlConnection(connStrBMG)
+        Dim sql As String = "SELECT name FROM branches WHERE id='" & branchCode & "'"
+        Dim connection As New MySqlConnection(connStrSMS)
         Dim cmd As New MySqlCommand(sql, connection)
         Dim reader As MySqlDataReader
         connection.Open()

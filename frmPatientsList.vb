@@ -136,7 +136,7 @@ Public Class frmPatientsList
         Else
             pxMobile = ""
         End If
-        'REMOVED Clinic_name & BranchName ('clinic_name,(SELECT NAME FROM `ref_branch` WHERE CODE=clinic_name) branchname " _)
+        'REMOVED Clinic_name
         query = "SELECT Patient_ID, CONCAT(IF(LENGTH(last_name)<1,'',CONCAT(last_name,', ')),' ', first_name,' ',middle_name) pxName, gender, mobile_number,birthday,YEAR(birthday) Byyyy, sms_alert,branch,(SELECT NAME FROM `branches` WHERE id=branch) branchname " _
         & " FROM `patient` WHERE " & pxFirstName & pxLastName & pxMiddleName & pxMobile & " gender LIKE '" & pxGender & "' AND sms_alert" & pxAlert & " ORDER BY first_name ASC LIMIT 0,1000 "
 

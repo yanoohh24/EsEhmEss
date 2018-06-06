@@ -314,15 +314,14 @@ Public Class frmMain
     End Sub
 
     Public Sub AsDeptFooters()
-
+        'FOOTERS
         If ClientAsDept = "1" Then
             KeyToolStrip.Text = ClientDepartmentKey
             BranchDept.Text = ClientDepartmentKey
-
+            '& UserAndBranchName & vbNewLine _
             UserAndBranchName = "-" & ClientName & ", " & ClientDepartment
 
             FooterSMS = Department_First_Footer(ClientDepartmentKey) _
-            & UserAndBranchName & vbNewLine _
             & UserClientContacts(ClientUsername) & vbNewLine & vbNewLine _
             & Department_End_Footer
         Else
@@ -331,9 +330,13 @@ Public Class frmMain
 
             UserAndBranchName = "-" & ClientName & ", Belo " & ClientBranchName
 
-            FooterSMS = Branch_First_Footer(ClientBranch) _
-            & UserAndBranchName & vbNewLine & vbNewLine _
-            & Branch_End_Footer
+            FooterSMS = Branch_First_Footer("Footer","SMS") 
+            Dim spit as String()
+            spit = Branch_End_Footer.ToString().Split("|")
+
+            'FooterSMS = UserAndBranchName & vbNewLine & vbNewLine _
+            '& Branch_End_Footer_
+            FooterSMS = spit(0) & ClientBranch & spit(1) 
 
         End If
 
@@ -447,7 +450,13 @@ First_line:
             End If
 
         Catch ex As Exception
-            GoTo First_line
+            'if InStr(1,ex.Message,"")
+
+            'else
+                GoTo First_line
+            'End If
+            
+            
         End Try
     End Sub
 
