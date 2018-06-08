@@ -1,4 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Security.Cryptography
+Imports Microsoft.VisualBasic.CompilerServices
+Imports MySql.Data.MySqlClient
 
 Module connection_setting
     Public FFAcountInfo As New frmAccntInfo()
@@ -85,17 +87,18 @@ Module connection_setting
             lg_username = Replace(lg_username, "'", "\'")
             FFLogin.lbDBconnection.Text = ""
 
-            Dim sql As String = "SELECT username, PASSWORD,user_access_group,branch, (SELECT NAME FROM `ref_branch` WHERE CODE=branch) AS branchName, (SELECT db_name FROM `ref_branch` WHERE CODE=branch) AS db_name," _
-            & " firstname AS ClietName,IFNULL(acc_admin,'0') acc_admin,acc_sms,acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_send,as_dept, " _
-            & " (SELECT contact_number FROM `ref_branch` WHERE CODE=branch) AS contact_number  FROM `user_account_backend` WHERE username ='" & lg_username & "'"
+            Dim sql As String 
+            '= "SELECT username, PASSWORD,user_access_group,branch, (SELECT NAME FROM `ref_branch` WHERE CODE=branch) AS branchName, (SELECT db_name FROM `ref_branch` WHERE CODE=branch) AS db_name," _
+            '& " firstname AS ClietName,IFNULL(acc_admin,'0') acc_admin,acc_sms,acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_send,as_dept, " _
+            '& " (SELECT contact_number FROM `ref_branch` WHERE CODE=branch) AS contact_number  FROM `user_account_backend` WHERE username ='" & lg_username & "'"
 
-            sql = "SELECT username, PASSWORD,user_access_group,branch,(SELECT NAME FROM `belo_test`.`Branches` WHERE id=branch) AS branchName, " _
+            sql = "SELECT username,user_access_group,branch,(SELECT NAME FROM `belo_test`.`Branches` WHERE id=branch) AS branchName, " _
             & " IFNULL((SELECT department_name FROM user_access WHERE group_name=user_access_group),'') AS department, " _
             & " IFNULL((SELECT department_key FROM user_access WHERE group_name=user_access_group),'') AS department_key, " _
             & " ('appointments') AS db_name, firstname AS ClientName,IFNULL(acc_admin,'0') acc_admin,acc_sms, " _
             & " acc_sms_admin,acc_sms_fullblast,acc_sms_pxlist,acc_sms_contacts,acc_sms_send,acc_sms_birthday,as_dept, " _
-            & " (SELECT contact_number FROM `branches` WHERE id=`belo_database`.`user_account_backend`.`branch`) AS contact_number" _
-            & " FROM `belo_database`.`user_account_backend` WHERE username ='" & lg_username & "'"
+            & " (SELECT contact_number FROM `branches` WHERE id=`belo_database_test`.`user_account_backend`.`branch`) AS contact_number" _
+            & " FROM `belo_database_test`.`user_account_backend` WHERE username ='" & lg_username & "'"
 
             'sql = "SELECT username, PASSWORD,user_access_group,branch,(SELECT NAME FROM `ref_branch` WHERE CODE=branch) AS branchName, " _
             '& " IFNULL((SELECT department_name FROM ref_user_access WHERE group_name=user_access_group),'') AS department, " _
@@ -112,7 +115,6 @@ Module connection_setting
             If reader.HasRows = True Then
                 While reader.Read
                     ClientUsername = reader.Item("username").ToString.Trim()
-                    ClientPassword = reader.Item("PASSWORD").ToString.Trim()
                     ClientDepartment = reader.Item("department").ToString.Trim()
                     ClientDepartmentKey = reader.Item("department_key").ToString.Trim()
                     ClientUserAccessGroup = reader.Item("user_access_group").ToString.Trim()
@@ -131,12 +133,7 @@ Module connection_setting
                     ClientBirthday = reader.Item("acc_sms_birthday").ToString.Trim()
                     ClientAsDept = reader.Item("as_dept").ToString.Trim()
                 End While
-
-                If lg_password = ClientPassword Then
-                    UserClientIformation = 1
-                Else
-                    UserClientIformation = 2
-                End If
+                UserClientIformation = 1
             Else
                 UserClientIformation = 0
             End If
@@ -206,7 +203,7 @@ Module connection_setting
                     'query = "INSERT INTO Messages SET DirectionID=2, TypeID=2, StatusDetails=200, Status=1, ChannelID=0, Recipient='" & EmpMobile & "', " _
                     '& " Body='" & SMSmsg & "',validity=" & Validity & ", branch='" & _DeptKey & "', PatientID='" & PatientID & "', Username='" & ClientUsername & "', UserHostName='" & ClientHostName & "', UserHostIP='" & ClientHostIP & "'"
                     
-                    
+                    HashAlgorithm.Create()
                     'SEND DETAILS
                     'TYPE = SMS(1)
                     'STATUS = PENDING(1)

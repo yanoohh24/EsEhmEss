@@ -494,23 +494,24 @@ Public Class frmPatientSMS
     End Sub
     Function SMS_Read_status(px_RS_ID As String)
         'Dim sql As String = "UPDATE `messages_sms` SET Read_Stats='1'  WHERE Sender='" & px_RS_ID & "'"
-        Dim sql As String = "UPDATE `messages` SET Read_Stats='1'  WHERE fromaddress='" & px_RS_ID & "'"
-        Try
-            Dim rowsEffected = 0
-            Dim connection As New MySqlConnection(connStrSMS)
-            Dim cmd As New MySqlCommand(sql, connection)
+        if px_RS_ID <> "" then
+            Dim sql As String = "UPDATE `messages` SET Read_Stats='1'  WHERE fromaddress='" & px_RS_ID & "'"
+            Try
+                Dim rowsEffected = 0
+                Dim connection As New MySqlConnection(connStrSMS)
+                Dim cmd As New MySqlCommand(sql, connection)
 
-            connection.Open()
+                connection.Open()
 
-            rowsEffected = cmd.ExecuteNonQuery()
+                rowsEffected = cmd.ExecuteNonQuery()
 
-            connection.Close()
+                connection.Close()
 
-            Return rowsEffected
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-
+                Return rowsEffected
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        end if
     End Function
     Private Sub lstPx_lsSMS_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstPx_lsSMS.Click
         On Error Resume Next

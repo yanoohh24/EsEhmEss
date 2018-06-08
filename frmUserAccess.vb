@@ -280,7 +280,7 @@ Public Class frmUserAccess
         End Try
     End Function
     Private Sub frmUserAccess_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        RegistryGetLogin()
+        'RegistryGetLogin()
         LstColumns()
         UserGroupList()
         combo_Branch_List()

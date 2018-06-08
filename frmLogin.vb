@@ -4,10 +4,21 @@ Imports Microsoft.Win32
 Imports System.IO
 Imports System.Threading
 Imports System.Windows.Forms
+Imports System.Security
+Imports System.Security.Cryptography
+Imports System.Text 
+Imports System.Net.HttpWebRequest
+Imports System.Net.HttpWebResponse
 
 Public Class frmLogin
-
+    Dim sSourceData As String
+    Dim tmpSource() As Byte
+    Dim tmpHash() As Byte
+    Dim LogedIn As Boolean
+    Dim Continues As Integer = 0
+    
     Private Sub btLogin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btLogin.Click
+        'Imports System.Net.WebClient
         Dim usrInf As UsertInformation
         Dim Lusername As String = txtUsername.Text.Trim
         Dim Lpassword As String = txtPassword.Text
@@ -16,7 +27,7 @@ Public Class frmLogin
         btLogin.Enabled = False
 
         connStrSMS = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-        connStrBMG = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
+        connStrBMG = "Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
         connStrLOC = "Database=belo_test;Data Source=localhost;User Id=root;Password='';UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
         Application.DoEvents()
 
@@ -34,9 +45,13 @@ Public Class frmLogin
             Exit Sub
         End If
 
-
-
-
+        '=======================
+        'GetPost()
+        siteRequest("http://192.168.100.250:3264/belo/auth/auth.php", "Post", "username=" & txtUsername.Text & "&password=" & txtPassword.Text & "") ' Login to site
+        If Continues = 1 then
+        siteRequest("http://192.168.100.250:3264/belo/auth/auth.php", "Get")
+        End if 
+        If LogedIn = True then
         Select Case UserClientIformation(Lusername, Lpassword)
             Case 1
                 Try
@@ -76,7 +91,7 @@ Public Class frmLogin
                 lbInformation.Text = "-Invalid username and password"
                 txtUsername.Focus()
         End Select
-
+        End If
         txtPassword.Focus()
         btLogin.Enabled = True
 
@@ -85,7 +100,7 @@ Public Class frmLogin
     Private Sub frmLogin_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     lbDBconnection.Text = ""
         lbVersion.Text = "Version " & Me.GetType.Assembly.GetName.Version.ToString
-        RegistryGetLogin()
+        'RegistryGetLogin()
         txtUsername.Text = ""
         txtPassword.Text = ""
         lbInformation.Text = ""
@@ -254,8 +269,6 @@ Public Class frmLogin
     End Sub
 
     Private Sub frmLogin_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-
-        
         Dim path As String
         Try
 
@@ -292,21 +305,98 @@ Public Class frmLogin
         Throw New NotImplementedException
     End Function
 
-    Private Sub SettingToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles SettingToolStripMenuItem.Click
-
-    End Sub
-
     Private Sub MetroButton1_Click(sender As System.Object, e As System.EventArgs) Handles MetroButton1.Click
         Process.Start(Application.StartupPath & "\Updates_Searcher.exe")
         End
     End Sub
+    Private Function UnicodeBytesToString(ByVal bytes() As Byte) As String
+        Return System.Text.Encoding.Unicode.GetString(bytes)
+    End Function
 
-    Private Sub txtUsername_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtUsername.TextChanged
+    Private Sub POST ()
+        Dim Username = txtUsername.Text
+        Dim PostData = "" 
+        Dim request As WebRequest = WebRequest.Create("http://192.168.100.250:3264/belo/auth/auth.php")
 
+        request.Method = "POST"
+        Dim byteArray As Byte() = Encoding.UTF8.GetBytes(PostData)
+        request.ContentType = "application/x-www-form-urlencoded"
+        request.ContentLength = byteArray.Length
+        Dim dataStream As Stream = request.GetRequestStream()
+        dataStream.Write(byteArray, 0, byteArray.Length)
+        dataStream.Close()
+        Dim response As WebResponse = request.GetResponse()
+        dataStream = response.GetResponseStream()
+        Dim reader As New StreamReader(dataStream)
+        Dim responseFromServer As String = reader.ReadToEnd()
+        reader.Close()
+        dataStream.Close()
+        response.Close()
+        MsgBox(responseFromServer)
     End Sub
 
+    Private siteCookies As New Net.CookieContainer()
+    Function siteRequest(url As String, ByVal Method As String, Optional ByVal data As String = Nothing) As String
+        Static soucrecode As String = Nothing
+        Const UserAgent As String = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+        Try
+            'txtSoucre.Text siteRequest("http:  //www.SomeSite.com", "Get")
+            Dim Request As Net.HttpWebRequest = Net.WebRequest.Create(url)
+            Request.Accept = "*/*"
+            Request.Timeout = 10000
+            Request.Method = Method
+            Request.UserAgent = UserAgent
+            Request.AllowAutoRedirect = True
+            Request.CookieContainer = siteCookies
+            If Request.Method = "POST" AndAlso data IsNot Nothing Then
+                Dim postBytes() As Byte = New UTF8Encoding().GetBytes(data)
+                Request.ContentType = "application/x-www-form-urlencoded"
+                Request.ContentLength = postBytes.Length
+                Request.GetRequestStream().Write(postBytes, 0, postBytes.Length)
+                request.KeepAlive = False
+            End If
 
-Private Sub Panel2_Paint( sender As Object,  e As PaintEventArgs) Handles Panel2.Paint
+            Dim Response As Net.HttpWebResponse = Request.GetResponse()
+            Dim Responses As Net.httpWebResponse = Request.GetResponse()
+            If soucrecode = New IO.StreamReader(Response.GetResponseStream).ReadToEnd() = "True" then
+                LogedIn = True
+            End If
+            soucrecode = New IO.StreamReader(Responses.GetResponseStream).ReadToEnd()
+            Continues = 1
+            Response.Close()
+        Catch ex As Exception
+                lbInformation.Text = "-Invalid password"
+                txtPassword.Focus()
+                Continues = 0
+        End Try
+        Return soucrecode
 
-End Sub
+        
+    End Function
+
+    Private Sub GetPost()
+        Dim pop As string
+        ' Create a request for the URL. 
+            Dim request As WebRequest = _
+              WebRequest.Create("http://192.168.100.250:3264/belo/auth/auth.php")
+            ' If required by the server, set the credentials.
+            request.Credentials = CredentialCache.DefaultCredentials
+            ' Get the response.
+            Dim response As WebResponse = request.GetResponse()
+            ' Display the status.
+            pop = (CType(response,HttpWebResponse).StatusDescription)
+            MsgBox(pop)
+            ' Get the stream containing content returned by the server.
+            Dim dataStream As Stream = response.GetResponseStream()
+            ' Open the stream using a StreamReader for easy access.
+            Dim reader As New StreamReader(dataStream)
+            ' Read the content.
+            Dim responseFromServer As String = reader.ReadToEnd()
+            ' Display the content.
+            MsgBox(responseFromServer)
+            ' Clean up the streams and the response.
+            reader.Close()
+            response.Close()
+    End Sub
+
 End Class
