@@ -14,7 +14,7 @@ Public Class frmLogin
     Dim sSourceData As String
     Dim tmpSource() As Byte
     Dim tmpHash() As Byte
-    Dim LogedIn As Boolean
+    Dim LogedIn As Boolean = False
     Dim Continues As Integer = 0
     
     Private Sub btLogin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btLogin.Click
@@ -47,6 +47,7 @@ Public Class frmLogin
 
         '=======================
         'GetPost()
+        LogedIn = False
         siteRequest("http://192.168.100.250:3264/belo/auth/auth.php", "Post", "username=" & txtUsername.Text & "&password=" & txtPassword.Text & "") ' Login to site
         If Continues = 1 then
         siteRequest("http://192.168.100.250:3264/belo/auth/auth.php", "Get")

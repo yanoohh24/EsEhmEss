@@ -10,10 +10,14 @@ Public Class frmUserBranchFooter
     Private Sub LstColumns()
         lstBranchList.Columns.Clear()
         lstBranchList.Columns.Add("ID", 0)
-        lstBranchList.Columns.Add("First Footer", 300)
-        lstBranchList.Columns.Add("End Footer", 300)
-        lstBranchList.Columns.Add("Branch Code", 80)
-        lstBranchList.Columns.Add("Branch Name", 120)
+        'lstBranchList.Columns.Add("First Footer", 300)
+        'lstBranchList.Columns.Add("End Footer", 300)
+        'lstBranchList.Columns.Add("Branch Code", 80)
+        'lstBranchList.Columns.Add("Branch Name", 120)
+
+        lstBranchList.Columns.Add("Footer", 730)
+        lstBranchList.Columns.Add("Type", 100)
+        'lstBranchList.Columns.Add("Branch Name", 120)
     End Sub
     Private Sub frmUserBranchFooter_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         txtFirstFooter.Text = ""
@@ -27,9 +31,10 @@ Public Class frmUserBranchFooter
         Try
             Dim sql As String
 
-            sql = "SELECT id,branch_first_footer,branch_end_footer,branch_code,IFNULL((SELECT NAME FROM `ref_branch` WHERE CODE=branch_code),'') BranchName FROM sms_branch_footer"
+            'sql = "SELECT id,branch_first_footer,branch_end_footer,branch_code,IFNULL((SELECT NAME FROM `branch` WHERE id=branch_code),'') BranchName FROM sms_branch_footer"
+            sql = "SELECT id,template,location FROM template where department_key = '" & ClientDepartmentKey & "' and location = 'Footer' and TYPE = 'SMS'"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -39,10 +44,10 @@ Public Class frmUserBranchFooter
             If reader.HasRows = True Then
                 While reader.Read
                     Dim ls As New ListViewItem(reader.Item("id").ToString())
-                    ls.SubItems.Add(reader.Item("branch_first_footer").ToString.Trim())
-                    ls.SubItems.Add(reader.Item("branch_end_footer").ToString())
-                    ls.SubItems.Add(reader.Item("branch_code").ToString())
-                    ls.SubItems.Add(reader.Item("BranchName").ToString())
+                    'ls.SubItems.Add(reader.Item("type").ToString.Trim())
+                    ls.SubItems.Add(reader.Item("template").ToString())
+                    ls.SubItems.Add(reader.Item("location").ToString())
+                    'ls.SubItems.Add(reader.Item("BranchName").ToString())
                     lstBranchList.Items.Add(ls)
                 End While
             End If
@@ -100,16 +105,18 @@ Public Class frmUserBranchFooter
         Dim _first_footer As String = Replace(txtFirstFooter.Text.Trim, "'", "\'")
         Dim _second_footer As String = Replace(txtSecondFooter.Text.Trim, "'", "\'")
 
-        sql = "UPDATE `sms_branch_footer` SET branch_first_footer='" & _first_footer & "',branch_end_footer='" & _second_footer & "' WHERE id='" & lbID.Text & "'"
+        sql = "UPDATE `template` SET Template='" & _first_footer & "',type='SMS',location = 'Footer' WHERE id='" & lbID.Text & "'"
 
         If SMS_Footer_UPDATE(sql) > 0 Then
             txtFirstFooter.Text = ""
             txtSecondFooter.Text = ""
 
             RetriveSMS()
-            MsgBox(lbBranchName.Text & ", footer successfully update.", MsgBoxStyle.Information, "Branch Footer")
+            'MsgBox(lbBranchName.Text & ", footer successfully update.", MsgBoxStyle.Information, "Branch Footer")
+            MsgBox("Branch footer successfully update.", MsgBoxStyle.Information, "Branch Footer")
         Else
-            MsgBox(lbBranchName.Text & ", footer update failed.", MsgBoxStyle.Exclamation, "Branch Footer")
+            'MsgBox(lbBranchName.Text & ", footer update failed.", MsgBoxStyle.Exclamation, "Branch Footer")
+            MsgBox("Branch footer update failed.", MsgBoxStyle.Information, "Branch Footer")
         End If
 
 
@@ -118,7 +125,7 @@ Public Class frmUserBranchFooter
 
         Try
             Dim rowsEffected As Integer = 0
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
 
             connection.Open()
@@ -136,4 +143,8 @@ Public Class frmUserBranchFooter
     Private Sub lstBranchList_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstBranchList.SelectedIndexChanged
 
     End Sub
+
+Private Sub txtFirstFooter_TextChanged( sender As Object,  e As EventArgs) Handles txtFirstFooter.TextChanged
+    
+End Sub
 End Class

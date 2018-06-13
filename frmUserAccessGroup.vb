@@ -46,13 +46,13 @@ Public Class frmUserAccessGroup
             Dim sql As String
 
             If Len(Groupname) > 0 Then
-                sql = "SELECT * FROM ref_user_access WHERE group_name LIKE '%" & Groupname & "%' ORDER BY group_name ASC"
+                sql = "SELECT * FROM user_access WHERE group_name LIKE '%" & Groupname & "%' ORDER BY group_name ASC"
             Else
-                sql = "SELECT * FROM ref_user_access WHERE group_name LIKE '%" & Groupname & "%' ORDER BY group_name ASC"
+                sql = "SELECT * FROM user_access WHERE group_name LIKE '%" & Groupname & "%' ORDER BY group_name ASC"
             End If
 
             'MsgBox(sql)
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()

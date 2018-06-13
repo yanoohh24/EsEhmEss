@@ -67,17 +67,17 @@ Public Class frmUserAccess
 
             If Len(pxusername) > 0 Then
                 'sql = "SELECT * FROM `user_account_backend` WHERE username LIKE '%" & pxusername & "%' AND user_access_group LIKE '" & usrgrp & "' ORDER BY username ASC"
-                sql = "SELECT id, username,firstname,lastname,branch,IFNULL((SELECT department_name FROM ref_user_access WHERE group_name=user_access_group),'') AS department," _
-                & " as_dept,IFNULL((SELECT department_key FROM ref_user_access WHERE group_name=user_access_group),'') AS department_key,user_access_group, acc_admin, acc_sms_admin," _
-                & " acc_sms, acc_sms_fullblast, acc_sms_pxlist, acc_sms_send,acc_sms_birthday,acc_sms_contacts,branch FROM `user_account_backend` WHERE username LIKE '%" & pxusername & "%' AND user_access_group LIKE '" & usrgrp & "' AND branch LIKE '" & branchCode & "' ORDER BY username ASC"
+                sql = "SELECT id, username,firstname,lastname,branch,IFNULL((SELECT department_name FROM user_access WHERE group_name=user_access_group),'') AS department," _
+                & " as_dept,IFNULL((SELECT department_key FROM user_access WHERE group_name=user_access_group),'') AS department_key,user_access_group, acc_admin, acc_sms_admin," _
+                & " acc_sms, acc_sms_fullblast, acc_sms_pxlist, acc_sms_send,acc_sms_birthday,acc_sms_contacts,branch FROM `belo_database_test`.`user_account_backend` WHERE username LIKE '%" & pxusername & "%' AND user_access_group LIKE '" & usrgrp & "' AND branch LIKE '" & branchCode & "' ORDER BY username ASC"
             Else
                 'sql = "SELECT * FROM `user_account_backend` WHERE username LIKE '%' AND user_access_group LIKE '" & usrgrp & "' ORDER BY username ASC"
-                sql = "SELECT id, username,firstname,lastname,branch,IFNULL((SELECT department_name FROM ref_user_access WHERE group_name=user_access_group),'') AS department," _
-                & " as_dept,IFNULL((SELECT department_key FROM ref_user_access WHERE group_name=user_access_group),'') AS department_key,user_access_group, acc_admin, acc_sms_admin," _
-                & " acc_sms, acc_sms_fullblast, acc_sms_pxlist, acc_sms_send,acc_sms_birthday,acc_sms_contacts,branch FROM `user_account_backend` WHERE username LIKE '%' AND user_access_group LIKE '" & usrgrp & "' AND branch LIKE '" & branchCode & "' ORDER BY username ASC"
+                sql = "SELECT id, username,firstname,lastname,branch,IFNULL((SELECT department_name FROM user_access WHERE group_name=user_access_group),'') AS department," _
+                & " as_dept,IFNULL((SELECT department_key FROM user_access WHERE group_name=user_access_group),'') AS department_key,user_access_group, acc_admin, acc_sms_admin," _
+                & " acc_sms, acc_sms_fullblast, acc_sms_pxlist, acc_sms_send,acc_sms_birthday,acc_sms_contacts,branch FROM `belo_database_test`.`user_account_backend` WHERE username LIKE '%' AND user_access_group LIKE '" & usrgrp & "' AND branch LIKE '" & branchCode & "' ORDER BY username ASC"
             End If
             'MsgBox(sql)
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -200,9 +200,9 @@ Public Class frmUserAccess
             Dim i As Integer = 1
             Dim query As String
 
-            query = "SELECT group_name FROM ref_user_access ORDER BY group_name ASC"
+            query = "SELECT group_name FROM user_access ORDER BY group_name ASC"
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
 
@@ -230,12 +230,12 @@ Public Class frmUserAccess
             Dim query As String
 
             If ClientAccAdmin = 1 Then
-                query = "SELECT * FROM `ref_branch` WHERE CODE NOT LIKE '00' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' ORDER BY name ASC"
             Else
-                query = "SELECT * FROM `ref_branch` WHERE CODE NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
+                query = "SELECT * FROM `branches` WHERE ID NOT LIKE '00' AND CODE='" & ClientBranch & "' ORDER BY name ASC"
             End If
 
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
 
@@ -244,7 +244,7 @@ Public Class frmUserAccess
 
             connection.Open()
             reader = cmd.ExecuteReader()
-            cbBranch.Items.Add("All")
+            'cbBranch.Items.Add("All")
             If reader.HasRows = True Then
                 While reader.Read
                     cbBranch.Items.Add(reader.Item("name").ToString())
@@ -258,8 +258,8 @@ Public Class frmUserAccess
     End Sub
     Function User_BranchCode(ByVal BranchName As String) As String
         Try
-            Dim query As String = "SELECT * FROM `ref_branch` WHERE NAME LIKE '%" & BranchName & "%'"
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim query As String = "SELECT * FROM `branches` WHERE NAME LIKE '%" & BranchName & "%'"
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(query, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -267,7 +267,7 @@ Public Class frmUserAccess
 
             If reader.HasRows = True Then
                 While reader.Read
-                    User_BranchCode = reader.Item("code").ToString()
+                    User_BranchCode = reader.Item("id").ToString()
                     lbBranchCode.Text = User_BranchCode
                 End While
             Else
@@ -285,7 +285,7 @@ Public Class frmUserAccess
         UserGroupList()
         combo_Branch_List()
         connStrSMS = "Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
-        connStrBMG = " Database=belo_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
+        connStrBMG = " Database=belo_database_test;Data Source=" & Host & ";User Id=" & UserName & ";Password=" & Password & ";UseCompression=True;Connection Timeout=28800"
         connStrLOC = "Database=belo_test;Data Source=localhost;User Id=root;Password='';UseCompression=True;Connection Timeout=28800;Convert Zero Datetime=True"
         txtUsername.Text = ""
         txtLUsername.Text = ""

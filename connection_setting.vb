@@ -361,8 +361,8 @@ Module connection_setting
         Try
             branch_code = Replace(branch_code, "'", "\'")
 
-            Dim sql As String = "SELECT department_first_footer FROM ref_user_access WHERE department_key='" & branch_code & "'"
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim sql As String = "SELECT department_first_footer FROM user_access WHERE department_key='" & branch_code & "'"
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
@@ -411,8 +411,8 @@ Module connection_setting
         Try
             department_key = Replace(department_key, "'", "\'")
 
-            Dim sql As String = "SELECT department_first_footer,department_end_footer FROM ref_user_access WHERE department_key='" & department_key & "'"
-            Dim connection As New MySqlConnection(connStrBMG)
+            Dim sql As String = "SELECT department_first_footer,department_end_footer FROM user_access WHERE department_key='" & department_key & "'"
+            Dim connection As New MySqlConnection(connStrSMS)
             Dim cmd As New MySqlCommand(sql, connection)
             Dim reader As MySqlDataReader
             connection.Open()
